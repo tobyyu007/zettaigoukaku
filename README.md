@@ -1,1 +1,1 @@
-# zettaigoukaku
+# 絶対合格
