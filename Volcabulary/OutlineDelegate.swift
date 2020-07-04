@@ -25,14 +25,17 @@ extension FunctionList: NSOutlineViewDelegate {
             cell.textField!.stringValue = aItem.name
             if aItem.name == "單字"
             {
+                // 改變 icon
                 cell.imageView!.image = vocabularyImage
             }
             else if aItem.name == "新增單字"
             {
+                // 改變 icon
                 cell.imageView!.image = addvocabularyImage
             }
             else if aItem.name == "測驗"
             {
+                // 改變 icon
                 cell.imageView!.image = testImage
             }
         }

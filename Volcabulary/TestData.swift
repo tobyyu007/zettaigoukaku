@@ -57,6 +57,8 @@ class TestData
         }
         */
         
+        // 加入 Funtion List 功能選項
+        
         var item = TestItem()
         item.name = "單字"
         items.append(item)

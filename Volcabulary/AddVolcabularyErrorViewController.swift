@@ -15,7 +15,9 @@ class AddVolcabularyErrorViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
-    @IBAction func DismissTabView(sender: NSButton) {
+    @IBAction func DismissTabView(sender: NSButton)
+    {
+        // 關閉警告視窗
         self.dismiss(AddVolcabularyErrorViewController.self)
     }
     
