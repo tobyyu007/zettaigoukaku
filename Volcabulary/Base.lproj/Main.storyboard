@@ -1308,20 +1308,176 @@
                         <outlet property="sentenceTextField" destination="mvh-Yf-UtY" id="fW1-LF-m8n"/>
                         <outlet property="sentence_chineseTextField" destination="R4M-rl-XkE" id="2Fk-8r-lea"/>
                         <outlet property="typeTextField" destination="Yta-64-HXC" id="Sw8-wL-Ijx"/>
+                        <outlet property="volcabularyTableView" destination="6nT-Rh-Hk2" id="7QC-oE-xNx"/>
                         <outlet property="volcabularyTextField" destination="wbT-9d-knF" id="Jak-cf-xnr"/>
                         <outlet property="volcabularyview" destination="OKK-PY-5p9" id="BIk-Je-JAg"/>
-                        <segue destination="eyQ-l7-hMe" kind="sheet" identifier="AddVolcabularyError" id="fiH-pD-r1e"/>
+                        <segue destination="uYW-ag-VWt" kind="sheet" identifier="menuAddVolcabulary" id="iED-lY-udp"/>
+                        <segue destination="eyQ-l7-hMe" kind="sheet" identifier="AddVolcabularyError" id="8Or-r0-D3Y"/>
                     </connections>
                 </viewController>
                 <customObject id="WCO-bB-OF2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController id="J5c-GF-L2X" userLabel="Volcabulary Array Controller">
                     <connections>
-                        <binding destination="NNZ-bu-IiJ" name="contentArray" keyPath="Volcabularies" id="U3X-A6-rZt"/>
+                        <binding destination="NNZ-bu-IiJ" name="contentArray" keyPath="Volcabularies" id="vcE-D6-PeW"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="ldX-bv-C04"/>
             </objects>
             <point key="canvasLocation" x="2226" y="1086"/>
+        </scene>
+        <!--Menu Add Volcabulary View Controller-->
+        <scene sceneID="shG-UR-6ad">
+            <objects>
+                <viewController id="uYW-ag-VWt" customClass="MenuAddVolcabularyViewController" customModule="Volcabulary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="iDm-Gm-dgj">
+                        <rect key="frame" x="0.0" y="0.0" width="660" height="400"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView fixedFrame="YES" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Ws8-Al-X0O">
+                                <rect key="frame" x="0.0" y="0.0" width="660" height="400"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </visualEffectView>
+                            <customView id="JPl-nb-76d" userLabel="新增單字">
+                                <rect key="frame" x="0.0" y="0.0" width="660" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NoJ-7e-rrr">
+                                        <rect key="frame" x="288" y="24" width="85" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g2P-ES-YTF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="editOrAddButton:" target="uYW-ag-VWt" id="V5z-6i-l6w"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hx0-3x-kBe" userLabel="假名 Text Field">
+                                        <rect key="frame" x="264" y="309" width="198" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="s6m-H2-tPy">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2JA-xt-gjU">
+                                        <rect key="frame" x="221" y="312" width="35" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="假名:" id="Xog-Dc-nUn">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAg-sy-LoY" userLabel="題型 Text Field">
+                                        <rect key="frame" x="264" y="204" width="198" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="tXU-ur-DMU">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-o2-NIm" userLabel="中文 Text Field">
+                                        <rect key="frame" x="264" y="258" width="198" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="dxD-pl-zXp">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BIl-DZ-hlR">
+                                        <rect key="frame" x="221" y="261" width="35" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="中文:" id="hn9-5Q-d85">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="us2-UO-eyc">
+                                        <rect key="frame" x="221" y="207" width="35" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="類型:" id="ZFW-za-dk7">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlI-nl-ans" userLabel="日文 Text Field">
+                                        <rect key="frame" x="265" y="359" width="197" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Y1S-MU-GQQ">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-4T-ydk">
+                                        <rect key="frame" x="221" y="362" width="35" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="日文:" id="XOh-x5-LCI">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-pJ-kMH" userLabel="例句中文 Text Field">
+                                        <rect key="frame" x="264" y="90" width="198" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="U3W-Jk-ceI">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wa2-6y-m4u">
+                                        <rect key="frame" x="196" y="93" width="61" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="例句中文:" id="2e9-qj-4VH">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X7x-6e-COC" userLabel="例句 Text Field">
+                                        <rect key="frame" x="264" y="147" width="198" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="54e-2N-crr">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phD-mJ-KiR">
+                                        <rect key="frame" x="221" y="150" width="35" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="例句:" id="2rm-tw-ihW">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </customView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="NoJ-7e-rrr" id="kLw-fi-npu"/>
+                        <outlet property="chineseTextField" destination="Og0-o2-NIm" id="ibF-zM-NHq"/>
+                        <outlet property="kanaTextField" destination="hx0-3x-kBe" id="hcv-jw-QOC"/>
+                        <outlet property="sentenceTextField" destination="X7x-6e-COC" id="kW2-EZ-k3V"/>
+                        <outlet property="sentence_chineseTextField" destination="uI8-pJ-kMH" id="nuZ-Vo-CJ9"/>
+                        <outlet property="typeTextField" destination="AAg-sy-LoY" id="ktO-5X-VGN"/>
+                        <outlet property="volcabularyTextField" destination="WlI-nl-ans" id="kRQ-yG-bIY"/>
+                        <segue destination="eyQ-l7-hMe" kind="sheet" identifier="MenuAddVolcabularyError" id="XGu-UE-CTK"/>
+                    </connections>
+                </viewController>
+                <customObject id="2fB-rj-ryk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="1086"/>
         </scene>
         <!--Add Volcabulary Error View Controller-->
         <scene sceneID="uZm-8V-nLS">
@@ -1372,9 +1528,12 @@ DQ
                 </viewController>
                 <customObject id="Wgy-Lj-HE1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2921" y="1095"/>
+            <point key="canvasLocation" x="3734" y="1086"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Or-r0-D3Y"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSTouchBarComposeTemplate" width="21" height="30"/>
     </resources>

@@ -4,7 +4,8 @@
 //
 //  Created by Toby on 2020/7/3.
 //  Copyright © 2020 Toby. All rights reserved.
-//  Reference of Table list: https://www.youtube.com/watch?v=VfVYX7nO9dQ
+//  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
+//  Refernece of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 
 
 import Cocoa
@@ -34,6 +35,7 @@ class FunctionsViewController: NSViewController {
 
     @IBOutlet weak var volcabularyview: NSView!
     @IBOutlet weak var addvocabularyView: NSView!
+    @IBOutlet weak var volcabularyTableView: NSTableView!
     
     @IBOutlet weak var kanaTextField: NSTextField!
     @IBOutlet weak var sentenceTextField: NSTextField!
@@ -52,6 +54,12 @@ class FunctionsViewController: NSViewController {
         // Do view setup here.
         scheduledTimerWithTimeInterval()
         addvocabularyView.isHidden = true
+        
+        let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
+        volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
+        volcabularyTableMenu.addItem(NSMenuItem(title: "編輯", action: #selector(tableViewEditItemClicked(_:)), keyEquivalent: ""))
+        volcabularyTableMenu.addItem(NSMenuItem(title: "刪除", action: #selector(tableViewDeleteItemClicked(_:)), keyEquivalent: ""))
+        volcabularyTableView.menu = volcabularyTableMenu
     }
     
     
@@ -61,8 +69,9 @@ class FunctionsViewController: NSViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
-    @objc func updateCounting(){
-        //NSLog("counting..")
+    @objc func updateCounting()  // 0.1 秒跑一次
+    {
+        // 選單改變
         if FunctionsViewController.FunctionChoice == "VolcabularyView"
         {
             volcabularyview.isHidden = false
@@ -78,6 +87,57 @@ class FunctionsViewController: NSViewController {
             volcabularyview.isHidden = true
             addvocabularyView.isHidden = true
         }
+        
+        // 從 menu 編輯回來改變
+        if MenuAddVolcabularyViewController.editing  // 修改
+        {
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary = MenuAddVolcabularyViewController.volcabulary
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].kana = MenuAddVolcabularyViewController.kana
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].chinese = MenuAddVolcabularyViewController.chinese
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].type = MenuAddVolcabularyViewController.type
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence = MenuAddVolcabularyViewController.sentence
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence_chinese = MenuAddVolcabularyViewController.sentence_chinese
+            
+            MenuAddVolcabularyViewController.selectedIndex = -1
+            MenuAddVolcabularyViewController.editing = false
+        }
+        else if MenuAddVolcabularyViewController.adding  // 新增
+        {
+            Volcabularies.append(contentsOf: [Volcabulary(volcabulary: MenuAddVolcabularyViewController.volcabulary, kana: MenuAddVolcabularyViewController.kana, chinese: MenuAddVolcabularyViewController.chinese, type: MenuAddVolcabularyViewController.type, sentence: MenuAddVolcabularyViewController.sentence, sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese)] as [Volcabulary])
+            
+            MenuAddVolcabularyViewController.adding = false
+        }
+    }
+    
+    @objc private func tableViewAddItemClicked(_ sender: AnyObject)  // menu 新增
+    {
+        performSegue(withIdentifier: "menuAddVolcabulary", sender: self)  // 跳轉到新增視窗
+    }
+    
+    @objc private func tableViewEditItemClicked(_ sender: AnyObject)  // menu 編輯
+    {
+        let index = volcabularyTableView.selectedRow  // 取出選擇的欄位號碼
+        if index != -1  // 有選擇項目
+        {
+            MenuAddVolcabularyViewController.kana = Volcabularies[index].kana
+            MenuAddVolcabularyViewController.sentence = Volcabularies[index].sentence
+            MenuAddVolcabularyViewController.type = Volcabularies[index].type
+            MenuAddVolcabularyViewController.chinese = Volcabularies[index].chinese
+            MenuAddVolcabularyViewController.volcabulary = Volcabularies[index].volcabulary
+            MenuAddVolcabularyViewController.sentence_chinese = Volcabularies[index].sentence_chinese
+            
+            MenuAddVolcabularyViewController.selectedIndex = index
+            performSegue(withIdentifier: "menuAddVolcabulary", sender: self)  // 跳轉到編輯視窗
+        }
+    }
+
+    @objc private func tableViewDeleteItemClicked(_ sender: AnyObject)  // menu 刪除
+    {
+        let index = volcabularyTableView.selectedRow  // 取出選擇的欄位號碼
+        if index != -1  // 有選擇項目
+        {
+            Volcabularies.remove(at: index)
+        }
     }
     
     // MARK: - 新增單字
@@ -88,11 +148,12 @@ class FunctionsViewController: NSViewController {
         let chinese = chineseTextField.stringValue
         let volcabulary = volcabularyTextField.stringValue
         let sentence_chinese = sentence_chineseTextField.stringValue
+        
         if kana != "" && sentence != "" && type != "" && chinese != "" && volcabulary != "" && sentence_chinese != ""
         {
             Volcabularies.append(contentsOf: [Volcabulary(volcabulary: volcabulary, kana: kana, chinese: chinese, type: type, sentence: sentence, sentence_chinese: sentence_chinese)] as [Volcabulary])
         }
-        else
+        else  // 顯示錯誤
         {
             performSegue(withIdentifier: "AddVolcabularyError", sender: self)
         }

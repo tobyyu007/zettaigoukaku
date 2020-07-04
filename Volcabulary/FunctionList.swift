@@ -14,9 +14,9 @@ class FunctionList: NSViewController{
     
     @IBOutlet weak var theOutline: NSOutlineView!
     @IBOutlet weak var searchBar: NSTextField!
-    @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet var functionListView: NSView!
     
+    // 讀取圖片
     var folderImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIcon)))
     var itemImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericDocumentIcon)))
     var vocabularyImage = NSImage(named: "NSBookmarksTemplate")
@@ -28,15 +28,17 @@ class FunctionList: NSViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //addData()
+        
+        // 圖片大小調整
         vocabularyImage?.size = NSSize(width: 25, height: 25)
         addvocabularyImage?.size = NSSize(width: 17, height: 17)
         testImage?.size = NSSize(width: 25, height: 25)
+        
+        // 預設選擇第一個功能 (單字)
         let indexSet = NSIndexSet(index: 0)
         theOutline.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
-        searchBar.bezelStyle = NSTextField.BezelStyle.roundedBezel;
-        //searchBar.focusRingType = NSFocusRingType.none
-        scrollView.becomeFirstResponder()
+        
+        searchBar.bezelStyle = NSTextField.BezelStyle.roundedBezel // 搜尋欄邊框圓化
     }
     
     // Assign functionListView to be the first responder
@@ -53,8 +55,7 @@ class FunctionList: NSViewController{
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         if let function = theOutline.item(atRow: theOutline.selectedRow) as? TestItem {
-            // If the selected item is a Color object then pass it to the color details
-            // view and show it.
+            // 根據功能欄位選擇改變的視窗，連結 FunctionsViewController 連動
             if function.name == "單字"
             {
                 FunctionsViewController.FunctionChoice = "VolcabularyView"
@@ -68,7 +69,7 @@ class FunctionList: NSViewController{
                 FunctionsViewController.FunctionChoice = "TestView"
             }
         }
-        else
+        else  // 預設視窗
         {
             FunctionsViewController.FunctionChoice = "VolcabularyView"
         }

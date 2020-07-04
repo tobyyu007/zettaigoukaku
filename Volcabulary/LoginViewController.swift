@@ -12,8 +12,9 @@ import SwiftUI
 class LoginViewController: NSViewController {
 
     @IBAction func loginButton(_ sender: Any) {
+        // 跳轉到主視窗
         performSegue(withIdentifier: "LoginToMain", sender: self)
-        self.view.window?.close()
+        self.view.window?.close()  // 關閉 login 視窗
     }
     
     override func viewDidLoad() {

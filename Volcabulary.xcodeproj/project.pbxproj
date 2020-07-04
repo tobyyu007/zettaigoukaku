@@ -21,6 +21,7 @@
 		DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B924AE4A46001D7B44 /* TestData.swift */; };
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
+		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		DA7802B924AE4A46001D7B44 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
+		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +85,7 @@
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
 				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
 				DA7802BB24AF193D001D7B44 /* WindowsController */,
-				DA7802BD24AF1983001D7B44 /* NSOutlineView */,
+				DA7802BD24AF1983001D7B44 /* FunctionListOutlineView */,
 			);
 			path = Volcabulary;
 			sourceTree = "<group>";
@@ -97,7 +99,7 @@
 			name = WindowsController;
 			sourceTree = "<group>";
 		};
-		DA7802BD24AF1983001D7B44 /* NSOutlineView */ = {
+		DA7802BD24AF1983001D7B44 /* FunctionListOutlineView */ = {
 			isa = PBXGroup;
 			children = (
 				DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */,
@@ -106,12 +108,13 @@
 				DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */,
 				DA7802B924AE4A46001D7B44 /* TestData.swift */,
 			);
-			name = NSOutlineView;
+			name = FunctionListOutlineView;
 			sourceTree = "<group>";
 		};
 		DAA20E9424AF9F1A0007885F /* VariousFunctionViews */ = {
 			isa = PBXGroup;
 			children = (
+				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
 			);
 			name = VariousFunctionViews;
@@ -199,6 +202,7 @@
 				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
 				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
 				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
+				DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
