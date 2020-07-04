@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Volcabulary.xcodeproj">
+      location = "self:/Users/toby/Desktop/Volcabulary 3 bk/Volcabulary.xcodeproj">
    </FileRef>
 </Workspace>

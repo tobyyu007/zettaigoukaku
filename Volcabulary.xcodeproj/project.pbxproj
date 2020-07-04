@@ -8,19 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */; };
-		DA18798F24ACBEB60020E8A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18798E24ACBEB60020E8A6 /* ViewController.swift */; };
 		DA18799124ACBEB70020E8A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA18799024ACBEB70020E8A6 /* Assets.xcassets */; };
 		DA18799424ACBEB70020E8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA18799224ACBEB70020E8A6 /* Main.storyboard */; };
+		DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18799C24ACC7F40020E8A6 /* FunctionList.swift */; };
+		DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */; };
+		DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */; };
+		DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */; };
+		DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */; };
+		DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */; };
+		DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */; };
+		DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */; };
+		DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B924AE4A46001D7B44 /* TestData.swift */; };
+		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
+		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DA18798924ACBEB60020E8A6 /* Volcabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Volcabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA18798E24ACBEB60020E8A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DA18799024ACBEB70020E8A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA18799324ACBEB70020E8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA18799524ACBEB70020E8A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA18799624ACBEB70020E8A6 /* Volcabulary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Volcabulary.entitlements; sourceTree = "<group>"; };
+		DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = zettaigoukaku.entitlements; sourceTree = "<group>"; };
+		DA18799C24ACC7F40020E8A6 /* FunctionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionList.swift; sourceTree = "<group>"; };
+		DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
+		DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDataSource.swift; sourceTree = "<group>"; };
+		DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDelegate.swift; sourceTree = "<group>"; };
+		DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemView.swift; sourceTree = "<group>"; };
+		DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		DA7802B924AE4A46001D7B44 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
+		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,13 +74,47 @@
 			isa = PBXGroup;
 			children = (
 				DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */,
-				DA18798E24ACBEB60020E8A6 /* ViewController.swift */,
+				DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */,
+				DA18799C24ACC7F40020E8A6 /* FunctionList.swift */,
+				DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */,
 				DA18799024ACBEB70020E8A6 /* Assets.xcassets */,
 				DA18799224ACBEB70020E8A6 /* Main.storyboard */,
+				DAA20E9424AF9F1A0007885F /* VariousFunctionViews */,
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
-				DA18799624ACBEB70020E8A6 /* Volcabulary.entitlements */,
+				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
+				DA7802BB24AF193D001D7B44 /* WindowsController */,
+				DA7802BD24AF1983001D7B44 /* NSOutlineView */,
 			);
 			path = Volcabulary;
+			sourceTree = "<group>";
+		};
+		DA7802BB24AF193D001D7B44 /* WindowsController */ = {
+			isa = PBXGroup;
+			children = (
+				DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */,
+				DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */,
+			);
+			name = WindowsController;
+			sourceTree = "<group>";
+		};
+		DA7802BD24AF1983001D7B44 /* NSOutlineView */ = {
+			isa = PBXGroup;
+			children = (
+				DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */,
+				DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */,
+				DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */,
+				DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */,
+				DA7802B924AE4A46001D7B44 /* TestData.swift */,
+			);
+			name = NSOutlineView;
+			sourceTree = "<group>";
+		};
+		DAA20E9424AF9F1A0007885F /* VariousFunctionViews */ = {
+			isa = PBXGroup;
+			children = (
+				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
+			);
+			name = VariousFunctionViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,8 +187,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA18798F24ACBEB60020E8A6 /* ViewController.swift in Sources */,
+				DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */,
+				DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */,
+				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
+				DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */,
+				DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */,
+				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
+				DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */,
+				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,
 				DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */,
+				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
+				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
+				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +333,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Volcabulary/Volcabulary.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AJHW4478L3;
@@ -279,7 +343,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Toby.Volcabulary;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -289,7 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Volcabulary/Volcabulary.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = AJHW4478L3;
@@ -299,7 +364,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Toby.Volcabulary;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

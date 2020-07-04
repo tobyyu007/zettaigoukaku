@@ -7,12 +7,17 @@
 //
 
 import Cocoa
+import SwiftUI
 
-class ViewController: NSViewController {
+class LoginViewController: NSViewController {
 
+    @IBAction func loginButton(_ sender: Any) {
+        performSegue(withIdentifier: "LoginToMain", sender: self)
+        self.view.window?.close()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +27,4 @@ class ViewController: NSViewController {
         }
     }
 
-
 }
-
