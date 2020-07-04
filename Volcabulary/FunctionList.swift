@@ -12,7 +12,9 @@ class FunctionList: NSViewController{
     
     @IBOutlet weak var theOutline: NSOutlineView!
     @IBOutlet weak var searchBar: NSTextField!
-
+    @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet var functionListView: NSView!
+    
     var folderImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIcon)))
     var itemImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericDocumentIcon)))
     var vocabularyImage = NSImage(named: "NSBookmarksTemplate")
@@ -31,7 +33,13 @@ class FunctionList: NSViewController{
         let indexSet = NSIndexSet(index: 0)
         theOutline.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
         searchBar.bezelStyle = NSTextField.BezelStyle.roundedBezel;
-        searchBar.focusRingType = NSFocusRingType.none
+        //searchBar.focusRingType = NSFocusRingType.none
+        scrollView.becomeFirstResponder()
+    }
+    
+    // Assign functionListView to be the first responder
+    override func viewDidAppear() {
+        self.view.window?.makeFirstResponder(functionListView)
     }
 
     override var representedObject: Any? {
