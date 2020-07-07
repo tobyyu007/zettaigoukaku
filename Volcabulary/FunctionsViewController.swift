@@ -12,21 +12,27 @@ import Cocoa
 
 class Volcabulary: NSObject
 {
+    @objc dynamic var star: Bool
+    @objc dynamic var page: Int
     @objc dynamic var volcabulary: String
     @objc dynamic var kana: String
     @objc dynamic var chinese: String
     @objc dynamic var type: String
     @objc dynamic var sentence: String
     @objc dynamic var sentence_chinese: String
+    @objc dynamic var level: String
     
-    init(volcabulary: String, kana: String, chinese: String, type: String, sentence: String, sentence_chinese: String)
+    init(star: Bool, page: Int, volcabulary: String, kana: String, chinese: String, type: String, sentence: String, sentence_chinese: String, level: String)
     {
+        self.star = star
+        self.page = page
         self.volcabulary = volcabulary
         self.kana = kana
         self.chinese = chinese
         self.type = type
         self.sentence = sentence
         self.sentence_chinese = sentence_chinese
+        self.level = level
     }
 }
 
@@ -43,11 +49,23 @@ class FunctionsViewController: NSViewController {
     @IBOutlet weak var chineseTextField: NSTextField!
     @IBOutlet weak var volcabularyTextField: NSTextField!
     @IBOutlet weak var sentence_chineseTextField: NSTextField!
+    @IBOutlet weak var pageTextField: NSTextField!
+    @IBOutlet weak var levelTextField: NSTextField!
+    @IBOutlet weak var starCheckBox: NSButton!
+    
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
     
-    @objc dynamic var Volcabularies: [Volcabulary] = [Volcabulary(volcabulary: "ああ", kana: "ああ", chinese: "啊、哎呀", type: "感", sentence: "ああ、そうですが", sentence_chinese: "阿！是嗎！")]
+    @objc dynamic var Volcabularies: [Volcabulary] = [Volcabulary(star: true,
+                                                                  page: 629,
+                                                                  volcabulary: "ああ",
+                                                                  kana: "ああ",
+                                                                  chinese: "啊、哎呀",
+                                                                  type: "他五",
+                                                                  sentence: "ああ、そうですが",
+                                                                  sentence_chinese: "阿！是嗎！",
+                                                                  level: "N5")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,13 +115,24 @@ class FunctionsViewController: NSViewController {
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].type = MenuAddVolcabularyViewController.type
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence = MenuAddVolcabularyViewController.sentence
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence_chinese = MenuAddVolcabularyViewController.sentence_chinese
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].star = MenuAddVolcabularyViewController.star
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].page = MenuAddVolcabularyViewController.page
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
             
             MenuAddVolcabularyViewController.selectedIndex = -1
             MenuAddVolcabularyViewController.editing = false
         }
         else if MenuAddVolcabularyViewController.adding  // 新增
         {
-            Volcabularies.append(contentsOf: [Volcabulary(volcabulary: MenuAddVolcabularyViewController.volcabulary, kana: MenuAddVolcabularyViewController.kana, chinese: MenuAddVolcabularyViewController.chinese, type: MenuAddVolcabularyViewController.type, sentence: MenuAddVolcabularyViewController.sentence, sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese)] as [Volcabulary])
+            Volcabularies.append(contentsOf: [Volcabulary(star: MenuAddVolcabularyViewController.star,
+                                                          page: MenuAddVolcabularyViewController.page,
+                                                          volcabulary: MenuAddVolcabularyViewController.volcabulary,
+                                                          kana: MenuAddVolcabularyViewController.kana,
+                                                          chinese: MenuAddVolcabularyViewController.chinese,
+                                                          type: MenuAddVolcabularyViewController.type,
+                                                          sentence: MenuAddVolcabularyViewController.sentence,
+                                                          sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
+                                                          level: MenuAddVolcabularyViewController.level)] as [Volcabulary])
             
             MenuAddVolcabularyViewController.adding = false
         }
@@ -125,6 +154,9 @@ class FunctionsViewController: NSViewController {
             MenuAddVolcabularyViewController.chinese = Volcabularies[index].chinese
             MenuAddVolcabularyViewController.volcabulary = Volcabularies[index].volcabulary
             MenuAddVolcabularyViewController.sentence_chinese = Volcabularies[index].sentence_chinese
+            MenuAddVolcabularyViewController.star = Volcabularies[index].star
+            MenuAddVolcabularyViewController.page = Volcabularies[index].page
+            MenuAddVolcabularyViewController.level = Volcabularies[index].level
             
             MenuAddVolcabularyViewController.selectedIndex = index
             performSegue(withIdentifier: "menuAddVolcabulary", sender: self)  // 跳轉到編輯視窗
@@ -140,6 +172,8 @@ class FunctionsViewController: NSViewController {
         }
     }
     
+    
+    
     // MARK: - 新增單字
     @IBAction func addButton(_ sender: Any) {
         let kana = kanaTextField.stringValue
@@ -148,10 +182,23 @@ class FunctionsViewController: NSViewController {
         let chinese = chineseTextField.stringValue
         let volcabulary = volcabularyTextField.stringValue
         let sentence_chinese = sentence_chineseTextField.stringValue
+        let level = levelTextField.stringValue
+        let page = Int(pageTextField.stringValue) ?? 0
         
-        if kana != "" && sentence != "" && type != "" && chinese != "" && volcabulary != "" && sentence_chinese != ""
+        var star = true
+        if starCheckBox.state == .on
         {
-            Volcabularies.append(contentsOf: [Volcabulary(volcabulary: volcabulary, kana: kana, chinese: chinese, type: type, sentence: sentence, sentence_chinese: sentence_chinese)] as [Volcabulary])
+            star = true
+        }
+        else
+        {
+            star = false
+        }
+        
+        if kana != "" && sentence != "" && type != "" && chinese != "" && volcabulary != "" && sentence_chinese != "" && level != "" && page != 0
+        {
+            Volcabularies.append(contentsOf: [Volcabulary(star: star, page: page, volcabulary: volcabulary, kana: kana, chinese: chinese,
+                                                          type: type, sentence: sentence, sentence_chinese: sentence_chinese, level: level)] as [Volcabulary])
         }
         else  // 顯示錯誤
         {
