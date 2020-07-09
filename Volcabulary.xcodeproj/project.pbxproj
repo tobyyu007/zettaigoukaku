@@ -22,6 +22,7 @@
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
+		DAA20E9E24B4B0CD0007885F /* CrawVolcabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
+		DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabulary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
+				DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */,
 			);
 			name = VariousFunctionViews;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
 				DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */,
 				DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */,
+				DAA20E9E24B4B0CD0007885F /* CrawVolcabulary.swift in Sources */,
 				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
 				DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */,
 				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,

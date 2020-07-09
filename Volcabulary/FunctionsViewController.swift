@@ -6,9 +6,11 @@
 //  Copyright © 2020 Toby. All rights reserved.
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Refernece of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
+//  Reference of WebView javascript: https://stackoverflow.com/a/56180664
 
 
 import Cocoa
+import WebKit
 
 class Volcabulary: NSObject
 {
@@ -37,22 +39,12 @@ class Volcabulary: NSObject
 }
 
 
-class FunctionsViewController: NSViewController {
+class FunctionsViewController: NSViewController{
 
     @IBOutlet weak var volcabularyview: NSView!
-    @IBOutlet weak var addvocabularyView: NSView!
     @IBOutlet weak var volcabularyTableView: NSTableView!
-    
-    @IBOutlet weak var kanaTextField: NSTextField!
-    @IBOutlet weak var sentenceTextField: NSTextField!
-    @IBOutlet weak var typeTextField: NSTextField!
-    @IBOutlet weak var chineseTextField: NSTextField!
-    @IBOutlet weak var volcabularyTextField: NSTextField!
-    @IBOutlet weak var sentence_chineseTextField: NSTextField!
-    @IBOutlet weak var pageTextField: NSTextField!
-    @IBOutlet weak var levelTextField: NSTextField!
-    @IBOutlet weak var starCheckBox: NSButton!
-    
+    @IBOutlet weak var crawVolcabularyView: NSView!
+    @IBOutlet weak var crawWebView: WKWebView!
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -71,7 +63,32 @@ class FunctionsViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         scheduledTimerWithTimeInterval()
-        addvocabularyView.isHidden = true
+        crawVolcabularyView.isHidden = true
+        
+        // 爬蟲設定
+        let source = "document.getElementById('searchbar').value = '不足' ;"
+        let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        let userContentController = WKUserContentController()
+        userContentController.addUserScript(userScript)
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = userContentController
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+
+        [webView.topAnchor.constraint(equalTo: view.topAnchor),
+         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+         webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+         webView.rightAnchor.constraint(equalTo: view.rightAnchor)].forEach  { anchor in
+            anchor.isActive = true
+        }
+
+        if let url = URL(string: "https://www.mojidict.com") {
+            webView.load(URLRequest(url: url))
+        }
+        // 爬蟲設定 end
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
@@ -81,7 +98,7 @@ class FunctionsViewController: NSViewController {
     }
     
     
-    // MARK: - 單字
+    // MARK: - 單字功能
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
@@ -93,17 +110,17 @@ class FunctionsViewController: NSViewController {
         if FunctionsViewController.FunctionChoice == "VolcabularyView"
         {
             volcabularyview.isHidden = false
-            addvocabularyView.isHidden = true
+            crawVolcabularyView.isHidden = true
         }
         else if FunctionsViewController.FunctionChoice == "AddVolcabularyView"
         {
             volcabularyview.isHidden = true
-            addvocabularyView.isHidden = false
+            crawVolcabularyView.isHidden = false
         }
         else
         {
             volcabularyview.isHidden = true
-            addvocabularyView.isHidden = true
+            crawVolcabularyView.isHidden = true
         }
         
         // 從 menu 編輯回來改變
@@ -174,35 +191,20 @@ class FunctionsViewController: NSViewController {
     
     
     
-    // MARK: - 新增單字
-    @IBAction func addButton(_ sender: Any) {
-        let kana = kanaTextField.stringValue
-        let sentence = sentenceTextField.stringValue
-        let type = typeTextField.stringValue
-        let chinese = chineseTextField.stringValue
-        let volcabulary = volcabularyTextField.stringValue
-        let sentence_chinese = sentence_chineseTextField.stringValue
-        let level = levelTextField.stringValue
-        let page = Int(pageTextField.stringValue) ?? 0
-        
-        var star = true
-        if starCheckBox.state == .on
-        {
-            star = true
-        }
-        else
-        {
-            star = false
-        }
-        
-        if kana != "" && sentence != "" && type != "" && chinese != "" && volcabulary != "" && sentence_chinese != "" && level != "" && page != 0
-        {
-            Volcabularies.append(contentsOf: [Volcabulary(star: star, page: page, volcabulary: volcabulary, kana: kana, chinese: chinese,
-                                                          type: type, sentence: sentence, sentence_chinese: sentence_chinese, level: level)] as [Volcabulary])
-        }
-        else  // 顯示錯誤
-        {
-            performSegue(withIdentifier: "AddVolcabularyError", sender: self)
+    // MARK: - 新增單字功能
+}
+
+extension FunctionsViewController: WKNavigationDelegate
+{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("Finished navigating to url \(webView.url)")
+        let javascriptString = "const ke = new KeyboardEvent('keydown', {bubbles: true, cancelable: true, keyCode: 13});" +
+                                "searchbar.dispatchEvent(ke);"
+        webView.evaluateJavaScript(javascriptString){ (value, error) in
+            print(value)
+            if let err = error {
+                print(err)
+            }
         }
     }
 }
