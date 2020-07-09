@@ -8,5 +8,8 @@ target 'Volcabulary' do
   # Pods for Volcabulary
 
   pod 'Alamofire', '~> 5.2'
+  
+  use_frameworks!
+  pod 'Kanna', '~> 5.2.2'
 
 end

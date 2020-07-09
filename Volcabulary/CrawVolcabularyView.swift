@@ -4,12 +4,16 @@
 //
 //  Created by Toby on 2020/7/9.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Need to install Cocoapods Alamfire package: https://github.com/Alamofire/Alamofire
+//  Need to install Cocoapods Kanna package: https://github.com/tid-kijyun/Kanna
 //  Reference to WebKit Javascript: https://stackoverflow.com/a/56180664
 //  Reference to WebKit didFinish: https://stackoverflow.com/questions/25504481/wkwebview-content-loaded-function-never-get-called
+
 
 import Cocoa
 import WebKit
 import Alamofire
+import Kanna
 
 class CrawVolcabularyView: NSView, WKNavigationDelegate{
 
