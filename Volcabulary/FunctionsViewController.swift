@@ -6,7 +6,6 @@
 //  Copyright © 2020 Toby. All rights reserved.
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Refernece of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
-//  Reference of WebView javascript: https://stackoverflow.com/a/56180664
 
 
 import Cocoa
@@ -44,7 +43,6 @@ class FunctionsViewController: NSViewController{
     @IBOutlet weak var volcabularyview: NSView!
     @IBOutlet weak var volcabularyTableView: NSTableView!
     @IBOutlet weak var crawVolcabularyView: NSView!
-    @IBOutlet weak var crawWebView: WKWebView!
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -65,30 +63,6 @@ class FunctionsViewController: NSViewController{
         scheduledTimerWithTimeInterval()
         crawVolcabularyView.isHidden = true
         
-        // 爬蟲設定
-        let source = "document.getElementById('searchbar').value = '不足' ;"
-        let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        
-        let userContentController = WKUserContentController()
-        userContentController.addUserScript(userScript)
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = userContentController
-        let webView = WKWebView(frame: .zero, configuration: configuration)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.navigationDelegate = self
-        view.addSubview(webView)
-
-        [webView.topAnchor.constraint(equalTo: view.topAnchor),
-         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-         webView.leftAnchor.constraint(equalTo: view.leftAnchor),
-         webView.rightAnchor.constraint(equalTo: view.rightAnchor)].forEach  { anchor in
-            anchor.isActive = true
-        }
-
-        if let url = URL(string: "https://www.mojidict.com") {
-            webView.load(URLRequest(url: url))
-        }
-        // 爬蟲設定 end
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
@@ -194,17 +168,3 @@ class FunctionsViewController: NSViewController{
     // MARK: - 新增單字功能
 }
 
-extension FunctionsViewController: WKNavigationDelegate
-{
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("Finished navigating to url \(webView.url)")
-        let javascriptString = "const ke = new KeyboardEvent('keydown', {bubbles: true, cancelable: true, keyCode: 13});" +
-                                "searchbar.dispatchEvent(ke);"
-        webView.evaluateJavaScript(javascriptString){ (value, error) in
-            print(value)
-            if let err = error {
-                print(err)
-            }
-        }
-    }
-}

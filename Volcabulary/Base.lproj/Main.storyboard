@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1274,25 +1273,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNW-WU-qkA">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNW-WU-qkA" customClass="CrawVolcabularyView" customModule="Volcabulary" customModuleProvider="target">
                                 <rect key="frame" x="20" y="21" width="890" height="558"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hN-3W-3HL">
-                                        <rect key="frame" x="0.0" y="0.0" width="890" height="558"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <wkWebViewConfiguration key="configuration">
-                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                            <wkPreferences key="preferences"/>
-                                        </wkWebViewConfiguration>
-                                    </wkWebView>
-                                </subviews>
                             </customView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="crawVolcabularyView" destination="bNW-WU-qkA" id="VhM-6x-Hir"/>
-                        <outlet property="crawWebView" destination="7hN-3W-3HL" id="CIc-ku-rEj"/>
                         <outlet property="volcabularyTableView" destination="6nT-Rh-Hk2" id="7QC-oE-xNx"/>
                         <outlet property="volcabularyview" destination="OKK-PY-5p9" id="BIk-Je-JAg"/>
                         <segue destination="uYW-ag-VWt" kind="sheet" identifier="menuAddVolcabulary" id="iED-lY-udp"/>

@@ -14,6 +14,7 @@
 		DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */; };
 		DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */; };
 		DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */; };
+		DA24F0FC24B70B6700F51508 /* CrawVolcabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */; };
 		DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */; };
 		DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */; };
 		DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */; };
@@ -22,7 +23,6 @@
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
-		DAA20E9E24B4B0CD0007885F /* CrawVolcabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +36,7 @@
 		DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyView.swift; sourceTree = "<group>"; };
 		DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDataSource.swift; sourceTree = "<group>"; };
 		DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDelegate.swift; sourceTree = "<group>"; };
 		DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemView.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
-		DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabulary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,7 @@
 			children = (
 				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
-				DAA20E9D24B4B0CD0007885F /* CrawVolcabulary.swift */,
+				DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */,
 			);
 			name = VariousFunctionViews;
 			sourceTree = "<group>";
@@ -197,8 +197,8 @@
 				DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */,
 				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
 				DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */,
+				DA24F0FC24B70B6700F51508 /* CrawVolcabularyView.swift in Sources */,
 				DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */,
-				DAA20E9E24B4B0CD0007885F /* CrawVolcabulary.swift in Sources */,
 				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
 				DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */,
 				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,
