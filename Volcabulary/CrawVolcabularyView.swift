@@ -9,6 +9,7 @@
 
 import Cocoa
 import WebKit
+import Alamofire
 
 class CrawVolcabularyView: NSView, WKNavigationDelegate{
 
@@ -39,6 +40,8 @@ class CrawVolcabularyView: NSView, WKNavigationDelegate{
             webView.load(URLRequest(url: url))
         }
         // 爬蟲設定 end
+        
+        webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil) // 偵測頁面改變
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -53,5 +56,17 @@ class CrawVolcabularyView: NSView, WKNavigationDelegate{
                 print(err)
             }
         }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        // 偵測頁面改變
+        if let key = change?[NSKeyValueChangeKey.newKey] {
+            print("observeValue \(key)") // url value
+        }
+    }
+    
+    func crawData()
+    {
+       
     }
 }

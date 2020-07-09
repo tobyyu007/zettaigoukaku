@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4C250CAE27B497586401B24 /* Pods_Volcabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */; };
 		DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */; };
 		DA18799124ACBEB70020E8A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA18799024ACBEB70020E8A6 /* Assets.xcassets */; };
 		DA18799424ACBEB70020E8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA18799224ACBEB70020E8A6 /* Main.storyboard */; };
@@ -26,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4FBF01937701DC940837D4CD /* Pods-Volcabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Volcabulary.release.xcconfig"; path = "Target Support Files/Pods-Volcabulary/Pods-Volcabulary.release.xcconfig"; sourceTree = "<group>"; };
+		7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Volcabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A685E84D3E7E3532D2A4EB27 /* Pods-Volcabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Volcabulary.debug.xcconfig"; path = "Target Support Files/Pods-Volcabulary/Pods-Volcabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		DA18798924ACBEB60020E8A6 /* Volcabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Volcabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA18799024ACBEB70020E8A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C250CAE27B497586401B24 /* Pods_Volcabulary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +68,8 @@
 			children = (
 				DA18798B24ACBEB60020E8A6 /* Volcabulary */,
 				DA18798A24ACBEB60020E8A6 /* Products */,
+				E48755CE8803D657F2B48FFF /* Pods */,
+				ED64F407FB6B266CB7EB82B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +130,24 @@
 			name = VariousFunctionViews;
 			sourceTree = "<group>";
 		};
+		E48755CE8803D657F2B48FFF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A685E84D3E7E3532D2A4EB27 /* Pods-Volcabulary.debug.xcconfig */,
+				4FBF01937701DC940837D4CD /* Pods-Volcabulary.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED64F407FB6B266CB7EB82B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA18799924ACBEB70020E8A6 /* Build configuration list for PBXNativeTarget "Volcabulary" */;
 			buildPhases = (
+				ECF86FFCD0168940B878D020 /* [CP] Check Pods Manifest.lock */,
 				DA18798524ACBEB60020E8A6 /* Sources */,
 				DA18798624ACBEB60020E8A6 /* Frameworks */,
 				DA18798724ACBEB60020E8A6 /* Resources */,
+				937BD64BA947AF4DF76C1F91 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,6 +214,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		937BD64BA947AF4DF76C1F91 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Volcabulary/Pods-Volcabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Volcabulary/Pods-Volcabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Volcabulary/Pods-Volcabulary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECF86FFCD0168940B878D020 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Volcabulary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA18798524ACBEB60020E8A6 /* Sources */ = {
@@ -339,6 +408,7 @@
 		};
 		DA18799A24ACBEB70020E8A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A685E84D3E7E3532D2A4EB27 /* Pods-Volcabulary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
@@ -360,6 +430,7 @@
 		};
 		DA18799B24ACBEB70020E8A6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FBF01937701DC940837D4CD /* Pods-Volcabulary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
