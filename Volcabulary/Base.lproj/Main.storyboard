@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1273,14 +1274,47 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNW-WU-qkA" customClass="CrawVolcabularyView" customModule="Volcabulary" customModuleProvider="target">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNW-WU-qkA" userLabel="新增單字">
                                 <rect key="frame" x="20" y="21" width="890" height="558"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="45k-su-3Dj">
+                                        <rect key="frame" x="191" y="158" width="185" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="使用 MOJi 辭書輔助輸入" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ErT-fA-8oA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="kwx-QS-AYO" kind="sheet" id="SKg-G5-Alz"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81h-JM-5aY">
+                                        <rect key="frame" x="558" y="158" width="94" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="手動輸入" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yYH-Ws-zfJ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U43-8e-pfL" userLabel="MOJi Image View">
+                                        <rect key="frame" x="194" y="213" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSEveryone" id="ZOQ-0T-Am8"/>
+                                    </imageView>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-M7-XPV" userLabel="Input Image View">
+                                        <rect key="frame" x="516" y="213" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSUser" id="DmN-EI-viF"/>
+                                    </imageView>
+                                </subviews>
                             </customView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="crawVolcabularyView" destination="bNW-WU-qkA" id="VhM-6x-Hir"/>
+                        <outlet property="inputImageView" destination="BaI-M7-XPV" id="Nig-3F-rAb"/>
+                        <outlet property="mojiImageView" destination="U43-8e-pfL" id="I80-NN-m7Y"/>
                         <outlet property="volcabularyTableView" destination="6nT-Rh-Hk2" id="7QC-oE-xNx"/>
                         <outlet property="volcabularyview" destination="OKK-PY-5p9" id="BIk-Je-JAg"/>
                         <segue destination="uYW-ag-VWt" kind="sheet" identifier="menuAddVolcabulary" id="iED-lY-udp"/>
@@ -1296,6 +1330,43 @@
                 <userDefaultsController representsSharedInstance="YES" id="ldX-bv-C04"/>
             </objects>
             <point key="canvasLocation" x="2344" y="1124"/>
+        </scene>
+        <!--Craw Volcabulary View Controller-->
+        <scene sceneID="0p8-c3-LdC">
+            <objects>
+                <viewController id="kwx-QS-AYO" userLabel="Craw Volcabulary View Controller" customClass="CrawVolcabularyViewController" customModule="Volcabulary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="UEQ-fO-m10">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="538"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jXk-P4-ILc">
+                                <rect key="frame" x="0.0" y="38" width="900" height="500"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7KB-Xq-djP">
+                                <rect key="frame" x="417" y="3" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FQQ-CB-CSh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancel:" target="kwx-QS-AYO" id="NHe-jG-0gn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="crawVolcabularyWebView" destination="jXk-P4-ILc" id="jOi-yD-wNg"/>
+                    </connections>
+                </viewController>
+                <customObject id="vbi-ar-kbD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344" y="1820"/>
         </scene>
         <!--Menu Add Volcabulary View Controller-->
         <scene sceneID="shG-UR-6ad">
@@ -1607,6 +1678,8 @@ DQ
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NSCaution" width="32" height="32"/>
+        <image name="NSEveryone" width="32" height="32"/>
         <image name="NSTouchBarComposeTemplate" width="21" height="30"/>
+        <image name="NSUser" width="32" height="32"/>
     </resources>
 </document>

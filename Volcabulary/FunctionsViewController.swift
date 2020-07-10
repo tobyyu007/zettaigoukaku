@@ -43,6 +43,9 @@ class FunctionsViewController: NSViewController{
     @IBOutlet weak var volcabularyview: NSView!
     @IBOutlet weak var volcabularyTableView: NSTableView!
     @IBOutlet weak var crawVolcabularyView: NSView!
+    @IBOutlet weak var mojiImageView: NSImageView!
+    @IBOutlet weak var inputImageView: NSImageView!
+    
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -63,6 +66,12 @@ class FunctionsViewController: NSViewController{
         scheduledTimerWithTimeInterval()
         crawVolcabularyView.isHidden = true
         
+        let mojiImage = #imageLiteral(resourceName: "MOJi")
+        mojiImage.size = NSSize(width: 150, height: 150)
+        mojiImageView.image = mojiImage
+        let inputImage = NSImage(named: "NSUser")
+        inputImage?.size = NSSize(width: 150, height: 140)
+        inputImageView.image = inputImage
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
