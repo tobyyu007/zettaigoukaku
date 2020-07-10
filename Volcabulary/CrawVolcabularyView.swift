@@ -69,8 +69,22 @@ class CrawVolcabularyView: NSView, WKNavigationDelegate{
         }
     }
     
-    func crawData()
+    func crawData(webURL: String)
     {
-       
+        AF.request(webURL).responseString{ response in
+            if let html = response.value{
+                self.parsehtml(html)
+            }
+        }
+    }
+    
+    func parsehtml(_ html1: String)
+    {
+        var doc = try? Kanna.HTML(html: html1, encoding:.utf8)
+        var VD = volcabularyData()
+        
+        for data in doc!.xpath("/html/body/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div[1]/span[1]"){
+            print(data.text)
+        }
     }
 }
