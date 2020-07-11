@@ -13,7 +13,8 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var kanaTextField: NSTextField!
     @IBOutlet weak var sentenceTextField: NSTextField!
     @IBOutlet weak var typeTextField: NSTextField!
-    @IBOutlet weak var chineseTextField: NSTextField!
+    @IBOutlet weak var japaneseDescriptionTextField: NSTextField!
+    @IBOutlet weak var chineseDescriptionTextField: NSTextField!
     @IBOutlet weak var volcabularyTextField: NSTextField!
     @IBOutlet weak var sentence_chineseTextField: NSTextField!
     @IBOutlet weak var levelMenu: NSPopUpButton!
@@ -26,7 +27,8 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
     static var kana = ""
     static var sentence = ""
     static var type = ""
-    static var chinese = ""
+    static var japaneseDescription = ""
+    static var chineseDescription = ""
     static var volcabulary = ""
     static var sentence_chinese = ""
     static var page = 1
@@ -50,7 +52,8 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             kanaTextField.stringValue = MenuAddVolcabularyViewController.kana
             sentenceTextField.stringValue = MenuAddVolcabularyViewController.sentence
             typeTextField.stringValue = MenuAddVolcabularyViewController.type
-            chineseTextField.stringValue = MenuAddVolcabularyViewController.chinese
+            japaneseDescriptionTextField.stringValue = MenuAddVolcabularyViewController.japaneseDescription
+            chineseDescriptionTextField.stringValue = MenuAddVolcabularyViewController.chineseDescription
             volcabularyTextField.stringValue = MenuAddVolcabularyViewController.volcabulary
             sentence_chineseTextField.stringValue = MenuAddVolcabularyViewController.sentence_chinese
             pageTextField.stringValue = String(MenuAddVolcabularyViewController.page)
@@ -70,13 +73,13 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
                 break
             }
             
-            if StarCheckBox.state == .on
+            if MenuAddVolcabularyViewController.star == true
             {
-                MenuAddVolcabularyViewController.star = true
+                StarCheckBox.state = .on
             }
             else
             {
-                MenuAddVolcabularyViewController.star = false
+                StarCheckBox.state = .off
             }
             
             button.title = "修改"
@@ -114,7 +117,8 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         let kana = kanaTextField.stringValue
         let sentence = sentenceTextField.stringValue
         let type = typeTextField.stringValue
-        let chinese = chineseTextField.stringValue
+        let japaneseDescription = japaneseDescriptionTextField.stringValue
+        let chineseDescription = chineseDescriptionTextField.stringValue
         let volcabulary = volcabularyTextField.stringValue
         let sentence_chinese = sentence_chineseTextField.stringValue
         let page = Int(pageTextField.stringValue) ?? 0
@@ -146,12 +150,13 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         }
         
         // 所有欄位都有輸入資料
-        if kana != "" && sentence != "" && type != "" && chinese != "" && volcabulary != "" && sentence_chinese != "" && page != 0
+        if kana != "" && sentence != "" && type != "" && japaneseDescription != "" && chineseDescription != "" && volcabulary != "" && sentence_chinese != "" && page != 0
         {
             MenuAddVolcabularyViewController.kana = kana
             MenuAddVolcabularyViewController.sentence = sentence
             MenuAddVolcabularyViewController.type = type
-            MenuAddVolcabularyViewController.chinese = chinese
+            MenuAddVolcabularyViewController.japaneseDescription = japaneseDescription
+            MenuAddVolcabularyViewController.chineseDescription = chineseDescription
             MenuAddVolcabularyViewController.volcabulary = volcabulary
             MenuAddVolcabularyViewController.sentence_chinese = sentence_chinese
             MenuAddVolcabularyViewController.page = page
@@ -174,6 +179,13 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             MenuAddVolcabularyViewController.errorType = "noData"
             performSegue(withIdentifier: "MenuAddVolcabularyError", sender: self) // 跳轉到警告畫面
         }
+    }
+    
+    
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        // "取消" 按鍵
+        self.dismiss(MenuAddVolcabularyViewController.self)
     }
     
 }

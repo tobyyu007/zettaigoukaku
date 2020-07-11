@@ -66,9 +66,10 @@ class CrawVolcabularyView: WKWebView, WKNavigationDelegate{
         //webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil) // 偵測頁面改變
     }
     
+    /*
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // 完成載入頁面
-        print("Finished navigating to url \(String(describing: webView.url))")
+        // print("Finished navigating to url \(String(describing: webView.url))")
         // 模擬在搜尋欄按 "enter" 鍵 (可以成功按按鍵)
         // 因為無法成功模擬輸入，暫停按 "enter" 鍵功能
         /*
@@ -89,27 +90,9 @@ class CrawVolcabularyView: WKWebView, WKNavigationDelegate{
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         // 偵測頁面改變
         if let key = change?[NSKeyValueChangeKey.newKey] {
-            print("observeValue \(key)") // url value
+            // print("observeValue \(key)") // url value
             crawData(webURL: String(describing: key))
         }
     }
-    
-    func crawData(webURL: String)
-    {
-        AF.request(webURL).responseString{ response in
-            if let html = response.value{
-                self.parsehtml(html)
-            }
-        }
-    }
-    
-    func parsehtml(_ html1: String)
-    {
-        var doc = try? Kanna.HTML(html: html1, encoding:.utf8)
-        var VD = volcabularyDataOld()
-        
-        for data in doc!.xpath("/html/body/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div[1]/span[1]"){
-            print(data.text)
-        }
-    }
+    */
 }

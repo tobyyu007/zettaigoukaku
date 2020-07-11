@@ -17,19 +17,21 @@ class Volcabulary: NSObject
     @objc dynamic var page: Int
     @objc dynamic var volcabulary: String
     @objc dynamic var kana: String
-    @objc dynamic var chinese: String
+    @objc dynamic var japaneseDefinition: String
+    @objc dynamic var chineseDefinition: String
     @objc dynamic var type: String
     @objc dynamic var sentence: String
     @objc dynamic var sentence_chinese: String
     @objc dynamic var level: String
     
-    init(star: Bool, page: Int, volcabulary: String, kana: String, chinese: String, type: String, sentence: String, sentence_chinese: String, level: String)
+    init(star: Bool, page: Int, volcabulary: String, kana: String, japaneseDefinition: String, chineseDefinition: String, type: String, sentence: String, sentence_chinese: String, level: String)
     {
         self.star = star
         self.page = page
         self.volcabulary = volcabulary
         self.kana = kana
-        self.chinese = chinese
+        self.japaneseDefinition = japaneseDefinition
+        self.chineseDefinition = chineseDefinition
         self.type = type
         self.sentence = sentence
         self.sentence_chinese = sentence_chinese
@@ -54,7 +56,8 @@ class FunctionsViewController: NSViewController{
                                                                   page: 629,
                                                                   volcabulary: "ああ",
                                                                   kana: "ああ",
-                                                                  chinese: "啊、哎呀",
+                                                                  japaneseDefinition: "肯定",
+                                                                  chineseDefinition: "啊、哎呀",
                                                                   type: "他五",
                                                                   sentence: "ああ、そうですが",
                                                                   sentence_chinese: "阿！是嗎！",
@@ -87,6 +90,20 @@ class FunctionsViewController: NSViewController{
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
+    @IBAction func starCheckBox(_ sender: NSButton) {
+        let index = volcabularyTableView.row(for: sender)
+        print(index)
+        if sender.state == .on
+        {
+            Volcabularies[index].star = true
+        }
+        else if sender.state == .off
+        {
+            Volcabularies[index].star = false
+        }
+    }
+    
+    
     @objc func updateCounting()  // 0.1 秒跑一次
     {
         // 選單改變
@@ -111,7 +128,8 @@ class FunctionsViewController: NSViewController{
         {
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary = MenuAddVolcabularyViewController.volcabulary
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].kana = MenuAddVolcabularyViewController.kana
-            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].chinese = MenuAddVolcabularyViewController.chinese
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].japaneseDefinition = MenuAddVolcabularyViewController.japaneseDescription
+            Volcabularies[MenuAddVolcabularyViewController.selectedIndex].chineseDefinition = MenuAddVolcabularyViewController.chineseDescription
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].type = MenuAddVolcabularyViewController.type
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence = MenuAddVolcabularyViewController.sentence
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].sentence_chinese = MenuAddVolcabularyViewController.sentence_chinese
@@ -128,7 +146,8 @@ class FunctionsViewController: NSViewController{
                                                           page: MenuAddVolcabularyViewController.page,
                                                           volcabulary: MenuAddVolcabularyViewController.volcabulary,
                                                           kana: MenuAddVolcabularyViewController.kana,
-                                                          chinese: MenuAddVolcabularyViewController.chinese,
+                                                          japaneseDefinition: MenuAddVolcabularyViewController.japaneseDescription,
+                                                          chineseDefinition: MenuAddVolcabularyViewController.chineseDescription,
                                                           type: MenuAddVolcabularyViewController.type,
                                                           sentence: MenuAddVolcabularyViewController.sentence,
                                                           sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
@@ -151,7 +170,8 @@ class FunctionsViewController: NSViewController{
             MenuAddVolcabularyViewController.kana = Volcabularies[index].kana
             MenuAddVolcabularyViewController.sentence = Volcabularies[index].sentence
             MenuAddVolcabularyViewController.type = Volcabularies[index].type
-            MenuAddVolcabularyViewController.chinese = Volcabularies[index].chinese
+            MenuAddVolcabularyViewController.japaneseDescription = Volcabularies[index].japaneseDefinition
+            MenuAddVolcabularyViewController.chineseDescription = Volcabularies[index].chineseDefinition
             MenuAddVolcabularyViewController.volcabulary = Volcabularies[index].volcabulary
             MenuAddVolcabularyViewController.sentence_chinese = Volcabularies[index].sentence_chinese
             MenuAddVolcabularyViewController.star = Volcabularies[index].star

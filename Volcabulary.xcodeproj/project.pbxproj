@@ -17,6 +17,7 @@
 		DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */; };
 		DA24F0FC24B70B6700F51508 /* CrawVolcabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */; };
 		DA24F0FE24B740A900F51508 /* CrawVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */; };
+		DA24F10024B9765C00F51508 /* SCtoTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FF24B9765C00F51508 /* SCtoTC.swift */; };
 		DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */; };
 		DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */; };
 		DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */; };
@@ -43,6 +44,7 @@
 		DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyView.swift; sourceTree = "<group>"; };
 		DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyViewController.swift; sourceTree = "<group>"; };
+		DA24F0FF24B9765C00F51508 /* SCtoTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCtoTC.swift; sourceTree = "<group>"; };
 		DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDataSource.swift; sourceTree = "<group>"; };
 		DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDelegate.swift; sourceTree = "<group>"; };
 		DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
 				DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */,
+				DA24F0FF24B9765C00F51508 /* SCtoTC.swift */,
 				DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */,
 			);
 			name = VariousFunctionViews;
@@ -273,6 +276,7 @@
 				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
 				DA24F0FE24B740A900F51508 /* CrawVolcabularyViewController.swift in Sources */,
 				DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */,
+				DA24F10024B9765C00F51508 /* SCtoTC.swift in Sources */,
 				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,
 				DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */,
 				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
