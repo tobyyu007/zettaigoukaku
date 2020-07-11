@@ -19,10 +19,11 @@ import Kanna
 struct volcabularyData
 {
     var kana: String = ""
-    var chinese: String = ""
     var type = [String]()
-    var sentence: String = ""
-    var sentence_chinese: String = ""
+    var japaneseDefenition = [String]()
+    var chineseDefenition = [String]()
+    var sentence = [String]()
+    var sentence_chinese = [String]()
 }
 
 extension String {
@@ -41,6 +42,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        preferredContentSize = view.frame.size // 防止大小調整
         if let url = URL(string: "https://www.mojidict.com") {
             crawVolcabularyWebView.load(URLRequest(url: url))
         }
@@ -98,20 +100,61 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         
         // 類型
         var resultString = String((doc?.head?.toHTML)!)
-        resultString = resultString.components(separatedBy: "content=\"[")[1]
+        resultString = resultString.components(separatedBy: "content=\"[")[1]  // 從 HTML head 剪出資訊
         resultString = resultString.components(separatedBy: "]")[0]
         VD.type = resultString.components(separatedBy: "·")
         print(VD.type)
         
-        // 中文
-        var sentenceResult = [String]()
-        for sentence in doc!.xpath("//div[@class='subdetail']")
+        // 日文、中文解釋
+        var japaneseDefinitionResult = [String]()
+        var chineseDefinitionResult = [String]()
+        for definition in doc!.xpath("//div[@class='subdetail']")
         {
-            let sentenceTraditionalize = String(describing: sentence.text).traditionalize
-            print(sentenceTraditionalize)
-            sentenceResult.append(sentenceTraditionalize)
+            let definitionString = String(describing: definition.text!)
+            let definitionSeperate = definitionString.components(separatedBy: "。（")
+            chineseDefinitionResult.append(definitionSeperate[0].traditionalize) // 簡轉繁
+            let definitionSeperate2 = definitionSeperate[1].components(separatedBy: "。）")[0]
+            japaneseDefinitionResult.append(definitionSeperate2)
         }
-        //print(sentenceResult)
+        VD.chineseDefenition = chineseDefinitionResult
+        VD.japaneseDefenition = japaneseDefinitionResult
+        print(japaneseDefinitionResult)
+        print(chineseDefinitionResult)
+        
+        // 日文例句
+        var sentenceResult = [String]()
+        for sentences in doc!.xpath("//div[/html/body/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div/div/p[1]/span]/div/div/p[1]/span")
+        {
+            //print(sentences.text!)
+            if sentences.text!.contains("。")
+            {
+                let sentenceSeperated = sentences.text!.components(separatedBy: "。")[0]
+                sentenceResult.append(sentenceSeperated)
+            }
+            else
+            {
+                sentenceResult.append(sentences.text!)
+            }
+        }
+        VD.sentence = sentenceResult
+        print(sentenceResult)
+        
+        // 中文例句
+        var chineseSentenceResult = [String]()
+        for chineseSentences in doc!.xpath("//div[/html/body/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div/div/p[1]/span]/div/div/p[2]/span")
+        {
+            if chineseSentences.text!.contains("。")
+            {
+                let chineseSentenceSeperated = chineseSentences.text!.components(separatedBy: "。")[0].traditionalize
+                chineseSentenceResult.append(chineseSentenceSeperated)
+            }
+            else
+            {
+                chineseSentenceResult.append(chineseSentences.text!.traditionalize)
+            }
+        }
+        VD.sentence_chinese = chineseSentenceResult
+        print(chineseSentenceResult)
     }
     
     @IBAction func cancel(_ sender: Any) {
