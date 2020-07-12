@@ -47,6 +47,7 @@ class FunctionsViewController: NSViewController{
     @IBOutlet weak var crawVolcabularyView: NSView!
     @IBOutlet weak var mojiImageView: NSImageView!
     @IBOutlet weak var inputImageView: NSImageView!
+    @IBOutlet var functionsView: NSView!
     
     
     var timer = Timer()
@@ -81,6 +82,10 @@ class FunctionsViewController: NSViewController{
         volcabularyTableMenu.addItem(NSMenuItem(title: "編輯", action: #selector(tableViewEditItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableMenu.addItem(NSMenuItem(title: "刪除", action: #selector(tableViewDeleteItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableView.menu = volcabularyTableMenu
+        
+        
+        addChild(CrawVolcabularyAddViewController())
+        //functionsView.addSubview(children[1].view)
     }
     
     
@@ -195,5 +200,8 @@ class FunctionsViewController: NSViewController{
     
     
     // MARK: - 新增單字功能
+    @IBAction func manualInput(_ sender: Any) {
+        transition(from: FunctionsViewController(), to: CrawVolcabularyAddViewController(), options: .slideLeft, completionHandler: nil)
+    }
+    
 }
-

@@ -9,6 +9,8 @@
 //  Reference to WebKit Javascript: https://stackoverflow.com/a/56180664
 //  Reference to WebKit didFinish: https://stackoverflow.com/questions/25504481/wkwebview-content-loaded-function-never-get-called
 //  Reference to Webcrawing on swift: https://medium.com/@wolfsky95/ios-swift-網路爬蟲程式應用-國內銀樓金價-c0864f8b3136
+//                                    https://medium.com/@willard1218/使用-swift-寫爬蟲-以-104-網站為例-ccecdab3fee2
+
 
 
 import Cocoa
@@ -48,6 +50,8 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         }
         crawVolcabularyWebView.navigationDelegate = self
         crawVolcabularyWebView.addObserver(self, forKeyPath: "URL", options: .new, context: nil) // 偵測頁面改變
+        
+        addChild(CrawVolcabularyAddViewController())
         
     }
     
@@ -101,7 +105,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         // 類型
         var resultString = String((doc?.head?.toHTML)!)
         resultString = resultString.components(separatedBy: "content=\"[")[1]  // 從 HTML head 剪出資訊
-        resultString = resultString.components(separatedBy: "]")[0]
+        resultString = resultString.components(separatedBy: "]")[0].traditionalize
         VD.type = resultString.components(separatedBy: "·")
         print(VD.type)
         
@@ -125,7 +129,6 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         var sentenceResult = [String]()
         for sentences in doc!.xpath("//div[/html/body/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div/div/p[1]/span]/div/div/p[1]/span")
         {
-            //print(sentences.text!)
             if sentences.text!.contains("。")
             {
                 let sentenceSeperated = sentences.text!.components(separatedBy: "。")[0]
