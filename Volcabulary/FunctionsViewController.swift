@@ -5,7 +5,8 @@
 //  Created by Toby on 2020/7/3.
 //  Copyright © 2020 Toby. All rights reserved.
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
-//  Refernece of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
+//  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
+//  Reference of iconset: https://iconmonstr.com
 
 
 import Cocoa
@@ -44,11 +45,8 @@ class FunctionsViewController: NSViewController{
 
     @IBOutlet weak var volcabularyview: NSView!
     @IBOutlet weak var volcabularyTableView: NSTableView!
-    @IBOutlet weak var crawVolcabularyView: NSView!
-    @IBOutlet weak var mojiImageView: NSImageView!
-    @IBOutlet weak var inputImageView: NSImageView!
     @IBOutlet var functionsView: NSView!
-    
+    @IBOutlet weak var addVolcabulary: NSView!
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -68,24 +66,13 @@ class FunctionsViewController: NSViewController{
         super.viewDidLoad()
         // Do view setup here.
         scheduledTimerWithTimeInterval()
-        crawVolcabularyView.isHidden = true
-        
-        let mojiImage = #imageLiteral(resourceName: "MOJi")
-        mojiImage.size = NSSize(width: 150, height: 150)
-        mojiImageView.image = mojiImage
-        let inputImage = NSImage(named: "NSUser")
-        inputImage?.size = NSSize(width: 150, height: 140)
-        inputImageView.image = inputImage
+        addVolcabulary.isHidden = true
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableMenu.addItem(NSMenuItem(title: "編輯", action: #selector(tableViewEditItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableMenu.addItem(NSMenuItem(title: "刪除", action: #selector(tableViewDeleteItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableView.menu = volcabularyTableMenu
-        
-        
-        addChild(CrawVolcabularyAddViewController())
-        //functionsView.addSubview(children[1].view)
     }
     
     
@@ -115,17 +102,17 @@ class FunctionsViewController: NSViewController{
         if FunctionsViewController.FunctionChoice == "VolcabularyView"
         {
             volcabularyview.isHidden = false
-            crawVolcabularyView.isHidden = true
+            addVolcabulary.isHidden = true
         }
         else if FunctionsViewController.FunctionChoice == "AddVolcabularyView"
         {
             volcabularyview.isHidden = true
-            crawVolcabularyView.isHidden = false
+            addVolcabulary.isHidden = false
         }
         else
         {
             volcabularyview.isHidden = true
-            crawVolcabularyView.isHidden = true
+            addVolcabulary.isHidden = true
         }
         
         // 從 menu 編輯回來改變
@@ -159,6 +146,23 @@ class FunctionsViewController: NSViewController{
                                                           level: MenuAddVolcabularyViewController.level)] as [Volcabulary])
             
             MenuAddVolcabularyViewController.adding = false
+        }
+        
+        // 從新增單字回來
+        if addVolcabularyViewController.volcabularyAdded == true
+        {
+            Volcabularies.append(contentsOf: [Volcabulary(star: addVolcabularyViewController.star,
+            page: addVolcabularyViewController.page,
+            volcabulary: addVolcabularyViewController.volcabulary,
+            kana: addVolcabularyViewController.kana,
+            japaneseDefinition: addVolcabularyViewController.japaneseDefinition,
+            chineseDefinition: addVolcabularyViewController.chineseDefinition,
+            type: addVolcabularyViewController.type,
+            sentence: addVolcabularyViewController.sentence,
+            sentence_chinese: addVolcabularyViewController.sentenceChinese,
+            level: addVolcabularyViewController.level)] as [Volcabulary])
+            
+            addVolcabularyViewController.volcabularyAdded = false
         }
     }
     
@@ -200,8 +204,4 @@ class FunctionsViewController: NSViewController{
     
     
     // MARK: - 新增單字功能
-    @IBAction func manualInput(_ sender: Any) {
-        transition(from: FunctionsViewController(), to: CrawVolcabularyAddViewController(), options: .slideLeft, completionHandler: nil)
-    }
-    
 }

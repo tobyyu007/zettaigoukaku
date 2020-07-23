@@ -187,5 +187,4 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         // "取消" 按鍵
         self.dismiss(MenuAddVolcabularyViewController.self)
     }
-    
 }

@@ -20,6 +20,7 @@ import Kanna
 
 struct volcabularyData
 {
+    var volcabulary = ""
     var kana: String = ""
     var type = [String]()
     var japaneseDefenition = [String]()
@@ -41,6 +42,8 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
 
     @IBOutlet weak var crawVolcabularyWebView: WKWebView!
     
+    static var VD = volcabularyData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -50,9 +53,6 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         }
         crawVolcabularyWebView.navigationDelegate = self
         crawVolcabularyWebView.addObserver(self, forKeyPath: "URL", options: .new, context: nil) // 偵測頁面改變
-        
-        addChild(CrawVolcabularyAddViewController())
-        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -73,7 +73,9 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         if let key = change?[NSKeyValueChangeKey.newKey] {
             //print("observeValue \(key)") // url value
             crawData(webURL: String(describing: key))
-            //self.dismiss(CrawVolcabularyViewController.self)
+            addVolcabularyViewController.progress = 10
+            addVolcabularyViewController.webViewEnd = true
+            self.dismiss(CrawVolcabularyViewController.self)
         }
     }
     
@@ -81,6 +83,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     {
         AF.request(webURL).responseString{ response in
             if let html = response.value{
+                addVolcabularyViewController.progress = 20
                 self.parsehtml(html)
                 //print(html)
             }
@@ -90,8 +93,12 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     func parsehtml(_ html1: String)
     {
         let doc = try? Kanna.HTML(html: html1, encoding:.utf8)
-        var VD = volcabularyData()
         
+        for volcabulary in doc!.xpath("/html/body/div/div/div/div[2]/div[1]/div[1]/h3/span")
+        {
+            print(volcabulary.text!)
+            CrawVolcabularyViewController.VD.volcabulary = volcabulary.text!
+        }
         
         // 日文假名
         for kana in doc!.xpath("//div[@class='pron jp-font']")
@@ -99,15 +106,15 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
             // 只接受日文，去除其他的特殊符號
             let matched = kana.text!.filter { !$0.isWhitespace }.match("/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[a-zA-Z0-9]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤]+/u")
             print(matched[0][0])
-            VD.kana = matched[0][0]
+            CrawVolcabularyViewController.VD.kana = matched[0][0]
         }
         
         // 類型
         var resultString = String((doc?.head?.toHTML)!)
         resultString = resultString.components(separatedBy: "content=\"[")[1]  // 從 HTML head 剪出資訊
         resultString = resultString.components(separatedBy: "]")[0].traditionalize
-        VD.type = resultString.components(separatedBy: "·")
-        print(VD.type)
+        CrawVolcabularyViewController.VD.type = resultString.components(separatedBy: "·")
+        print(CrawVolcabularyViewController.VD.type)
         
         // 日文、中文解釋
         var japaneseDefinitionResult = [String]()
@@ -115,13 +122,22 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         for definition in doc!.xpath("//div[@class='subdetail']")
         {
             let definitionString = String(describing: definition.text!)
-            let definitionSeperate = definitionString.components(separatedBy: "。（")
-            chineseDefinitionResult.append(definitionSeperate[0].traditionalize) // 簡轉繁
-            let definitionSeperate2 = definitionSeperate[1].components(separatedBy: "。）")[0]
-            japaneseDefinitionResult.append(definitionSeperate2)
+            var definitionSeperate = [String]()
+            if definitionString.contains("（")
+            {
+                let definitionChinese = definitionString.components(separatedBy: "（")[0]
+                chineseDefinitionResult.append(definitionChinese.traditionalize)
+                let definitionJapanese = definitionString.components(separatedBy: "（")[1]
+                japaneseDefinitionResult.append(definitionJapanese.components(separatedBy: "）")[0])
+            }
+            else // 沒有日文解釋 ex: 半ば - 惯用语
+            {
+                chineseDefinitionResult.append(definitionString.traditionalize) // 簡轉繁
+                japaneseDefinitionResult.append("")
+            }
         }
-        VD.chineseDefenition = chineseDefinitionResult
-        VD.japaneseDefenition = japaneseDefinitionResult
+        CrawVolcabularyViewController.VD.chineseDefenition = chineseDefinitionResult
+        CrawVolcabularyViewController.VD.japaneseDefenition = japaneseDefinitionResult
         print(japaneseDefinitionResult)
         print(chineseDefinitionResult)
         
@@ -139,7 +155,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
                 sentenceResult.append(sentences.text!)
             }
         }
-        VD.sentence = sentenceResult
+        CrawVolcabularyViewController.VD.sentence = sentenceResult
         print(sentenceResult)
         
         // 中文例句
@@ -156,11 +172,14 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
                 chineseSentenceResult.append(chineseSentences.text!.traditionalize)
             }
         }
-        VD.sentence_chinese = chineseSentenceResult
+        CrawVolcabularyViewController.VD.sentence_chinese = chineseSentenceResult
+        addVolcabularyViewController.progress = 30
         print(chineseSentenceResult)
     }
     
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(CrawVolcabularyViewController.self)
+        addVolcabularyViewController.webViewEnd = true
+        addVolcabularyViewController.progress = -1
     }
 }

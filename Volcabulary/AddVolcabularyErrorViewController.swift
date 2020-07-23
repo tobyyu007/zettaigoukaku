@@ -22,6 +22,7 @@ class AddVolcabularyErrorViewController: NSViewController {
         errorNSImage?.size = NSSize(width: 45, height: 45)
         errorImage.image = errorNSImage
         
+        
         if MenuAddVolcabularyViewController.selectedIndex != -1 // 修改中
         {
             errorTitle.stringValue = "無法修改單字"

@@ -15,10 +15,8 @@
 		DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */; };
 		DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */; };
 		DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */; };
-		DA24F0FC24B70B6700F51508 /* CrawVolcabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */; };
 		DA24F0FE24B740A900F51508 /* CrawVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */; };
 		DA24F10024B9765C00F51508 /* SCtoTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F0FF24B9765C00F51508 /* SCtoTC.swift */; };
-		DA24F10224BA16FF00F51508 /* CrawVolcabularyAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24F10124BA16FF00F51508 /* CrawVolcabularyAddViewController.swift */; };
 		DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */; };
 		DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */; };
 		DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */; };
@@ -27,6 +25,7 @@
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
+		DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +42,8 @@
 		DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyView.swift; sourceTree = "<group>"; };
 		DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyViewController.swift; sourceTree = "<group>"; };
 		DA24F0FF24B9765C00F51508 /* SCtoTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCtoTC.swift; sourceTree = "<group>"; };
-		DA24F10124BA16FF00F51508 /* CrawVolcabularyAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawVolcabularyAddViewController.swift; sourceTree = "<group>"; };
-		DA24F10524BA23C400F51508 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = View.xib; path = /Users/toby/Desktop/zettaigoukaku/Volcabulary/View.xib; sourceTree = "<absolute>"; };
 		DA7802B124AE49E6001D7B44 /* OutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDataSource.swift; sourceTree = "<group>"; };
 		DA7802B324AE4A09001D7B44 /* OutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDelegate.swift; sourceTree = "<group>"; };
 		DA7802B524AE4A20001D7B44 /* OutlineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemView.swift; sourceTree = "<group>"; };
@@ -56,6 +52,7 @@
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
+		DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVolcabularyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +92,11 @@
 				DA1879A024ACCB1C0020E8A6 /* LoginViewController.swift */,
 				DA18799C24ACC7F40020E8A6 /* FunctionList.swift */,
 				DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */,
+				DA24F0FF24B9765C00F51508 /* SCtoTC.swift */,
 				DA18799024ACBEB70020E8A6 /* Assets.xcassets */,
 				DA18799224ACBEB70020E8A6 /* Main.storyboard */,
-				DA24F10524BA23C400F51508 /* View.xib */,
-				DAA20E9424AF9F1A0007885F /* VariousFunctionViews */,
+				DAC1C28724C727F10035A3F8 /* Add Volcabulary */,
+				DAA20E9424AF9F1A0007885F /* Volcabulary list */,
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
 				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
 				DA7802BB24AF193D001D7B44 /* WindowsController */,
@@ -128,17 +126,22 @@
 			name = FunctionListOutlineView;
 			sourceTree = "<group>";
 		};
-		DAA20E9424AF9F1A0007885F /* VariousFunctionViews */ = {
+		DAA20E9424AF9F1A0007885F /* Volcabulary list */ = {
 			isa = PBXGroup;
 			children = (
 				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
-				DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */,
-				DA24F10124BA16FF00F51508 /* CrawVolcabularyAddViewController.swift */,
-				DA24F0FF24B9765C00F51508 /* SCtoTC.swift */,
-				DA24F0FB24B70B6700F51508 /* CrawVolcabularyView.swift */,
 			);
-			name = VariousFunctionViews;
+			name = "Volcabulary list";
+			sourceTree = "<group>";
+		};
+		DAC1C28724C727F10035A3F8 /* Add Volcabulary */ = {
+			isa = PBXGroup;
+			children = (
+				DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */,
+				DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */,
+			);
+			name = "Add Volcabulary";
 			sourceTree = "<group>";
 		};
 		E48755CE8803D657F2B48FFF /* Pods */ = {
@@ -276,15 +279,14 @@
 				DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */,
 				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
 				DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */,
-				DA24F0FC24B70B6700F51508 /* CrawVolcabularyView.swift in Sources */,
 				DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */,
 				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
 				DA24F0FE24B740A900F51508 /* CrawVolcabularyViewController.swift in Sources */,
 				DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */,
-				DA24F10224BA16FF00F51508 /* CrawVolcabularyAddViewController.swift in Sources */,
 				DA24F10024B9765C00F51508 /* SCtoTC.swift in Sources */,
 				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,
 				DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */,
+				DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */,
 				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
 				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
 				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
