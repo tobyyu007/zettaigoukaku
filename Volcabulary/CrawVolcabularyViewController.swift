@@ -125,8 +125,9 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
             var definitionSeperate = [String]()
             if definitionString.contains("（")
             {
-                let definitionChinese = definitionString.components(separatedBy: "（")[0]
-                chineseDefinitionResult.append(definitionChinese.traditionalize)
+                var definitionChinese = definitionString.components(separatedBy: "（")[0]
+                definitionChinese = definitionChinese.replacingOccurrences(of: "。", with: "")
+                chineseDefinitionResult.append(definitionChinese.traditionalize) // 簡轉繁
                 let definitionJapanese = definitionString.components(separatedBy: "（")[1]
                 japaneseDefinitionResult.append(definitionJapanese.components(separatedBy: "）")[0])
             }

@@ -37,6 +37,9 @@ class addVolcabularyViewController: NSViewController {
     @IBOutlet weak var typeMenu: NSPopUpButton!
     @IBOutlet weak var chineseDescriptionMenu: NSPopUpButton!
     @IBOutlet weak var japaneseDescriptionMenu: NSPopUpButton!
+    @IBOutlet weak var linkWithJapaneseSentenceCheckBox: NSButtonCell!
+    @IBOutlet weak var linkWithJapaneseDescriptionCheckBox: NSButton!
+    
     
     @IBOutlet weak var addSuccessfulImageView: NSImageView!
     
@@ -76,6 +79,9 @@ class addVolcabularyViewController: NSViewController {
         let addSuccessfulImage = #imageLiteral(resourceName: "CheckMark")
         addSuccessfulImage.size = NSSize(width: 150, height: 150)
         addSuccessfulImageView.image = addSuccessfulImage
+        
+        sentenceMenu.isEnabled = false
+        japaneseDescriptionMenu.isEnabled = false
     }
     
     func scheduledTimerWithTimeInterval(){
@@ -147,6 +153,7 @@ class addVolcabularyViewController: NSViewController {
         
     
     @IBAction func manuallyAdd(_ sender: Any) {
+        // 手動輸入按鍵
         addVolcabulary.isHidden = true
         crawResultView.isHidden = true
         addVolcabularyInfo.isHidden = false
@@ -154,6 +161,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func mojiAddButton(_ sender: Any) {
+        // 使用 moji 輔助輸入按鍵
         addVolcabulary.isHidden = true
         progressView.isHidden = false
         performSegue(withIdentifier: "showMojiWebView", sender: self)
@@ -161,6 +169,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func nextStep(_ sender: Any) {
+        // 下一步按鍵
         volcabularyTextField.stringValue = CrawVolcabularyViewController.VD.volcabulary
         kanaTextField.stringValue = CrawVolcabularyViewController.VD.kana
         sentence_chineseTextField.stringValue = CrawVolcabularyViewController.VD.sentence_chinese[sentenceChineseMenu.indexOfSelectedItem]
@@ -175,6 +184,8 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func crawResultCancelButton(_ sender: Any) {
+        // 取消按鍵
+        progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         addVolcabulary.isHidden = false
         crawResultView.isHidden = true
         addVolcabularyInfo.isHidden = true
@@ -184,6 +195,8 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func volcabularyInfoCancelButton(_ sender: Any) {
+        // 取消按鍵
+        progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         addVolcabulary.isHidden = false
         crawResultView.isHidden = true
         addVolcabularyInfo.isHidden = true
@@ -193,6 +206,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
+        // 新增按鍵
         addVolcabularyViewController.kana = kanaTextField.stringValue
         addVolcabularyViewController.sentence = sentenceTextField.stringValue
         addVolcabularyViewController.type = typeTextField.stringValue
@@ -248,4 +262,45 @@ class addVolcabularyViewController: NSViewController {
         }
     }
     
+    @IBAction func linkWithJapaneseSentence(_ sender: NSButton) {
+        // 與日文例句連動 checkbox
+        if sender.state == .on
+        {
+            sentenceMenu.isEnabled = false
+            sentenceMenu.selectItem(at: sentenceChineseMenu.indexOfSelectedItem)
+        }
+        else
+        {
+            sentenceMenu.isEnabled = true
+        }
+    }
+    
+    @IBAction func linkWithJapaneseDefinition(_ sender: NSButton) {
+        // 與日文解釋連動 checkbox
+        if sender.state == .on
+        {
+            japaneseDescriptionMenu.isEnabled = false
+            japaneseDescriptionMenu.selectItem(at: chineseDescriptionMenu.indexOfSelectedItem)
+        }
+        else
+        {
+            japaneseDescriptionMenu.isEnabled = true
+        }
+    }
+    
+    @IBAction func japaneseSentenceMenuLink(_ sender: Any) {
+        // 日文例句選單自動跟著選擇更新
+        if linkWithJapaneseSentenceCheckBox.state == .on
+        {
+            sentenceMenu.selectItem(at: sentenceChineseMenu.indexOfSelectedItem)
+        }
+    }
+    
+    @IBAction func japaneseDefinitionMenuLink(_ sender: Any) {
+        // 日文解釋選單自動跟著選擇更新
+        if linkWithJapaneseDescriptionCheckBox.state == .on
+        {
+            japaneseDescriptionMenu.selectItem(at: chineseDescriptionMenu.indexOfSelectedItem)
+        }
+    }
 }
