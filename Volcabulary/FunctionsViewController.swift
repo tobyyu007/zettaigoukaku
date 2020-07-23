@@ -47,6 +47,7 @@ class FunctionsViewController: NSViewController{
     @IBOutlet weak var volcabularyTableView: NSTableView!
     @IBOutlet var functionsView: NSView!
     @IBOutlet weak var addVolcabulary: NSView!
+    @IBOutlet weak var learnView: NSView!
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -103,18 +104,27 @@ class FunctionsViewController: NSViewController{
         {
             volcabularyview.isHidden = false
             addVolcabulary.isHidden = true
+            learnView.isHidden = true
         }
         else if FunctionsViewController.FunctionChoice == "AddVolcabularyView"
         {
             volcabularyview.isHidden = true
             addVolcabulary.isHidden = false
+            learnView.isHidden = true
+        }
+        else if FunctionsViewController.FunctionChoice == "TestView"
+        {
+            volcabularyview.isHidden = true
+            addVolcabulary.isHidden = true
+            learnView.isHidden = false
         }
         else
         {
             volcabularyview.isHidden = true
             addVolcabulary.isHidden = true
+            learnView.isHidden = true
         }
-        
+    
         // 從 menu 編輯回來改變
         if MenuAddVolcabularyViewController.editing  // 修改
         {

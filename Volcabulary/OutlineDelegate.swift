@@ -33,6 +33,11 @@ extension FunctionList: NSOutlineViewDelegate {
                 // 改變 icon
                 cell.imageView!.image = addvocabularyImage
             }
+            else if aItem.name == "學習"
+            {
+                // 改變 icon
+                cell.imageView!.image = learnImage
+            }
             else if aItem.name == "測驗"
             {
                 // 改變 icon

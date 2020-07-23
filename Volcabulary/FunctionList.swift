@@ -19,9 +19,10 @@ class FunctionList: NSViewController{
     // 讀取圖片
     var folderImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIcon)))
     var itemImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericDocumentIcon)))
-    var vocabularyImage = NSImage(named: "NSBookmarksTemplate")
-    var addvocabularyImage = NSImage(named: "NSAddTemplate")
-    var testImage = NSImage(named: "NSTouchBarComposeTemplate")
+    var vocabularyImage = #imageLiteral(resourceName: "單字")
+    var addvocabularyImage = #imageLiteral(resourceName: "新增單字")
+    var testImage = #imageLiteral(resourceName: "測驗")
+    var learnImage = #imageLiteral(resourceName: "學習")
     
     var testData = TestData()
     
@@ -30,9 +31,10 @@ class FunctionList: NSViewController{
         // Do any additional setup after loading the view.
         
         // 圖片大小調整
-        vocabularyImage?.size = NSSize(width: 25, height: 25)
-        addvocabularyImage?.size = NSSize(width: 17, height: 17)
-        testImage?.size = NSSize(width: 25, height: 25)
+        vocabularyImage.size = NSSize(width: 20, height: 20)
+        addvocabularyImage.size = NSSize(width: 20, height: 20)
+        testImage.size = NSSize(width: 20, height: 20)
+        learnImage.size = NSSize(width: 20, height: 20)
         
         // 預設選擇第一個功能 (單字)
         let indexSet = NSIndexSet(index: 0)

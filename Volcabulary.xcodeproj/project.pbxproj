@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A4C250CAE27B497586401B24 /* Pods_Volcabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */; };
 		DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18798C24ACBEB60020E8A6 /* AppDelegate.swift */; };
 		DA18799124ACBEB70020E8A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA18799024ACBEB70020E8A6 /* Assets.xcassets */; };
 		DA18799424ACBEB70020E8A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA18799224ACBEB70020E8A6 /* Main.storyboard */; };
@@ -26,6 +25,9 @@
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
 		DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */; };
+		DABE851124C9C1810091D865 /* learnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE851024C9C1810091D865 /* learnViewController.swift */; };
+		DABE851424C9C5390091D865 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABE851324C9C5390091D865 /* WebKit.framework */; };
+		DAC1C28A24C9BB810035A3F8 /* Pods_Volcabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
 		DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVolcabularyViewController.swift; sourceTree = "<group>"; };
+		DABE851024C9C1810091D865 /* learnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnViewController.swift; sourceTree = "<group>"; };
+		DABE851324C9C5390091D865 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C250CAE27B497586401B24 /* Pods_Volcabulary.framework in Frameworks */,
+				DABE851424C9C5390091D865 /* WebKit.framework in Frameworks */,
+				DAC1C28A24C9BB810035A3F8 /* Pods_Volcabulary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +100,9 @@
 				DA24F0FF24B9765C00F51508 /* SCtoTC.swift */,
 				DA18799024ACBEB70020E8A6 /* Assets.xcassets */,
 				DA18799224ACBEB70020E8A6 /* Main.storyboard */,
-				DAC1C28724C727F10035A3F8 /* Add Volcabulary */,
 				DAA20E9424AF9F1A0007885F /* Volcabulary list */,
+				DAC1C28724C727F10035A3F8 /* Add Volcabulary */,
+				DABE851224C9C18E0091D865 /* Learn */,
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
 				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
 				DA7802BB24AF193D001D7B44 /* WindowsController */,
@@ -135,6 +141,14 @@
 			name = "Volcabulary list";
 			sourceTree = "<group>";
 		};
+		DABE851224C9C18E0091D865 /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				DABE851024C9C1810091D865 /* learnViewController.swift */,
+			);
+			name = Learn;
+			sourceTree = "<group>";
+		};
 		DAC1C28724C727F10035A3F8 /* Add Volcabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +170,7 @@
 		ED64F407FB6B266CB7EB82B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DABE851324C9C5390091D865 /* WebKit.framework */,
 				7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */,
 			);
 			name = Frameworks;
@@ -287,6 +302,7 @@
 				DA18799D24ACC7F40020E8A6 /* FunctionList.swift in Sources */,
 				DA18798D24ACBEB60020E8A6 /* AppDelegate.swift in Sources */,
 				DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */,
+				DABE851124C9C1810091D865 /* learnViewController.swift in Sources */,
 				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
 				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
 				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
@@ -427,16 +443,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AJHW4478L3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Volcabulary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -449,16 +466,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AJHW4478L3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Volcabulary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

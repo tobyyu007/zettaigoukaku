@@ -68,6 +68,10 @@ class TestData
         items.append(item)
         
         item = TestItem()
+        item.name = "學習"
+        items.append(item)
+        
+        item = TestItem()
         item.name = "測驗"
         items.append(item)
         

@@ -122,7 +122,6 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         for definition in doc!.xpath("//div[@class='subdetail']")
         {
             let definitionString = String(describing: definition.text!)
-            var definitionSeperate = [String]()
             if definitionString.contains("（")
             {
                 var definitionChinese = definitionString.components(separatedBy: "（")[0]
