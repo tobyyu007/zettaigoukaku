@@ -4,6 +4,7 @@
 //
 //  Created by Toby on 2020/7/4.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Main usage: 新增單字錯誤 view controller
 //
 
 import Cocoa

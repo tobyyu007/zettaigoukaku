@@ -4,7 +4,8 @@
 //
 //  Created by Toby on 2020/7/11.
 //  Copyright © 2020 Toby. All rights reserved.
-//
+//  Main usage: 簡轉繁 or 繁轉簡
+//  Function: 簡轉繁 "someString".traditionalize 繁轉簡 "someString".simplify
 
 import Foundation
 

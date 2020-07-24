@@ -4,6 +4,9 @@
 //
 //  Created by Toby on 2020/7/13.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Main usage: "新增單字" 功能 view controller 總管
+//  頁面流程: 選擇加入模式 -> 手動輸入 -> 單字資訊 -> 新增 -> 加入成功
+//                     -> 使用 MOJi 辭書輔助輸入 -> 跳出 moji 辭書 webView -> 爬蟲結果 -> 單字資訊 -> 新增 -> 加入成功
 //
 
 import Cocoa
@@ -44,9 +47,9 @@ class addVolcabularyViewController: NSViewController {
     @IBOutlet weak var addSuccessfulImageView: NSImageView!
     
     
-    static var volcabularyAdded = false
-    static var webViewEnd = false
-    static var progress = 0
+    static var volcabularyAdded = false // 控制 FunctionsViewController 是否要加入字典
+    static var webViewEnd = false // 控制 webView 是否結束了
+    static var progress = 0 // 控制進度條進度
     
     static var kana = ""
     static var sentence = ""
@@ -64,24 +67,25 @@ class addVolcabularyViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
         let mojiImage = #imageLiteral(resourceName: "MOJi")
         mojiImage.size = NSSize(width: 150, height: 150)
         mojiImageView.image = mojiImage
         let inputImage = #imageLiteral(resourceName: "ManuallyAddVolcabulary") // Icon collection website: https://iconmonstr.com
         inputImage.size = NSSize(width: 150, height: 150)
         manuallyInputImageView.image = inputImage
-        addVolcabularyInfo.isHidden = true
-        progressView.isHidden = true
-        crawResultView.isHidden = true
-        addSuccessfulView.isHidden = true
-        progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
-        scheduledTimerWithTimeInterval()
         let addSuccessfulImage = #imageLiteral(resourceName: "CheckMark")
         addSuccessfulImage.size = NSSize(width: 150, height: 150)
         addSuccessfulImageView.image = addSuccessfulImage
         
+        addVolcabularyInfo.isHidden = true
+        progressView.isHidden = true
+        crawResultView.isHidden = true
+        addSuccessfulView.isHidden = true
         sentenceMenu.isEnabled = false
         japaneseDescriptionMenu.isEnabled = false
+        progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
+        scheduledTimerWithTimeInterval()
     }
     
     func scheduledTimerWithTimeInterval(){
@@ -91,9 +95,10 @@ class addVolcabularyViewController: NSViewController {
     
     @objc func updateCounting()  // 0.1 秒跑一次
     {
+        // moji 辭書 webView 關閉
         if addVolcabularyViewController.webViewEnd == true
         {
-            if addVolcabularyViewController.progress != -1
+            if addVolcabularyViewController.progress != -1 // 有輸入單字並跳轉頁面
             {
                 switch addVolcabularyViewController.progress {
                 case 10:
@@ -108,6 +113,7 @@ class addVolcabularyViewController: NSViewController {
                     addVolcabularyViewController.webViewEnd = false
                     addVolcabularyViewController.progress = 0
                     
+                    // 將抓取到的資料填入 menu，顯示在 "爬蟲結果" 頁面
                     for i in 0..<CrawVolcabularyViewController.VD.sentence_chinese.count
                     {
                         sentenceChineseMenu.addItem(withTitle: CrawVolcabularyViewController.VD.sentence_chinese[i])
@@ -140,7 +146,7 @@ class addVolcabularyViewController: NSViewController {
                     addVolcabularyViewController.progress = 0
                 }
             }
-            else
+            else // 按 "取消" 關閉 webView
             {
                 addVolcabularyViewController.webViewEnd = false
                 addVolcabularyViewController.progress = 0
@@ -153,7 +159,7 @@ class addVolcabularyViewController: NSViewController {
         
     
     @IBAction func manuallyAdd(_ sender: Any) {
-        // 手動輸入按鍵
+        // "手動輸入" 按鍵
         addVolcabulary.isHidden = true
         crawResultView.isHidden = true
         addVolcabularyInfo.isHidden = false
@@ -161,7 +167,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func mojiAddButton(_ sender: Any) {
-        // 使用 moji 輔助輸入按鍵
+        // "使用 moji 輔助輸入" 按鍵
         addVolcabulary.isHidden = true
         progressView.isHidden = false
         performSegue(withIdentifier: "showMojiWebView", sender: self)
@@ -169,7 +175,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func nextStep(_ sender: Any) {
-        // 下一步按鍵
+        // "下一步" 按鍵
         volcabularyTextField.stringValue = CrawVolcabularyViewController.VD.volcabulary
         kanaTextField.stringValue = CrawVolcabularyViewController.VD.kana
         sentence_chineseTextField.stringValue = CrawVolcabularyViewController.VD.sentence_chinese[sentenceChineseMenu.indexOfSelectedItem]
@@ -184,7 +190,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func crawResultCancelButton(_ sender: Any) {
-        // 取消按鍵
+        // "爬蟲結果" 頁面 "取消" 按鍵
         progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         addVolcabulary.isHidden = false
         crawResultView.isHidden = true
@@ -195,7 +201,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func volcabularyInfoCancelButton(_ sender: Any) {
-        // 取消按鍵
+        // "單字資訊" 頁面 “取消" 按鍵
         progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         addVolcabulary.isHidden = false
         crawResultView.isHidden = true
@@ -206,7 +212,7 @@ class addVolcabularyViewController: NSViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        // 新增按鍵
+        // "單字資訊" 頁面 "新增" 按鍵
         addVolcabularyViewController.kana = kanaTextField.stringValue
         addVolcabularyViewController.sentence = sentenceTextField.stringValue
         addVolcabularyViewController.type = typeTextField.stringValue
@@ -246,7 +252,10 @@ class addVolcabularyViewController: NSViewController {
             }
             
             addVolcabularyViewController.volcabularyAdded = true
+            progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
+            addVolcabularyViewController.progress = 0
             
+            // 顯示 "加入成功" 頁面 0.5 秒
             let seconds = 0.5
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                 self.addSuccessfulView.isHidden = true
@@ -256,7 +265,7 @@ class addVolcabularyViewController: NSViewController {
             }
         }
         
-        else
+        else // 有欄位沒有輸入
         {
             performSegue(withIdentifier: "addVolcabularyError", sender: self)
         }

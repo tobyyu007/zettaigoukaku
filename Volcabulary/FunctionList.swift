@@ -4,6 +4,7 @@
 //
 //  Created by Toby on 2020/7/1.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Main usage: 主畫面左方 function list 總管
 //  Reference of function list: https://github.com/KinematicSystems/NSOutlineViewReorder
 //  Reference of first focus: https://stackoverflow.com/questions/31867098/how-to-set-focus-to-an-nsbutton
 //  Reference of NSTextField options: http://webcache.googleusercontent.com/search?q=cache:Wmv3AL8rVC0J:https://www.jianshu.com/p/795a2b9f60aa&client=safari&hl=zh-TW&gl=tw&strip=1&vwsrc=0
@@ -65,6 +66,10 @@ class FunctionList: NSViewController{
             else if function.name == "新增單字"
             {
                 FunctionsViewController.FunctionChoice = "AddVolcabularyView"
+            }
+            else if function.name == "學習"
+            {
+                FunctionsViewController.FunctionChoice = "LearnView"
             }
             else if function.name == "測驗"
             {

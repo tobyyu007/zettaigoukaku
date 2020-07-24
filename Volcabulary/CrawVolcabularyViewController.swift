@@ -4,6 +4,7 @@
 //
 //  Created by Toby on 2020/7/9.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Main usage: 從 MOJi 辭書爬蟲 view controller
 //  Need to install Cocoapods Alamofire package: https://github.com/Alamofire/Alamofire
 //  Need to install Cocoapods Kanna package: https://github.com/tid-kijyun/Kanna
 //  Reference to WebKit Javascript: https://stackoverflow.com/a/56180664
@@ -57,11 +58,10 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // 完成載入頁面
-        //print("Finished navigating to url \(String(describing: webView.url))")
         let javascriptString = "var scrollingElement = (document.scrollingElement || document.body);" +
                                 "scrollingElement.scrollTop = scrollingElement.scrollHeight;"
+        // 將頁面滑到底部
         crawVolcabularyWebView.evaluateJavaScript(javascriptString){ (value, error) in
-            //print(value ?? "javascript execution error")
             if let err = error {
                 print(err)
             }
@@ -73,9 +73,9 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         if let key = change?[NSKeyValueChangeKey.newKey] {
             //print("observeValue \(key)") // url value
             crawData(webURL: String(describing: key))
-            addVolcabularyViewController.progress = 10
+            addVolcabularyViewController.progress = 10 // stringValue: 頁面載入中
             addVolcabularyViewController.webViewEnd = true
-            self.dismiss(CrawVolcabularyViewController.self)
+            self.dismiss(CrawVolcabularyViewController.self) // 輸入完單字後就關閉 webView 視窗
         }
     }
     
@@ -83,7 +83,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     {
         AF.request(webURL).responseString{ response in
             if let html = response.value{
-                addVolcabularyViewController.progress = 20
+                addVolcabularyViewController.progress = 20 // stringValue: 抓取資料中
                 self.parsehtml(html)
                 //print(html)
             }
@@ -94,6 +94,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
     {
         let doc = try? Kanna.HTML(html: html1, encoding:.utf8)
         
+        // 日文單字
         for volcabulary in doc!.xpath("/html/body/div/div/div/div[2]/div[1]/div[1]/h3/span")
         {
             print(volcabulary.text!)
@@ -112,7 +113,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         // 類型
         var resultString = String((doc?.head?.toHTML)!)
         resultString = resultString.components(separatedBy: "content=\"[")[1]  // 從 HTML head 剪出資訊
-        resultString = resultString.components(separatedBy: "]")[0].traditionalize
+        resultString = resultString.components(separatedBy: "]")[0].traditionalize // 簡轉繁
         CrawVolcabularyViewController.VD.type = resultString.components(separatedBy: "·")
         print(CrawVolcabularyViewController.VD.type)
         
@@ -122,7 +123,7 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
         for definition in doc!.xpath("//div[@class='subdetail']")
         {
             let definitionString = String(describing: definition.text!)
-            if definitionString.contains("（")
+            if definitionString.contains("（") // 正常情況，有中文解釋和日文解釋
             {
                 var definitionChinese = definitionString.components(separatedBy: "（")[0]
                 definitionChinese = definitionChinese.replacingOccurrences(of: "。", with: "")
@@ -173,11 +174,12 @@ class CrawVolcabularyViewController: NSViewController, WKNavigationDelegate {
             }
         }
         CrawVolcabularyViewController.VD.sentence_chinese = chineseSentenceResult
-        addVolcabularyViewController.progress = 30
+        addVolcabularyViewController.progress = 30 // stringValue: 抓取完成
         print(chineseSentenceResult)
     }
     
     @IBAction func cancel(_ sender: Any) {
+        // "取消" 按鍵
         self.dismiss(CrawVolcabularyViewController.self)
         addVolcabularyViewController.webViewEnd = true
         addVolcabularyViewController.progress = -1

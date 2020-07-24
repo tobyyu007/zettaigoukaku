@@ -988,11 +988,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vae-x0-QQP">
-                                                            <rect key="frame" x="42" y="1" width="30" height="17"/>
+                                                            <rect key="frame" x="42" y="1" width="35" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-6X-hr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="35" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="RWV-ai-ok9">
                                                                         <font key="font" metaFont="system"/>
@@ -1128,11 +1128,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="kBS-gs-6GF">
-                                                            <rect key="frame" x="482" y="1" width="148" height="17"/>
+                                                            <rect key="frame" x="482" y="1" width="153" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4r-Vb-EJ5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="148" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="153" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="bEo-jK-h66">
                                                                         <font key="font" metaFont="system"/>
@@ -1233,11 +1233,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yey-TN-wh7">
-                                                            <rect key="frame" x="840" y="1" width="135" height="17"/>
+                                                            <rect key="frame" x="840" y="1" width="140" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-ZL-yrd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="yie-2u-6dS">
                                                                         <font key="font" metaFont="system"/>
@@ -1324,12 +1324,20 @@
                                     <segue destination="KkB-GG-d4m" kind="embed" id="lwf-aS-Ynt"/>
                                 </connections>
                             </containerView>
+                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-ah-PVB" userLabel="練習">
+                                <rect key="frame" x="20" y="20" width="1040" height="635"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <segue destination="JEW-QV-f5H" kind="embed" id="f6h-Tm-2d1"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addVolcabulary" destination="Fds-9i-Vyf" id="z9w-Y1-cyY"/>
                         <outlet property="functionsView" destination="TxX-0b-kch" id="9sz-oj-Asd"/>
                         <outlet property="learnView" destination="3Iw-gu-1JK" id="Vz4-Hh-UEq"/>
+                        <outlet property="testView" destination="KyR-ah-PVB" id="KTw-pc-E2S"/>
                         <outlet property="volcabularyTableView" destination="6nT-Rh-Hk2" id="7QC-oE-xNx"/>
                         <outlet property="volcabularyview" destination="OKK-PY-5p9" id="BIk-Je-JAg"/>
                         <segue destination="uYW-ag-VWt" kind="sheet" identifier="menuAddVolcabulary" id="iED-lY-udp"/>
@@ -1657,7 +1665,7 @@
                 <customObject id="2fB-rj-ryk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="per-c7-OUx"/>
             </objects>
-            <point key="canvasLocation" x="3471" y="955"/>
+            <point key="canvasLocation" x="3433" y="539"/>
         </scene>
         <!--Add Volcabulary Error View Controller-->
         <scene sceneID="uZm-8V-nLS">
@@ -1716,7 +1724,7 @@ DQ
                 </viewController>
                 <customObject id="Wgy-Lj-HE1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4213" y="917"/>
+            <point key="canvasLocation" x="4150" y="539"/>
         </scene>
         <!--Add Volcabulary View Controller-->
         <scene sceneID="Lts-lH-gNr">
@@ -2259,7 +2267,7 @@ DQ
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="3636" y="1594"/>
+            <point key="canvasLocation" x="3598" y="1153"/>
         </scene>
         <!--Learn View Controller-->
         <scene sceneID="Tdi-LB-jMM">
@@ -2272,11 +2280,24 @@ DQ
                 </viewController>
                 <customObject id="Znn-e8-QIM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3636" y="2474"/>
+            <point key="canvasLocation" x="3598" y="1899"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UIB-ri-4Tr">
+            <objects>
+                <viewController id="JEW-QV-f5H" sceneMemberID="viewController">
+                    <view key="view" id="IjM-Px-efE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="wKs-2x-bZa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3283" y="2492"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Or-r0-D3Y"/>
+        <segue reference="mgf-o0-Ngv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NSCaution" width="32" height="32"/>

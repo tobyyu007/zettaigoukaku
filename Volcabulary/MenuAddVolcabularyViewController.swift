@@ -4,7 +4,7 @@
 //
 //  Created by Toby on 2020/7/4.
 //  Copyright © 2020 Toby. All rights reserved.
-//
+//  Main usage: "單字"頁面右鍵 menu 選單控制
 
 import Cocoa
 
@@ -35,7 +35,7 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
     static var level = "N5"
     static var star = true
     
-    static var errorType = "noData"
+    static var errorType = "noData" // 新增 error 視窗控制
     
     static var selectedIndex = -1  // tableView 選擇的列號碼
     
@@ -100,7 +100,7 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             performSegue(withIdentifier: "MenuAddVolcabularyError", sender: self) // 跳轉到警告畫面
             textField.stringValue = String(stepper.integerValue)
         }
-        else
+        else // 正常數字範圍
         {
             stepper.integerValue = Int(textField.stringValue)!
         }

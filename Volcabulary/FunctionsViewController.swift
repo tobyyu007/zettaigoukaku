@@ -4,6 +4,7 @@
 //
 //  Created by Toby on 2020/7/3.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Main usage: 主視窗右方 view controller 總管
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 //  Reference of iconset: https://iconmonstr.com
@@ -48,6 +49,7 @@ class FunctionsViewController: NSViewController{
     @IBOutlet var functionsView: NSView!
     @IBOutlet weak var addVolcabulary: NSView!
     @IBOutlet weak var learnView: NSView!
+    @IBOutlet weak var testView: NSView!
     
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
@@ -84,6 +86,7 @@ class FunctionsViewController: NSViewController{
     }
     
     @IBAction func starCheckBox(_ sender: NSButton) {
+        // 列表中標記 checkbox 隨時可更新
         let index = volcabularyTableView.row(for: sender)
         print(index)
         if sender.state == .on
@@ -99,30 +102,45 @@ class FunctionsViewController: NSViewController{
     
     @objc func updateCounting()  // 0.1 秒跑一次
     {
-        // 選單改變
+        // 選單改變，顯示或隱藏 view
         if FunctionsViewController.FunctionChoice == "VolcabularyView"
         {
+            // 單字
             volcabularyview.isHidden = false
             addVolcabulary.isHidden = true
             learnView.isHidden = true
+            testView.isHidden = true
         }
         else if FunctionsViewController.FunctionChoice == "AddVolcabularyView"
         {
+            // 新增單字
             volcabularyview.isHidden = true
             addVolcabulary.isHidden = false
             learnView.isHidden = true
+            testView.isHidden = true
         }
-        else if FunctionsViewController.FunctionChoice == "TestView"
+        else if FunctionsViewController.FunctionChoice == "LearnView"
         {
+            // 學習
             volcabularyview.isHidden = true
             addVolcabulary.isHidden = true
             learnView.isHidden = false
+            testView.isHidden = true
+        }
+        else if FunctionsViewController.FunctionChoice == "TestView"
+        {
+            // 測驗
+            volcabularyview.isHidden = true
+            addVolcabulary.isHidden = true
+            learnView.isHidden = true
+            testView.isHidden = false
         }
         else
         {
             volcabularyview.isHidden = true
             addVolcabulary.isHidden = true
             learnView.isHidden = true
+            testView.isHidden = true
         }
     
         // 從 menu 編輯回來改變
@@ -142,7 +160,9 @@ class FunctionsViewController: NSViewController{
             MenuAddVolcabularyViewController.selectedIndex = -1
             MenuAddVolcabularyViewController.editing = false
         }
-        else if MenuAddVolcabularyViewController.adding  // 新增
+            
+        // menu 新增
+        else if MenuAddVolcabularyViewController.adding
         {
             Volcabularies.append(contentsOf: [Volcabulary(star: MenuAddVolcabularyViewController.star,
                                                           page: MenuAddVolcabularyViewController.page,
@@ -158,7 +178,7 @@ class FunctionsViewController: NSViewController{
             MenuAddVolcabularyViewController.adding = false
         }
         
-        // 從新增單字回來
+        // 從 "新增單字" 功能回來
         if addVolcabularyViewController.volcabularyAdded == true
         {
             Volcabularies.append(contentsOf: [Volcabulary(star: addVolcabularyViewController.star,
@@ -210,8 +230,6 @@ class FunctionsViewController: NSViewController{
             Volcabularies.remove(at: index)
         }
     }
-    
-    
     
     // MARK: - 新增單字功能
 }
