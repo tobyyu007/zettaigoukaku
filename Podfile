@@ -11,5 +11,7 @@ target 'Volcabulary' do
   
   use_frameworks!
   pod 'Kanna', '~> 5.2.2'
+  
+  pod 'SwiftyJSON', '~> 4.0'
 
 end

@@ -8,10 +8,12 @@
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 //  Reference of iconset: https://iconmonstr.com
+//  Reference of saving struct to JSON: https://stackoverflow.com/a/37757022
 
 
 import Cocoa
 import WebKit
+import SwiftyJSON
 
 class Volcabulary: NSObject
 {
@@ -39,6 +41,47 @@ class Volcabulary: NSObject
         self.sentence_chinese = sentence_chinese
         self.level = level
     }
+    
+    init?(json: JSON)
+    {
+        guard let star = json["star"].bool,
+            let page = json["page"].int,
+            let volcabulary = json["volcabulary"].string,
+            let kana = json["kana"].string,
+            let japaneseDefinition = json["japaneseDefinition"].string,
+            let chineseDefinition = json["chineseDefinition"].string,
+            let type = json["type"].string,
+            let sentence = json["sentence"].string,
+            let sentence_chinese = json["sentence_chinese"].string,
+            let level = json["level"].string
+        else{return nil}
+        
+        self.star = star
+        self.page = page
+        self.volcabulary = volcabulary
+        self.kana = kana
+        self.japaneseDefinition = japaneseDefinition
+        self.chineseDefinition = chineseDefinition
+        self.type = type
+        self.sentence = sentence
+        self.sentence_chinese = sentence_chinese
+        self.level = level
+    }
+    
+    var asJSON: JSON {
+        var json: JSON = [:]
+        json["star"].bool = star
+        json["page"].int = page
+        json["volcabulary"].string = volcabulary
+        json["kana"].string = kana
+        json["japaneseDefinition"].string = japaneseDefinition
+        json["chineseDefinition"].string = chineseDefinition
+        json["type"].string = type
+        json["sentence"].string = sentence
+        json["sentence_chinese"].string = sentence_chinese
+        json["level"].string = level
+        return json
+    }
 }
 
 
@@ -54,22 +97,106 @@ class FunctionsViewController: NSViewController{
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
     
-    @objc dynamic var Volcabularies: [Volcabulary] = [Volcabulary(star: true,
-                                                                  page: 629,
-                                                                  volcabulary: "ああ",
-                                                                  kana: "ああ",
-                                                                  japaneseDefinition: "肯定",
-                                                                  chineseDefinition: "啊、哎呀",
-                                                                  type: "他五",
-                                                                  sentence: "ああ、そうですが",
-                                                                  sentence_chinese: "阿！是嗎！",
-                                                                  level: "N5")]
+    
+    @objc dynamic var Volcabularies = [Volcabulary]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         scheduledTimerWithTimeInterval()
         addVolcabulary.isHidden = true
+        
+        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
+
+        let jsonFilePath = documentsDirectoryPath.appendingPathComponent("test.json")
+        let fileManager = FileManager.default
+        var isDirectory: ObjCBool = false
+        
+        Volcabularies.append(contentsOf: [Volcabulary(star: true,
+        page: 629,
+        volcabulary: "ああ",
+        kana: "ああ",
+        japaneseDefinition: "肯定",
+        chineseDefinition: "啊、哎呀",
+        type: "他五",
+        sentence: "ああ、そうですが",
+        sentence_chinese: "阿！是嗎！",
+        level: "N5")])
+
+        // creating a .json file in the Documents folder
+        if !fileManager.fileExists(atPath: jsonFilePath!.path, isDirectory: &isDirectory) {
+            let created = fileManager.createFile(atPath: jsonFilePath!.path, contents: nil, attributes: nil)
+            if created {
+                print("File created ")
+            } else {
+                print("Couldn't create file for some reason")
+            }
+        } else {
+            print("File already exists")
+        }
+        
+        let json = Volcabularies[0].asJSON
+        let data = try! json.rawData()
+        let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
+        do {
+            let file = try FileHandle(forWritingTo: jsonFilePath2!)
+            file.write(data as Data)
+            print("JSON data was written to teh file successfully!")
+        } catch let error as NSError {
+            print("Couldn't write to file: \(error.localizedDescription)")
+        }
+        
+        /*
+        let result = [
+            ["merge", "me"],
+            ["We", "shall", "unite"],
+            ["magic"]
+        ]
+        let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
+        print("testArray is")
+        print(result)
+        let json = JSON(result)
+        let str = json.description
+        print("str is")
+        print(str)
+        let data = str.data(using: String.Encoding.utf8)!
+        do {
+            let file = try FileHandle(forWritingTo: jsonFilePath2!)
+            file.write(data as Data)
+            print("JSON data was written to teh file successfully!")
+        } catch let error as NSError {
+            print("Couldn't write to file: \(error.localizedDescription)")
+        }
+        */
+        
+        /*
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent("Volcabulary.json") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                print("FILE AVAILABLE")
+                Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
+            } else {
+                print("FILE NOT AVAILABLE")
+                Volcabularies.append(contentsOf: [Volcabulary(star: true,
+                                                            page: 629,
+                                                            volcabulary: "ああ",
+                                                            kana: "ああ",
+                                                            japaneseDefinition: "肯定",
+                                                            chineseDefinition: "啊、哎呀",
+                                                            type: "他五",
+                                                            sentence: "ああ、そうですが",
+                                                            sentence_chinese: "阿！是嗎！",
+                                                            level: "N5")])
+                (Volcabularies as NSArray).write(to: url as URL, atomically: true)
+            }
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+        }
+        */
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
@@ -157,6 +284,10 @@ class FunctionsViewController: NSViewController{
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].page = MenuAddVolcabularyViewController.page
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
             
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let url = NSURL(fileURLWithPath: path)
+            Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
+            
             MenuAddVolcabularyViewController.selectedIndex = -1
             MenuAddVolcabularyViewController.editing = false
         }
@@ -175,6 +306,28 @@ class FunctionsViewController: NSViewController{
                                                           sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
                                                           level: MenuAddVolcabularyViewController.level)] as [Volcabulary])
             
+            // creating JSON out of the above array
+            var jsonData: NSData!
+            do {
+                jsonData = try JSONSerialization.data(withJSONObject: Volcabularies, options: JSONSerialization.WritingOptions()) as NSData
+                let jsonString = String(data: jsonData as Data, encoding: String.Encoding.utf8)
+                print(jsonString)
+            } catch let error as NSError {
+                print("Array to JSON conversion failed: \(error.localizedDescription)")
+            }
+            
+            // Write that JSON to the file created earlier
+            let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+            let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
+            let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
+            do {
+                let file = try FileHandle(forWritingTo: jsonFilePath2!)
+                file.write(jsonData as Data)
+                print("JSON data was written to teh file successfully!")
+            } catch let error as NSError {
+                print("Couldn't write to file: \(error.localizedDescription)")
+            }
+            
             MenuAddVolcabularyViewController.adding = false
         }
         
@@ -182,15 +335,19 @@ class FunctionsViewController: NSViewController{
         if addVolcabularyViewController.volcabularyAdded == true
         {
             Volcabularies.append(contentsOf: [Volcabulary(star: addVolcabularyViewController.star,
-            page: addVolcabularyViewController.page,
-            volcabulary: addVolcabularyViewController.volcabulary,
-            kana: addVolcabularyViewController.kana,
-            japaneseDefinition: addVolcabularyViewController.japaneseDefinition,
-            chineseDefinition: addVolcabularyViewController.chineseDefinition,
-            type: addVolcabularyViewController.type,
-            sentence: addVolcabularyViewController.sentence,
-            sentence_chinese: addVolcabularyViewController.sentenceChinese,
-            level: addVolcabularyViewController.level)] as [Volcabulary])
+                                                            page: addVolcabularyViewController.page,
+                                                            volcabulary: addVolcabularyViewController.volcabulary,
+                                                            kana: addVolcabularyViewController.kana,
+                                                            japaneseDefinition: addVolcabularyViewController.japaneseDefinition,
+                                                            chineseDefinition: addVolcabularyViewController.chineseDefinition,
+                                                            type: addVolcabularyViewController.type,
+                                                            sentence: addVolcabularyViewController.sentence,
+                                                            sentence_chinese: addVolcabularyViewController.sentenceChinese,
+                                                            level: addVolcabularyViewController.level)] as [Volcabulary])
+            
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let url = NSURL(fileURLWithPath: path)
+            Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
             
             addVolcabularyViewController.volcabularyAdded = false
         }
