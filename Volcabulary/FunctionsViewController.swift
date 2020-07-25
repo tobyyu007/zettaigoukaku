@@ -8,7 +8,7 @@
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 //  Reference of iconset: https://iconmonstr.com
-//  Reference of saving struct to JSON: https://stackoverflow.com/a/37757022
+//  Reference of saving struct array to JSON: https://stackoverflow.com/a/37757022
 
 
 import Cocoa
@@ -97,6 +97,8 @@ class FunctionsViewController: NSViewController{
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
     
+    let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Volcabularies")
+    var isDirectory: ObjCBool = false
     
     @objc dynamic var Volcabularies = [Volcabulary]()
     
@@ -106,81 +108,70 @@ class FunctionsViewController: NSViewController{
         scheduledTimerWithTimeInterval()
         addVolcabulary.isHidden = true
         
-        let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
-
-        let jsonFilePath = documentsDirectoryPath.appendingPathComponent("test.json")
-        let fileManager = FileManager.default
-        var isDirectory: ObjCBool = false
+        // 如果沒有 Volcabulary 資料夾，新增一個
+        do
+        {
+            try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch let error as NSError
+        {
+            NSLog("Unable to create directory \(error.debugDescription)")
+        }
         
-        Volcabularies.append(contentsOf: [Volcabulary(star: true,
-        page: 629,
-        volcabulary: "ああ",
-        kana: "ああ",
-        japaneseDefinition: "肯定",
-        chineseDefinition: "啊、哎呀",
-        type: "他五",
-        sentence: "ああ、そうですが",
-        sentence_chinese: "阿！是嗎！",
-        level: "N5")])
-
-        // creating a .json file in the Documents folder
-        if !fileManager.fileExists(atPath: jsonFilePath!.path, isDirectory: &isDirectory) {
-            let created = fileManager.createFile(atPath: jsonFilePath!.path, contents: nil, attributes: nil)
-            if created {
-                print("File created ")
-            } else {
-                print("Couldn't create file for some reason")
+        // 檢查資料夾內有沒有單字
+        let enumerator = FileManager.default.enumerator(atPath: fileURL.path)
+        let filePaths = enumerator!.allObjects as! [String]
+        let jsonFilePaths = filePaths.filter{$0.contains(".json")}
+        if jsonFilePaths.count > 0 // 已經有資料
+        {
+            // 將檔案讀進 Volcabularies array
+            for jsonFilePath in jsonFilePaths
+            {
+                if jsonFilePath != ".DS_Store"
+                {
+                    do
+                    {
+                        let fullPath = fileURL.path + "/" + jsonFilePath
+                        let data = try Data(contentsOf: URL(fileURLWithPath: fullPath))
+                        let dataJSON = try JSON(data: data)
+                        let newVolcabulary = Volcabulary(json: dataJSON)! as Volcabulary
+                        Volcabularies.append(newVolcabulary)
+                    }
+                    catch let error as NSError
+                    {
+                        NSLog("Unable to open JSON file \(error.debugDescription)")
+                    }
+                }
             }
-        } else {
-            print("File already exists")
         }
-        
-        let json = Volcabularies[0].asJSON
-        let data = try! json.rawData()
-        let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
-        do {
-            let file = try FileHandle(forWritingTo: jsonFilePath2!)
-            file.write(data as Data)
-            print("JSON data was written to teh file successfully!")
-        } catch let error as NSError {
-            print("Couldn't write to file: \(error.localizedDescription)")
+        else // 目前沒有新增資料
+        {
+            // 初始化資料
+            Volcabularies.append(contentsOf: [Volcabulary(star: true,
+                                                        page: 629,
+                                                        volcabulary: "ああ",
+                                                        kana: "ああ",
+                                                        japaneseDefinition: "肯定",
+                                                        chineseDefinition: "啊、哎呀",
+                                                        type: "他五",
+                                                        sentence: "ああ、そうですが",
+                                                        sentence_chinese: "阿！是嗎！",
+                                                        level: "N5")])
+
+            saveFile(volcabulary: Volcabularies[0], name: Volcabularies[0].volcabulary)
         }
         
         /*
-        let result = [
-            ["merge", "me"],
-            ["We", "shall", "unite"],
-            ["magic"]
-        ]
-        let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
-        print("testArray is")
-        print(result)
-        let json = JSON(result)
-        let str = json.description
-        print("str is")
-        print(str)
-        let data = str.data(using: String.Encoding.utf8)!
-        do {
-            let file = try FileHandle(forWritingTo: jsonFilePath2!)
-            file.write(data as Data)
-            print("JSON data was written to teh file successfully!")
-        } catch let error as NSError {
-            print("Couldn't write to file: \(error.localizedDescription)")
-        }
-        */
+        // creating a .json file in the Documents folder
         
-        /*
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let url = NSURL(fileURLWithPath: path)
-        if let pathComponent = url.appendingPathComponent("Volcabulary.json") {
-            let filePath = pathComponent.path
-            let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: filePath) {
-                print("FILE AVAILABLE")
-                Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
-            } else {
-                print("FILE NOT AVAILABLE")
+        if !FileManager.default.fileExists(atPath: fileURL.path, isDirectory: &isDirectory) {
+            let created = FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
+            if created
+            {
+                // 如果沒有該檔案
+                print("File created")
+                
+                // 初始化資料
                 Volcabularies.append(contentsOf: [Volcabulary(star: true,
                                                             page: 629,
                                                             volcabulary: "ああ",
@@ -191,10 +182,33 @@ class FunctionsViewController: NSViewController{
                                                             sentence: "ああ、そうですが",
                                                             sentence_chinese: "阿！是嗎！",
                                                             level: "N5")])
-                (Volcabularies as NSArray).write(to: url as URL, atomically: true)
+
+                saveFile(volcabulary: Volcabularies[0], name: Volcabularies[0].volcabulary)
             }
-        } else {
-            print("FILE PATH NOT AVAILABLE")
+            else {
+                print("Couldn't create file for some reason")
+            }
+        }
+        else {
+            // 有檔案，直接開檔
+            print("File already exists")
+            /*
+            do{
+                let data = try Data(contentsOf: fileURL)
+                print("data is")
+                print(data)
+                let volcabularyJSON = try JSON(data: data)
+                let test = Volcabulary(json: volcabularyJSON)! as Volcabulary
+                Volcabularies.append(test)
+                print(test)
+                print("test is")
+                print(Volcabularies[Volcabularies.count-1].volcabulary)
+            }
+            catch let error as NSError
+            {
+                print("Couldn't open file: \(error.localizedDescription)")
+            }
+            */
         }
         */
         
@@ -203,6 +217,28 @@ class FunctionsViewController: NSViewController{
         volcabularyTableMenu.addItem(NSMenuItem(title: "編輯", action: #selector(tableViewEditItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableMenu.addItem(NSMenuItem(title: "刪除", action: #selector(tableViewDeleteItemClicked(_:)), keyEquivalent: ""))
         volcabularyTableView.menu = volcabularyTableMenu
+    }
+    
+    func saveFile(volcabulary: Volcabulary, name: String)
+    {
+        // 新增 json 檔案到 Volcabulary 資料夾，使用單字名稱儲存
+        do {
+            let data = try! volcabulary.asJSON.rawData()
+            let volcabularyNameURL = fileURL.appendingPathComponent(name + ".json")
+            let created = FileManager.default.createFile(atPath: volcabularyNameURL.path, contents: nil, attributes: nil)
+            if created
+            {
+                let file = try FileHandle(forWritingTo: volcabularyNameURL)
+                file.write(data as Data)
+                print("JSON data was written to the file successfully!")
+            }
+            else
+            {
+                print("can't create file")
+            }
+        } catch let error as NSError {
+            print("Couldn't write file: \(error.localizedDescription)")
+        }
     }
     
     
@@ -284,9 +320,10 @@ class FunctionsViewController: NSViewController{
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].page = MenuAddVolcabularyViewController.page
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
             
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-            let url = NSURL(fileURLWithPath: path)
-            Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
+            // 存檔
+            let json = Volcabularies[MenuAddVolcabularyViewController.selectedIndex].asJSON
+            let data = try! json.rawData()
+            //saveFile(data: data)
             
             MenuAddVolcabularyViewController.selectedIndex = -1
             MenuAddVolcabularyViewController.editing = false
@@ -306,27 +343,8 @@ class FunctionsViewController: NSViewController{
                                                           sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
                                                           level: MenuAddVolcabularyViewController.level)] as [Volcabulary])
             
-            // creating JSON out of the above array
-            var jsonData: NSData!
-            do {
-                jsonData = try JSONSerialization.data(withJSONObject: Volcabularies, options: JSONSerialization.WritingOptions()) as NSData
-                let jsonString = String(data: jsonData as Data, encoding: String.Encoding.utf8)
-                print(jsonString)
-            } catch let error as NSError {
-                print("Array to JSON conversion failed: \(error.localizedDescription)")
-            }
-            
-            // Write that JSON to the file created earlier
-            let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-            let documentsDirectoryPath = NSURL(string: documentsDirectoryPathString)!
-            let jsonFilePath2 = documentsDirectoryPath.appendingPathComponent("test.json")
-            do {
-                let file = try FileHandle(forWritingTo: jsonFilePath2!)
-                file.write(jsonData as Data)
-                print("JSON data was written to teh file successfully!")
-            } catch let error as NSError {
-                print("Couldn't write to file: \(error.localizedDescription)")
-            }
+            // 存檔
+            saveFile(volcabulary: Volcabularies[Volcabularies.count-1], name: Volcabularies[Volcabularies.count-1].volcabulary)
             
             MenuAddVolcabularyViewController.adding = false
         }
@@ -345,9 +363,10 @@ class FunctionsViewController: NSViewController{
                                                             sentence_chinese: addVolcabularyViewController.sentenceChinese,
                                                             level: addVolcabularyViewController.level)] as [Volcabulary])
             
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-            let url = NSURL(fileURLWithPath: path)
-            Volcabularies = NSArray(contentsOf: url as URL) as! [Volcabulary]
+            // 存檔
+            let json = Volcabularies[Volcabularies.count-1].asJSON
+            let data = try! json.rawData()
+            //saveFile(data: data)
             
             addVolcabularyViewController.volcabularyAdded = false
         }
@@ -389,4 +408,20 @@ class FunctionsViewController: NSViewController{
     }
     
     // MARK: - 新增單字功能
+}
+
+extension JSON{
+    mutating func appendIfArray(json:JSON){
+        if var arr = self.array{
+            arr.append(json)
+            self = JSON(arr);
+        }
+    }
+    
+    mutating func appendIfDictionary(key:String,json:JSON){
+        if var dict = self.dictionary{
+            dict[key] = json;
+            self = JSON(dict);
+        }
+    }
 }
