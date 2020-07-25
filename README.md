@@ -12,7 +12,7 @@
 - 從 [MOJi 辭書](https://www.mojidict.com)輔助輸入單字
 
 ## 系統需求
-1. macOS 10.13
+1. macOS 10.13 以上
 
 ## 編譯方法
 ### 專案用到 CocoaPods，必須安裝才可以使用
