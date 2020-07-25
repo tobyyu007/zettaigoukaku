@@ -122,9 +122,9 @@ class FunctionsViewController: NSViewController{
         let enumerator = FileManager.default.enumerator(atPath: fileURL.path)
         let filePaths = enumerator!.allObjects as! [String]
         let jsonFilePaths = filePaths.filter{$0.contains(".json")}
-        if jsonFilePaths.count > 0 // 已經有資料
+        if jsonFilePaths.count > 0 // 已經有單字
         {
-            // 將檔案讀進 Volcabularies array
+            // 將所有單字讀進 Volcabularies array
             for jsonFilePath in jsonFilePaths
             {
                 if jsonFilePath != ".DS_Store"
@@ -144,11 +144,11 @@ class FunctionsViewController: NSViewController{
                 }
             }
         }
-        else // 目前沒有新增資料
+        else // 目前沒有單字資料
         {
             // 初始化資料
             Volcabularies.append(contentsOf: [Volcabulary(star: true,
-                                                        page: 629,
+                                                        page: 1,
                                                         volcabulary: "ああ",
                                                         kana: "ああ",
                                                         japaneseDefinition: "肯定",
@@ -160,57 +160,6 @@ class FunctionsViewController: NSViewController{
 
             saveFile(volcabulary: Volcabularies[0], name: Volcabularies[0].volcabulary)
         }
-        
-        /*
-        // creating a .json file in the Documents folder
-        
-        if !FileManager.default.fileExists(atPath: fileURL.path, isDirectory: &isDirectory) {
-            let created = FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
-            if created
-            {
-                // 如果沒有該檔案
-                print("File created")
-                
-                // 初始化資料
-                Volcabularies.append(contentsOf: [Volcabulary(star: true,
-                                                            page: 629,
-                                                            volcabulary: "ああ",
-                                                            kana: "ああ",
-                                                            japaneseDefinition: "肯定",
-                                                            chineseDefinition: "啊、哎呀",
-                                                            type: "他五",
-                                                            sentence: "ああ、そうですが",
-                                                            sentence_chinese: "阿！是嗎！",
-                                                            level: "N5")])
-
-                saveFile(volcabulary: Volcabularies[0], name: Volcabularies[0].volcabulary)
-            }
-            else {
-                print("Couldn't create file for some reason")
-            }
-        }
-        else {
-            // 有檔案，直接開檔
-            print("File already exists")
-            /*
-            do{
-                let data = try Data(contentsOf: fileURL)
-                print("data is")
-                print(data)
-                let volcabularyJSON = try JSON(data: data)
-                let test = Volcabulary(json: volcabularyJSON)! as Volcabulary
-                Volcabularies.append(test)
-                print(test)
-                print("test is")
-                print(Volcabularies[Volcabularies.count-1].volcabulary)
-            }
-            catch let error as NSError
-            {
-                print("Couldn't open file: \(error.localizedDescription)")
-            }
-            */
-        }
-        */
         
         let volcabularyTableMenu = NSMenu()  // 在 tabelView 新增 menu
         volcabularyTableMenu.addItem(NSMenuItem(title: "新增", action: #selector(tableViewAddItemClicked(_:)), keyEquivalent: ""))
@@ -241,6 +190,21 @@ class FunctionsViewController: NSViewController{
         }
     }
     
+    func deleteFile(name: String)
+    {
+        // 刪除單字 json 檔案
+        let fileManager = FileManager.default
+        let fullPath = fileURL.path + "/" + name + ".json"
+        
+        do
+        {
+            try fileManager.removeItem(atPath: fullPath)
+        }
+        catch let error as NSError
+        {
+            print("Couldn't delete file: \(error.localizedDescription)")
+        }
+    }
     
     // MARK: - 單字功能
     func scheduledTimerWithTimeInterval(){
@@ -309,6 +273,10 @@ class FunctionsViewController: NSViewController{
         // 從 menu 編輯回來改變
         if MenuAddVolcabularyViewController.editing  // 修改
         {
+            // 先刪除檔案
+            deleteFile(name: Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary)
+            
+            // 再新增檔案
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary = MenuAddVolcabularyViewController.volcabulary
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].kana = MenuAddVolcabularyViewController.kana
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].japaneseDefinition = MenuAddVolcabularyViewController.japaneseDescription
@@ -321,9 +289,7 @@ class FunctionsViewController: NSViewController{
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
             
             // 存檔
-            let json = Volcabularies[MenuAddVolcabularyViewController.selectedIndex].asJSON
-            let data = try! json.rawData()
-            //saveFile(data: data)
+            saveFile(volcabulary: Volcabularies[MenuAddVolcabularyViewController.selectedIndex], name: Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary)
             
             MenuAddVolcabularyViewController.selectedIndex = -1
             MenuAddVolcabularyViewController.editing = false
@@ -349,7 +315,7 @@ class FunctionsViewController: NSViewController{
             MenuAddVolcabularyViewController.adding = false
         }
         
-        // 從 "新增單字" 功能回來
+        // 從 "新增單字" 頁面新增
         if addVolcabularyViewController.volcabularyAdded == true
         {
             Volcabularies.append(contentsOf: [Volcabulary(star: addVolcabularyViewController.star,
@@ -364,20 +330,18 @@ class FunctionsViewController: NSViewController{
                                                             level: addVolcabularyViewController.level)] as [Volcabulary])
             
             // 存檔
-            let json = Volcabularies[Volcabularies.count-1].asJSON
-            let data = try! json.rawData()
-            //saveFile(data: data)
+            saveFile(volcabulary: Volcabularies[Volcabularies.count-1], name: Volcabularies[Volcabularies.count-1].volcabulary)
             
             addVolcabularyViewController.volcabularyAdded = false
         }
     }
     
-    @objc private func tableViewAddItemClicked(_ sender: AnyObject)  // menu 新增
+    @objc private func tableViewAddItemClicked(_ sender: AnyObject)  // 按下 menu 新增
     {
         performSegue(withIdentifier: "menuAddVolcabulary", sender: self)  // 跳轉到新增視窗
     }
     
-    @objc private func tableViewEditItemClicked(_ sender: AnyObject)  // menu 編輯
+    @objc private func tableViewEditItemClicked(_ sender: AnyObject)  // 按下 menu 編輯
     {
         let index = volcabularyTableView.selectedRow  // 取出選擇的欄位號碼
         if index != -1  // 有選擇項目
@@ -398,12 +362,13 @@ class FunctionsViewController: NSViewController{
         }
     }
 
-    @objc private func tableViewDeleteItemClicked(_ sender: AnyObject)  // menu 刪除
+    @objc private func tableViewDeleteItemClicked(_ sender: AnyObject)  // 按下 menu 刪除
     {
         let index = volcabularyTableView.selectedRow  // 取出選擇的欄位號碼
+        deleteFile(name: Volcabularies[index].volcabulary) // 刪除檔案
         if index != -1  // 有選擇項目
         {
-            Volcabularies.remove(at: index)
+            Volcabularies.remove(at: index) // 移除 functionList 項目
         }
     }
     
