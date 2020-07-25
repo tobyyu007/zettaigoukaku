@@ -5,9 +5,11 @@
 //  Created by Toby on 2020/7/3.
 //  Copyright © 2020 Toby. All rights reserved.
 //  Main usage: 主視窗右方 view controller 總管
+//  Volcabulary data folder: /Users/toby/Library/Containers/Toby.zettaigoukaku/Data/Documents/Volcabularies
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 //  Reference of iconset: https://iconmonstr.com
+//  Reference of SwifyJSON: https://github.com/SwiftyJSON/SwiftyJSON
 //  Reference of saving struct array to JSON: https://stackoverflow.com/a/37757022
 
 

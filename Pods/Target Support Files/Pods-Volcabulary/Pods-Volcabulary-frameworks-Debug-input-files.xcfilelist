@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Volcabulary/Pods-Volcabulary-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework
+${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

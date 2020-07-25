@@ -14,4 +14,5 @@ target 'Volcabulary' do
   
   pod 'SwiftyJSON', '~> 4.0'
 
+  pod 'NMSSH'
 end

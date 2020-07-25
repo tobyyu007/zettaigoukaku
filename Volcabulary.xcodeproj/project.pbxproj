@@ -210,6 +210,7 @@
 				TargetAttributes = {
 					DA18798824ACBEB60020E8A6 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -442,6 +443,7 @@
 			baseConfigurationReference = A685E84D3E7E3532D2A4EB27 /* Pods-Volcabulary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -454,9 +456,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "0.3.1-alpha";
+				MARKETING_VERSION = "0.4-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -466,6 +471,7 @@
 			baseConfigurationReference = 4FBF01937701DC940837D4CD /* Pods-Volcabulary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Volcabulary/zettaigoukaku.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -478,9 +484,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "0.3.1-alpha";
+				MARKETING_VERSION = "0.4-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
