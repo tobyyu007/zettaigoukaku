@@ -14,4 +14,7 @@ target 'Volcabulary' do
   
   pod 'SwiftyJSON', '~> 4.0'
 
+  pod 'NMSSH'
+  
+  pod 'ZIPFoundation', '~> 0.9'
 end

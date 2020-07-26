@@ -4,7 +4,9 @@
 //
 //  Created by Toby on 2020/7/4.
 //  Copyright © 2020 Toby. All rights reserved.
+//
 //  Main usage: "單字"頁面右鍵 menu 選單控制
+//
 
 import Cocoa
 

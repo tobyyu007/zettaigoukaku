@@ -4,16 +4,23 @@
 //
 //  Created by Toby on 2020/7/3.
 //  Copyright © 2020 Toby. All rights reserved.
+//
 //  Main usage: 主視窗右方 view controller 總管
+//  Application data folder: /Users/toby/Library/Containers/Toby.zettaigoukaku/Data/Documents
+//  User data folder: /Users/toby/Library/Containers/Toby.zettaigoukaku/Data/Documents/[username]
+//
 //  Reference of TableView: https://www.youtube.com/watch?v=VfVYX7nO9dQ
 //  Reference of Right click menu: https://stackoverflow.com/questions/6186961/cocoa-how-to-have-a-context-menu-when-you-right-click-on-a-cell-of-nstableview
 //  Reference of iconset: https://iconmonstr.com
+//  Reference of SwifyJSON: https://github.com/SwiftyJSON/SwiftyJSON
 //  Reference of saving struct array to JSON: https://stackoverflow.com/a/37757022
-
+//  Reference of NMSSH: https://github.com/NMSSH/NMSSH
+//
 
 import Cocoa
 import WebKit
 import SwiftyJSON
+import NMSSH
 
 class Volcabulary: NSObject
 {
@@ -97,21 +104,26 @@ class FunctionsViewController: NSViewController{
     var timer = Timer()
     static var FunctionChoice: String = "VolcabularyView"
     
-    let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Volcabularies")
+    let userURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("/Users/" + LoginViewController.userName)
+    let userVolcabulariesURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("/Users/" + LoginViewController.userName + "/Volcabularies")
     var isDirectory: ObjCBool = false
+    
+    static var saveEnded = false // 表示是否儲存完成，是否可以離開儲存成功頁面
     
     @objc dynamic var Volcabularies = [Volcabulary]()
     
+    // MARK: 初始化
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         scheduledTimerWithTimeInterval()
         addVolcabulary.isHidden = true
         
-        // 如果沒有 Volcabulary 資料夾，新增一個
+        // 如果使用者資料夾內沒有 Volcabularies 資料夾，新增一個
+        let userVolcabulariesURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("/Users/" + LoginViewController.userName + "/Volcabularies/")
         do
         {
-            try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: userVolcabulariesURL.path, withIntermediateDirectories: true, attributes: nil)
         }
         catch let error as NSError
         {
@@ -119,7 +131,7 @@ class FunctionsViewController: NSViewController{
         }
         
         // 檢查資料夾內有沒有單字
-        let enumerator = FileManager.default.enumerator(atPath: fileURL.path)
+        let enumerator = FileManager.default.enumerator(atPath: userVolcabulariesURL.path)
         let filePaths = enumerator!.allObjects as! [String]
         let jsonFilePaths = filePaths.filter{$0.contains(".json")}
         if jsonFilePaths.count > 0 // 已經有單字
@@ -131,7 +143,7 @@ class FunctionsViewController: NSViewController{
                 {
                     do
                     {
-                        let fullPath = fileURL.path + "/" + jsonFilePath
+                        let fullPath = userVolcabulariesURL.path + "/" + jsonFilePath
                         let data = try Data(contentsOf: URL(fileURLWithPath: fullPath))
                         let dataJSON = try JSON(data: data)
                         let newVolcabulary = Volcabulary(json: dataJSON)! as Volcabulary
@@ -168,64 +180,11 @@ class FunctionsViewController: NSViewController{
         volcabularyTableView.menu = volcabularyTableMenu
     }
     
-    func saveFile(volcabulary: Volcabulary, name: String)
-    {
-        // 新增 json 檔案到 Volcabulary 資料夾，使用單字名稱儲存
-        do {
-            let data = try! volcabulary.asJSON.rawData()
-            let volcabularyNameURL = fileURL.appendingPathComponent(name + ".json")
-            let created = FileManager.default.createFile(atPath: volcabularyNameURL.path, contents: nil, attributes: nil)
-            if created
-            {
-                let file = try FileHandle(forWritingTo: volcabularyNameURL)
-                file.write(data as Data)
-                print("JSON data was written to the file successfully!")
-            }
-            else
-            {
-                print("can't create file")
-            }
-        } catch let error as NSError {
-            print("Couldn't write file: \(error.localizedDescription)")
-        }
-    }
-    
-    func deleteFile(name: String)
-    {
-        // 刪除單字 json 檔案
-        let fileManager = FileManager.default
-        let fullPath = fileURL.path + "/" + name + ".json"
-        
-        do
-        {
-            try fileManager.removeItem(atPath: fullPath)
-        }
-        catch let error as NSError
-        {
-            print("Couldn't delete file: \(error.localizedDescription)")
-        }
-    }
-    
-    // MARK: - 單字功能
+    // MARK: 自動更新 (View, 資料庫)
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
-    
-    @IBAction func starCheckBox(_ sender: NSButton) {
-        // 列表中標記 checkbox 隨時可更新
-        let index = volcabularyTableView.row(for: sender)
-        print(index)
-        if sender.state == .on
-        {
-            Volcabularies[index].star = true
-        }
-        else if sender.state == .off
-        {
-            Volcabularies[index].star = false
-        }
-    }
-    
     
     @objc func updateCounting()  // 0.1 秒跑一次
     {
@@ -270,7 +229,7 @@ class FunctionsViewController: NSViewController{
             testView.isHidden = true
         }
     
-        // 從 menu 編輯回來改變
+        // 從 "單字" 頁面中 menu 編輯
         if MenuAddVolcabularyViewController.editing  // 修改
         {
             // 先刪除檔案
@@ -295,7 +254,7 @@ class FunctionsViewController: NSViewController{
             MenuAddVolcabularyViewController.editing = false
         }
             
-        // menu 新增
+        // 從 "單字" 頁面中 menu 新增
         else if MenuAddVolcabularyViewController.adding
         {
             Volcabularies.append(contentsOf: [Volcabulary(star: MenuAddVolcabularyViewController.star,
@@ -331,10 +290,112 @@ class FunctionsViewController: NSViewController{
             
             // 存檔
             saveFile(volcabulary: Volcabularies[Volcabularies.count-1], name: Volcabularies[Volcabularies.count-1].volcabulary)
-            
             addVolcabularyViewController.volcabularyAdded = false
+            FunctionsViewController.saveEnded = true // 可以關閉 "儲存成功" 視窗
         }
     }
+    
+    // MARK: 各種檔案處理
+    func saveFile(volcabulary: Volcabulary, name: String)
+    {
+        // 新增 json 檔案到 Volcabulary 資料夾，使用單字名稱儲存
+        do {
+            let data = try! volcabulary.asJSON.rawData()
+            let volcabularyNameURL = userVolcabulariesURL.appendingPathComponent(name + ".json")
+            let created = FileManager.default.createFile(atPath: volcabularyNameURL.path, contents: nil, attributes: nil)
+            // 新增空白 json 檔案
+            if created
+            {
+                let file = try FileHandle(forWritingTo: volcabularyNameURL)
+                file.write(data as Data) // 寫入
+                print("JSON data was written to the file successfully!")
+                zipAndUploadFile()
+            }
+            else
+            {
+                print("can't create file")
+            }
+        } catch let error as NSError {
+            print("Couldn't write file: \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteFile(name: String)
+    {
+        // 刪除單字 json 檔案
+        let volcabularyNameURL = userVolcabulariesURL.appendingPathComponent(name + ".json")
+        
+        do
+        {
+            try FileManager.default.removeItem(atPath: volcabularyNameURL.path)
+            zipAndUploadFile()
+        }
+        catch let error as NSError
+        {
+            print("Couldn't delete file: \(error.localizedDescription)")
+        }
+    }
+    
+    func zipAndUploadFile()
+    {
+        // 把 Volcabularies 資料夾 zip 起來
+        let volcabularyZIPLocation = userURL.appendingPathComponent(LoginViewController.userName + ".zip")
+        do
+        {
+            let enumerator = FileManager.default.enumerator(atPath: userURL.path)
+            let filePaths = enumerator!.allObjects.filter{($0 as AnyObject).contains(LoginViewController.userName + ".zip")} as! [String]
+            if filePaths.count > 0 // 如果已經有 zip 檔
+            {
+                try FileManager.default.removeItem(atPath: userURL.path + "/" + filePaths[0]) // 刪除現有 zip 檔
+                try FileManager().zipItem(at: userVolcabulariesURL, to: volcabularyZIPLocation) // 新增 zip 檔
+            }
+            else // 沒有 zip 檔
+            {
+                try FileManager().zipItem(at: userVolcabulariesURL, to: volcabularyZIPLocation) // 新增 zip 檔
+            }
+        }
+        catch let error as NSError{
+            print("Couldn't zip file: \(error.localizedDescription)")
+        }
+        
+        // 傳送 zip 檔案到伺服器，用 SFTP 連線
+        let session = NMSSHSession(host: "theyus.asuscomm.com:2003", andUsername: "project")
+        session.connect()
+        if session.isConnected{
+            session.authenticate(byPassword: "ZDbkDtJo^rUK")
+            if session.isAuthorized{
+                let SFTPSession = NMSFTP(session: session)
+                SFTPSession.connect() // 重要
+                if SFTPSession.isConnected{
+                    // 上傳 zip 檔案到伺服器 (伺服器檔案路徑：zettaigoukaku/[使用者名稱].zip)
+                    SFTPSession.writeFile(atPath: volcabularyZIPLocation.path, toFileAtPath: "zettaigoukaku/" + LoginViewController.userName + ".zip")
+                    SFTPSession.disconnect()
+                }
+            }
+            else{
+                print("can't authenticate SFTP")
+            }
+        }
+        else{
+            print("can't connect with SFTP")
+        }
+    }
+    
+    // MARK: Button 觸發
+    @IBAction func starCheckBox(_ sender: NSButton) {
+        // 列表中標記 checkbox 隨時可更新
+        let index = volcabularyTableView.row(for: sender)
+        print(index)
+        if sender.state == .on
+        {
+            Volcabularies[index].star = true
+        }
+        else if sender.state == .off
+        {
+            Volcabularies[index].star = false
+        }
+    }
+    
     
     @objc private func tableViewAddItemClicked(_ sender: AnyObject)  // 按下 menu 新增
     {
@@ -369,24 +430,6 @@ class FunctionsViewController: NSViewController{
         if index != -1  // 有選擇項目
         {
             Volcabularies.remove(at: index) // 移除 functionList 項目
-        }
-    }
-    
-    // MARK: - 新增單字功能
-}
-
-extension JSON{
-    mutating func appendIfArray(json:JSON){
-        if var arr = self.array{
-            arr.append(json)
-            self = JSON(arr);
-        }
-    }
-    
-    mutating func appendIfDictionary(key:String,json:JSON){
-        if var dict = self.dictionary{
-            dict[key] = json;
-            self = JSON(dict);
         }
     }
 }
