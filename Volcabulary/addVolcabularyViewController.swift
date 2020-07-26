@@ -13,7 +13,7 @@
 
 import Cocoa
 
-class addVolcabularyViewController: NSViewController {
+class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
 
     @IBOutlet weak var mojiImageView: NSImageView!
     @IBOutlet weak var manuallyInputImageView: NSImageView!
@@ -88,6 +88,24 @@ class addVolcabularyViewController: NSViewController {
         japaneseDescriptionMenu.isEnabled = false
         progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         scheduledTimerWithTimeInterval()
+        pageTextField.delegate = self // 連動 controlTextDidChange Function
+    }
+    
+    func controlTextDidChange(_ obj: Notification) {
+        // 監測頁數 textField 改動，連動更動 stepper 數值
+        let textField = obj.object as! NSTextField
+        let pageValue = Int(textField.stringValue) ?? 0
+        if pageValue == 0  || pageValue > 1000 // 不是 輸入數值 或 超過範圍 (1~1000)，改動回原本的數字
+        {
+            AddVolcabularyErrorViewController.errorTitle = "adding"
+            AddVolcabularyErrorViewController.errorContent = "pageError"
+            performSegue(withIdentifier: "addVolcabularyError", sender: self) // 跳轉到警告畫面
+            textField.stringValue = String(stepper.integerValue)
+        }
+        else // 正常數字範圍
+        {
+            stepper.integerValue = Int(textField.stringValue)!
+        }
     }
     
     func scheduledTimerWithTimeInterval(){
@@ -172,6 +190,15 @@ class addVolcabularyViewController: NSViewController {
     
     @IBAction func manuallyAdd(_ sender: Any) {
         // "手動輸入" 按鍵
+        kanaTextField.stringValue = ""
+        sentenceTextField.stringValue = ""
+        typeTextField.stringValue = ""
+        japaneseDescriptionTextField.stringValue = ""
+        chineseDescriptionTextField.stringValue = ""
+        volcabularyTextField.stringValue = ""
+        sentence_chineseTextField.stringValue = ""
+        pageTextField.stringValue = "1"
+        
         addVolcabulary.isHidden = true
         crawResultView.isHidden = true
         addVolcabularyInfo.isHidden = false
@@ -235,41 +262,52 @@ class addVolcabularyViewController: NSViewController {
         
         if addVolcabularyViewController.kana != "" && addVolcabularyViewController.sentence != "" && addVolcabularyViewController.type != "" && addVolcabularyViewController.japaneseDefinition != "" && addVolcabularyViewController.chineseDefinition != "" && addVolcabularyViewController.volcabulary != "" && addVolcabularyViewController.sentenceChinese != ""
         {
-            addSuccessfulView.isHidden = false
-            addVolcabularyInfo.isHidden = true
-            switch levelMenu.indexOfSelectedItem {
-            case 0:
-                addVolcabularyViewController.level = "N5"
-            case 1:
-                addVolcabularyViewController.level = "N4"
-            case 2:
-                addVolcabularyViewController.level = "N3"
-            case 3:
-                addVolcabularyViewController.level = "N2"
-            case 4:
-                addVolcabularyViewController.level = "N1"
-            default:
-                break
-            }
-            
-            addVolcabularyViewController.page = Int(pageTextField.stringValue)!
-            
-            if StarCheckBox.state == .on
+            if !FunctionsViewController.isDuplicate(newVolcabulary: addVolcabularyViewController.volcabulary)
             {
-                addVolcabularyViewController.star = true
+                addSuccessfulView.isHidden = false
+                addVolcabularyInfo.isHidden = true
+                switch levelMenu.indexOfSelectedItem {
+                case 0:
+                    addVolcabularyViewController.level = "N5"
+                case 1:
+                    addVolcabularyViewController.level = "N4"
+                case 2:
+                    addVolcabularyViewController.level = "N3"
+                case 3:
+                    addVolcabularyViewController.level = "N2"
+                case 4:
+                    addVolcabularyViewController.level = "N1"
+                default:
+                    break
+                }
+                
+                addVolcabularyViewController.page = Int(pageTextField.stringValue)!
+                
+                if StarCheckBox.state == .on
+                {
+                    addVolcabularyViewController.star = true
+                }
+                else
+                {
+                    addVolcabularyViewController.star = false
+                }
+                
+                addVolcabularyViewController.volcabularyAdded = true
+                progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
+                addVolcabularyViewController.progress = 0
             }
-            else
+            else // 是重複的單字
             {
-                addVolcabularyViewController.star = false
+                AddVolcabularyErrorViewController.errorTitle = "adding"
+                AddVolcabularyErrorViewController.errorContent = "duplicates"
+                performSegue(withIdentifier: "addVolcabularyError", sender: self)
             }
-            
-            addVolcabularyViewController.volcabularyAdded = true
-            progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
-            addVolcabularyViewController.progress = 0
         }
         
         else // 有欄位沒有輸入
         {
+            AddVolcabularyErrorViewController.errorTitle = "adding"
+            AddVolcabularyErrorViewController.errorContent = "noData"
             performSegue(withIdentifier: "addVolcabularyError", sender: self)
         }
     }

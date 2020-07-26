@@ -16,6 +16,10 @@ class AddVolcabularyErrorViewController: NSViewController {
     @IBOutlet weak var errorImage: NSImageView!
     @IBOutlet weak var errorTitle: NSTextField!
     @IBOutlet weak var errorDescription: NSTextField!
+    
+    static var errorTitle = ""
+    static var errorContent = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,23 +28,26 @@ class AddVolcabularyErrorViewController: NSViewController {
         errorNSImage?.size = NSSize(width: 45, height: 45)
         errorImage.image = errorNSImage
         
-        
-        if MenuAddVolcabularyViewController.selectedIndex != -1 // 修改中
-        {
-            errorTitle.stringValue = "無法修改單字"
-        }
-        else // 新增中
-        {
+        switch AddVolcabularyErrorViewController.errorTitle {
+        case "adding":
             errorTitle.stringValue = "無法新增單字"
+        case "duplicates":
+            errorTitle.stringValue = "無法新增單字"
+        case "editing":
+            errorTitle.stringValue = "無法修改單字"
+        default:
+            print("errorTitle error")
         }
         
-        if MenuAddVolcabularyViewController.errorType == "noData"
-        {
+        switch AddVolcabularyErrorViewController.errorContent {
+        case "noData":
             errorDescription.stringValue = "請輸入所有資料"
-        }
-        else
-        {
+        case "pageError":
             errorDescription.stringValue = "頁數請輸入 1~1000 頁"
+        case "duplicates":
+            errorDescription.stringValue = "此單字已經新增"
+        default:
+            print("errorContent error")
         }
     }
     @IBAction func DismissTabView(sender: NSButton)

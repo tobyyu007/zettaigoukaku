@@ -381,6 +381,23 @@ class FunctionsViewController: NSViewController{
         }
     }
     
+    static func isDuplicate(newVolcabulary: String) -> Bool
+    {
+        // 檢查資料夾內有沒有單字
+        let pathURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("/Users/" + LoginViewController.userName + "/Volcabularies")
+        let enumerator = FileManager.default.enumerator(atPath: pathURL.path)
+        let filePaths = enumerator!.allObjects as! [String]
+        let jsonFilePaths = filePaths.filter{$0.contains(newVolcabulary + ".json")}
+        if jsonFilePaths.count > 0 // 已經有該單字
+        {
+            return true
+        }
+        else // 目前沒有該單字資料
+        {
+            return false
+        }
+    }
+    
     // MARK: Button 觸發
     @IBAction func starCheckBox(_ sender: NSButton) {
         // 列表中標記 checkbox 隨時可更新

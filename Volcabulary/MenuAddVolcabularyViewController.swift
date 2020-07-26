@@ -37,8 +37,6 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
     static var level = "N5"
     static var star = true
     
-    static var errorType = "noData" // 新增 error 視窗控制
-    
     static var selectedIndex = -1  // tableView 選擇的列號碼
     
     static var editing = false  // 編輯中
@@ -83,11 +81,19 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             {
                 StarCheckBox.state = .off
             }
-            
+            MenuAddVolcabularyViewController.selectedIndex = -1
             button.title = "修改"
         }
         else // 新增中
         {
+            kanaTextField.stringValue = ""
+            sentenceTextField.stringValue = ""
+            typeTextField.stringValue = ""
+            japaneseDescriptionTextField.stringValue = ""
+            chineseDescriptionTextField.stringValue = ""
+            volcabularyTextField.stringValue = ""
+            sentence_chineseTextField.stringValue = ""
+            pageTextField.stringValue = "1"
             button.title = "新增"
         }
     }
@@ -98,7 +104,16 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         let pageValue = Int(textField.stringValue) ?? 0
         if pageValue == 0  || pageValue > 1000 // 不是 輸入數值 或 超過範圍 (1~1000)，改動回原本的數字
         {
-            MenuAddVolcabularyViewController.errorType = "pageValue"
+            
+            if MenuAddVolcabularyViewController.selectedIndex != -1 // 有選擇欄位，修改中
+            {
+                AddVolcabularyErrorViewController.errorTitle = "editing"
+            }
+            else // 新增中
+            {
+                AddVolcabularyErrorViewController.errorTitle = "adding"
+            }
+            AddVolcabularyErrorViewController.errorContent = "pageError"
             performSegue(withIdentifier: "MenuAddVolcabularyError", sender: self) // 跳轉到警告畫面
             textField.stringValue = String(stepper.integerValue)
         }
@@ -171,14 +186,30 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             }
             else // 新增中
             {
-                MenuAddVolcabularyViewController.adding = true
+                if !FunctionsViewController.isDuplicate(newVolcabulary: MenuAddVolcabularyViewController.volcabulary)
+                {
+                    MenuAddVolcabularyViewController.adding = true
+                    self.dismiss(MenuAddVolcabularyViewController.self)
+                }
+                else // 該單字是重複的
+                {
+                    AddVolcabularyErrorViewController.errorTitle = "adding"
+                    AddVolcabularyErrorViewController.errorContent = "duplicates"
+                    performSegue(withIdentifier: "MenuAddVolcabularyError", sender: self) // 跳轉到警告畫面
+                }
             }
-            
-            self.dismiss(MenuAddVolcabularyViewController.self)
         }
         else  // 有欄位沒有輸入資料
         {
-            MenuAddVolcabularyViewController.errorType = "noData"
+            if MenuAddVolcabularyViewController.selectedIndex != -1 // 有選擇欄位，修改中
+            {
+                AddVolcabularyErrorViewController.errorTitle = "editing"
+            }
+            else // 新增中
+            {
+                AddVolcabularyErrorViewController.errorTitle = "adding"
+            }
+            AddVolcabularyErrorViewController.errorContent = "noData"
             performSegue(withIdentifier: "MenuAddVolcabularyError", sender: self) // 跳轉到警告畫面
         }
     }

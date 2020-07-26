@@ -102,9 +102,9 @@
 				DA24F0FF24B9765C00F51508 /* SCtoTC.swift */,
 				DA18799024ACBEB70020E8A6 /* Assets.xcassets */,
 				DA18799224ACBEB70020E8A6 /* Main.storyboard */,
-				DAA20E9424AF9F1A0007885F /* Volcabulary list */,
-				DAC1C28724C727F10035A3F8 /* Add Volcabulary */,
-				DABE851224C9C18E0091D865 /* Learn */,
+				DAA20E9424AF9F1A0007885F /* 單字 */,
+				DAC1C28724C727F10035A3F8 /* 新增單字 */,
+				DABE851224C9C18E0091D865 /* 學習 */,
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
 				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
 				DA7802BB24AF193D001D7B44 /* WindowsController */,
@@ -135,30 +135,30 @@
 			name = FunctionListOutlineView;
 			sourceTree = "<group>";
 		};
-		DAA20E9424AF9F1A0007885F /* Volcabulary list */ = {
+		DAA20E9424AF9F1A0007885F /* 單字 */ = {
 			isa = PBXGroup;
 			children = (
 				DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */,
 				DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */,
 			);
-			name = "Volcabulary list";
+			name = "單字";
 			sourceTree = "<group>";
 		};
-		DABE851224C9C18E0091D865 /* Learn */ = {
+		DABE851224C9C18E0091D865 /* 學習 */ = {
 			isa = PBXGroup;
 			children = (
 				DABE851024C9C1810091D865 /* learnViewController.swift */,
 			);
-			name = Learn;
+			name = "學習";
 			sourceTree = "<group>";
 		};
-		DAC1C28724C727F10035A3F8 /* Add Volcabulary */ = {
+		DAC1C28724C727F10035A3F8 /* 新增單字 */ = {
 			isa = PBXGroup;
 			children = (
 				DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */,
 				DA24F0FD24B740A900F51508 /* CrawVolcabularyViewController.swift */,
 			);
-			name = "Add Volcabulary";
+			name = "新增單字";
 			sourceTree = "<group>";
 		};
 		E48755CE8803D657F2B48FFF /* Pods */ = {
