@@ -3,12 +3,14 @@ PODS:
   - Kanna (5.2.2)
   - NMSSH (2.3.1)
   - SwiftyJSON (4.3.0)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Kanna (~> 5.2.2)
   - NMSSH
   - SwiftyJSON (~> 4.0)
+  - ZIPFoundation (~> 0.9)
 
 SPEC REPOS:
   trunk:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - Kanna
     - NMSSH
     - SwiftyJSON
+    - ZIPFoundation
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Kanna: 2c4eddaaa4bfb9a1ed19e53c0b3d42ef02838046
   NMSSH: cd689ae535a1581a6dd9fd4600ff71247df510a6
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 5619f71f5341e0fa3f52b90a0ced9ef3162e4fe3
+PODFILE CHECKSUM: 00b9259910e55a7e6a58fe4b320cb0e3b6f7395b
 
 COCOAPODS: 1.9.3

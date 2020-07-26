@@ -27,6 +27,7 @@
 		DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */; };
 		DABE851124C9C1810091D865 /* learnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE851024C9C1810091D865 /* learnViewController.swift */; };
 		DABE851424C9C5390091D865 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABE851324C9C5390091D865 /* WebKit.framework */; };
+		DABE851A24CD4D790091D865 /* LoginErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE851824CD4D790091D865 /* LoginErrorViewController.swift */; };
 		DAC1C28A24C9BB810035A3F8 /* Pods_Volcabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4888C135B4A253E90BC5CF /* Pods_Volcabulary.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVolcabularyViewController.swift; sourceTree = "<group>"; };
 		DABE851024C9C1810091D865 /* learnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnViewController.swift; sourceTree = "<group>"; };
 		DABE851324C9C5390091D865 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		DABE851824CD4D790091D865 /* LoginErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				DA187A0B24AD12F10020E8A6 /* LoginWindowController.swift */,
 				DA187A0F24AD1A510020E8A6 /* MainWindowController.swift */,
+				DABE851824CD4D790091D865 /* LoginErrorViewController.swift */,
 			);
 			name = WindowsController;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
 				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
 				DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */,
+				DABE851A24CD4D790091D865 /* LoginErrorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

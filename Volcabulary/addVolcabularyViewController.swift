@@ -4,7 +4,9 @@
 //
 //  Created by Toby on 2020/7/13.
 //  Copyright © 2020 Toby. All rights reserved.
+//
 //  Main usage: "新增單字" 功能 view controller 總管
+//
 //  頁面流程: 選擇加入模式 -> 手動輸入 -> 單字資訊 -> 新增 -> 加入成功
 //                     -> 使用 MOJi 辭書輔助輸入 -> 跳出 moji 辭書 webView -> 爬蟲結果 -> 單字資訊 -> 新增 -> 加入成功
 //
@@ -155,6 +157,16 @@ class addVolcabularyViewController: NSViewController {
                 addVolcabulary.isHidden = false
             }
         }
+        
+        if FunctionsViewController.saveEnded == true
+        {
+            // 等待 FunctionsViewController saveFile 完成
+            self.addSuccessfulView.isHidden = true
+            self.addVolcabulary.isHidden = false
+            self.crawResultView.isHidden = true
+            self.addVolcabularyInfo.isHidden = true
+            FunctionsViewController.saveEnded = false
+        }
     }
         
     
@@ -254,15 +266,6 @@ class addVolcabularyViewController: NSViewController {
             addVolcabularyViewController.volcabularyAdded = true
             progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
             addVolcabularyViewController.progress = 0
-            
-            // 顯示 "加入成功" 頁面 0.5 秒
-            let seconds = 0.5
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                self.addSuccessfulView.isHidden = true
-                self.addVolcabulary.isHidden = false
-                self.crawResultView.isHidden = true
-                self.addVolcabularyInfo.isHidden = true
-            }
         }
         
         else // 有欄位沒有輸入
