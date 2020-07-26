@@ -20,6 +20,8 @@
 1. [Alamofire](https://github.com/Alamofire/Alamofire)
 2. [Kanna](https://github.com/tid-kijyun/Kanna)
 3. [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+4. [ZIPFoundation](https://github.com/weichsel/ZIPFoundation)
+5. [NMSSH](https://github.com/NMSSH/NMSSH)
 
 ## 安裝 CocoaPods 方法
 1. 打開 terminal，輸入以下指令安裝
@@ -40,6 +42,8 @@ open Podfile
 pod 'Alamofire', '~> 5.2'
 pod 'Kanna', '~> 5.2.2'
 pod 'SwiftyJSON', '~> 4.0'
+pod 'NMSSH'
+pod 'ZIPFoundation', '~> 0.9'
 ```
 6. 安裝套件
 ```console
