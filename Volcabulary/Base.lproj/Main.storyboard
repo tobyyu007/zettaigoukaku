@@ -1082,11 +1082,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vae-x0-QQP">
-                                                            <rect key="frame" x="42" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="42" y="1" width="16" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-6X-hr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="28" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="RWV-ai-ok9">
                                                                         <font key="font" metaFont="system"/>
@@ -1222,11 +1222,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="kBS-gs-6GF">
-                                                            <rect key="frame" x="482" y="1" width="146" height="17"/>
+                                                            <rect key="frame" x="482" y="1" width="134" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4r-Vb-EJ5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="146" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="134" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="bEo-jK-h66">
                                                                         <font key="font" metaFont="system"/>
@@ -1327,11 +1327,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yey-TN-wh7">
-                                                            <rect key="frame" x="840" y="1" width="133" height="17"/>
+                                                            <rect key="frame" x="840" y="1" width="121" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-ZL-yrd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="133" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="yie-2u-6dS">
                                                                         <font key="font" metaFont="system"/>
@@ -1798,7 +1798,7 @@ DQ
                                 <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="Tc4-ds-LNC"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wdm-Z8-zkO">
-                                <rect key="frame" x="194" y="75" width="150" height="19"/>
+                                <rect key="frame" x="194" y="72" width="150" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="請輸入所有資料" id="vqx-Bf-ro9">
                                     <font key="font" size="12" name="HelveticaNeue"/>
@@ -2401,7 +2401,7 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="rangeNextButton:" target="KkB-GG-d4m" id="nik-Fo-9Sw"/>
+                                            <action selector="rangeVIewNextButton:" target="KkB-GG-d4m" id="gtK-v1-LPi"/>
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SSG-TP-v7x" userLabel="中文解釋 Text Field">
@@ -2793,16 +2793,16 @@ DQ
                         <outlet property="japaneseSearchMethod" destination="GZx-H0-zkc" id="I7F-Y8-mEF"/>
                         <outlet property="japaneseTextField" destination="3a9-gm-gxv" id="Zt1-ez-EVq"/>
                         <outlet property="levelCheckBox" destination="3Gb-lB-ALO" id="pke-mT-b3n"/>
+                        <outlet property="levelFromMenu" destination="v7H-Dy-hNc" id="g7a-Dt-wbq"/>
+                        <outlet property="levelToMenu" destination="O1k-8L-2w4" id="f87-in-heq"/>
                         <outlet property="pageCheckBox" destination="cO8-78-aH0" id="ZQ4-ld-mZw"/>
                         <outlet property="pageFromTextField" destination="uD2-dz-YTR" id="60Z-NX-VUs"/>
                         <outlet property="pageToTextField" destination="gIn-DZ-yQM" id="C2n-oK-bun"/>
                         <outlet property="starCheckBox" destination="h56-7K-XZl" id="ZRx-SQ-lkU"/>
                         <outlet property="starMenu" destination="IEw-zO-Jba" id="Zc1-Le-CyB"/>
                         <outlet property="typeCheckBox" destination="wOr-yf-2TR" id="IxF-NC-PYm"/>
-                        <outlet property="typeFromMenu" destination="v7H-Dy-hNc" id="gcb-pZ-TJJ"/>
                         <outlet property="typeSearchMethod" destination="9Hz-pB-agz" id="m56-dz-kVV"/>
                         <outlet property="typeTextField" destination="3hv-Ge-tTP" id="qa4-QQ-guW"/>
-                        <outlet property="typeToMenu" destination="O1k-8L-2w4" id="reR-80-st3"/>
                         <segue destination="OH9-i7-zhS" kind="sheet" identifier="learnError" id="qLa-Rb-R6a"/>
                     </connections>
                 </viewController>
@@ -2823,16 +2823,25 @@ DQ
             </objects>
             <point key="canvasLocation" x="3283" y="2656"/>
         </scene>
-        <!--Login Error View Controller-->
+        <!--Learn Error-->
         <scene sceneID="PbY-17-oQ6">
             <objects>
-                <viewController id="OH9-i7-zhS" customClass="LoginErrorViewController" customModule="Volcabulary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OH9-i7-zhS" customClass="learnError" customModule="Volcabulary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="nVi-Ew-7z6">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="132"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="156"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-oo-gnE">
+                                <rect key="frame" x="199" y="103" width="105" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="錯誤" id="po4-O6-IE9">
+                                    <font key="font" size="20" name="HelveticaNeue-Bold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIt-G0-QfT">
-                                <rect key="frame" x="196" y="10" width="59" height="32"/>
+                                <rect key="frame" x="195" y="25" width="59" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KN2-ga-Uzc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2842,36 +2851,28 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="okButton:" target="OH9-i7-zhS" id="pR4-9Z-h0T"/>
+                                    <action selector="okButton:" target="OH9-i7-zhS" id="wrN-qG-vb7"/>
                                 </connections>
                             </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGO-pt-O7o">
-                                <rect key="frame" x="117" y="47" width="65" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="6fs-aY-XWF"/>
-                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="htj-s1-md4">
-                                <rect key="frame" x="186" y="52" width="150" height="19"/>
+                                <rect key="frame" x="199" y="74" width="193" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="請檢查帳號密碼" id="86X-Ro-OuB">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="請在有選擇的欄位中輸入資料" id="86X-Ro-OuB">
                                     <font key="font" size="12" name="HelveticaNeue"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-oo-gnE">
-                                <rect key="frame" x="186" y="81" width="105" height="23"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGO-pt-O7o">
+                                <rect key="frame" x="128" y="69" width="65" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="無法登入" id="po4-O6-IE9">
-                                    <font key="font" size="20" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="6fs-aY-XWF"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="errorDescription" destination="htj-s1-md4" id="e8Y-b3-Qzs"/>
+                        <outlet property="errorDescription" destination="htj-s1-md4" id="v5n-X0-YNd"/>
+                        <outlet property="errorTitle" destination="QdW-oo-gnE" id="VAW-w1-jCY"/>
                     </connections>
                 </viewController>
                 <customObject id="HRm-AU-ICw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

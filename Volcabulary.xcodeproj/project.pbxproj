@@ -22,6 +22,7 @@
 		DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */; };
 		DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B924AE4A46001D7B44 /* TestData.swift */; };
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
+		DA7C4D0C24CECA7700D773A3 /* learnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C4D0A24CECA7700D773A3 /* learnError.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
 		DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */; };
@@ -53,6 +54,7 @@
 		DA7802B724AE4A38001D7B44 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		DA7802B924AE4A46001D7B44 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
+		DA7C4D0A24CECA7700D773A3 /* learnError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnError.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
 		DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVolcabularyViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				DABE851024C9C1810091D865 /* learnViewController.swift */,
+				DA7C4D0A24CECA7700D773A3 /* learnError.swift */,
 			);
 			name = "學習";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7C4D0C24CECA7700D773A3 /* learnError.swift in Sources */,
 				DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */,
 				DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */,
 				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
