@@ -22,6 +22,10 @@ class LoginViewController: NSViewController {
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     @IBOutlet weak var rememberAccountCheckBox: NSButton!
     
+    @IBOutlet weak var loginView: NSVisualEffectView!
+    @IBOutlet weak var syncView: NSVisualEffectView!
+    @IBOutlet weak var processIndicator: NSProgressIndicator!
+    
     let userDefault = UserDefaults()
     static var userName = ""
     
@@ -29,26 +33,35 @@ class LoginViewController: NSViewController {
         // 跳轉到主視窗
         if accountTextField.stringValue == "toby" && passwordTextField.stringValue == "1234" || accountTextField.stringValue == "yue" && passwordTextField.stringValue == "1234"
         {
-            if rememberAccountCheckBox.state == .on
-            {
-                // 將帳號密碼記在 userDefault 裡面
-                userDefault.setValue(accountTextField.stringValue, forKey: "account")
-                userDefault.setValue(passwordTextField.stringValue, forKey: "password")
+            loginView.isHidden = true
+            syncView.isHidden = false
+            processIndicator.startAnimation(nil)
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                // 等待 view 改為正在同步畫面
+                // 這邊是特殊寫法，沒有寫等待秒數，可是可以達到效果
+                if self.rememberAccountCheckBox.state == .on
+                {
+                    // 將帳號密碼記在 userDefault 裡面
+                    self.userDefault.setValue(self.accountTextField.stringValue, forKey: "account")
+                    self.userDefault.setValue(self.passwordTextField.stringValue, forKey: "password")
+                }
+                LoginViewController.userName = self.accountTextField.stringValue // 紀錄使用者名稱讓其他 view controller 使用
+                self.createUserDirectory()
+                self.connectToServer()
             }
-            LoginViewController.userName = accountTextField.stringValue
-            createUserDirectory()
-            connectToServer()
-            performSegue(withIdentifier: "LoginToMain", sender: self)
-            self.view.window?.close()  // 關閉 login 視窗
+            
         }
         else // 帳號密碼錯誤
         {
+            LoginErrorViewController.errorDescriptionType = "accountError"
             performSegue(withIdentifier: "loginError", sender: self)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginView.isHidden = false
+        syncView.isHidden = true
         if userDefault.value(forKey: "account") as? String != nil && userDefault.value(forKey: "password") as? String != nil
         {
             // 如果先前有在 userDefault 中紀錄帳號密碼
@@ -102,10 +115,18 @@ class LoginViewController: NSViewController {
                 }
             }
             else{
+                loginView.isHidden = false
+                syncView.isHidden = true
+                LoginErrorViewController.errorDescriptionType = "serverError"
+                performSegue(withIdentifier: "loginError", sender: self)
                 print("can't authenticate SFTP")
             }
         }
         else{
+            loginView.isHidden = false
+            syncView.isHidden = true
+            LoginErrorViewController.errorDescriptionType = "serverError"
+            performSegue(withIdentifier: "loginError", sender: self)
             print("can't connect with SFTP")
         }
     }
@@ -127,6 +148,10 @@ class LoginViewController: NSViewController {
             {
                 try FileManager().unzipItem(at: fileURL.appendingPathComponent(LoginViewController.userName + ".zip"), to: fileURL) // 解壓縮 zip 檔
             }
+            
+            // 全部登入工作完成
+            performSegue(withIdentifier: "LoginToMain", sender: self) // 跳轉到主頁面
+            self.view.window?.close()  // 關閉 login 視窗
         }
         catch let error as NSError{
             print("Couldn't unzip file: \(error.localizedDescription)")
