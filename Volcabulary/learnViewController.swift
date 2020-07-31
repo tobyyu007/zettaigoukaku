@@ -42,6 +42,7 @@ class learnViewController: NSViewController {
     @IBOutlet weak var learnView: NSView!
     @IBOutlet weak var displayItemView: NSView!
     @IBOutlet weak var volcabularyDisplayView: NSView!
+    @IBOutlet weak var learnCompleteView: NSView!
     
     @IBOutlet weak var pageCheckBox: NSButton!
     @IBOutlet weak var japaneseCheckBox: NSButton!
@@ -88,7 +89,7 @@ class learnViewController: NSViewController {
     var level = [Int]()
     var star = false
     
-    var searchResults = [searchResult]()
+    var searchResults = [searchResult]() // 搜尋結果
     
     var searchSelected = [Bool]() // 該搜尋方式有被選擇
     var searchMethod = [Bool]() // 順序跟上面 SearchMethod 一樣，false: 包含, true: 完全相同
@@ -100,13 +101,91 @@ class learnViewController: NSViewController {
         learnView.isHidden = false
         displayItemView.isHidden = true
         volcabularyDisplayView.isHidden = true
+        learnCompleteView.isHidden = true
+    }
+    
+    func resetAllData() // 重設所有設定
+    {
+        starImageName = "filled"
+        currentVolcabularyIndex = 0
+        nextVocabularyButton.title = "下一個"
+        previousVocabularyButton.isEnabled = false
+        
+        learnView.isHidden = false
+        displayItemView.isHidden = true
+        volcabularyDisplayView.isHidden = true
+        learnCompleteView.isHidden = true
+        
+        displayItem.removeAll()
+        searchResults.removeAll()
+        searchMethod.removeAll()
+        searchSelected.removeAll()
+        pageRange.removeAll()
+        level.removeAll()
+        japanese = ""
+        kana = ""
+        japaneseDescription = ""
+        chineseDescription = ""
+        type = ""
+        example = ""
+        exampleChinese = ""
+        star = false
+        checked = false
+        
+        japaneseTextField.stringValue = ""
+        exampleTextField.stringValue = ""
+        typeTextField.stringValue = ""
+        japaneseDescriptionTextField.stringValue = ""
+        chineseDescriptionTextField.stringValue = ""
+        kanaTextField.stringValue = ""
+        exampleChineseTextField.stringValue = ""
+        pageFromTextField.stringValue = "1"
+        pageToTextField.stringValue = "1"
+        levelToMenu.selectItem(at: 0)
+        levelFromMenu.selectItem(at: 0)
+        starMenu.selectItem(at: 0)
+        japaneseSearchMethod.selectItem(at: 0)
+        kanaSearchMethod.selectItem(at: 0)
+        japaneseDescriptionSearchMethod.selectItem(at: 0)
+        chineseDescriptionSearchMethod.selectItem(at: 0)
+        typeSearchMethod.selectItem(at: 0)
+        exampleSearchMethod.selectItem(at: 0)
+        exampleChineseSearchMethod.selectItem(at: 0)
+        pageCheckBox.state = .off
+        japaneseCheckBox.state = .off
+        kanaCheckBox.state = .off
+        japaneseDefinitionCheckBox.state = .off
+        chineseDefinitionCheckBox.state = .off
+        typeCheckBox.state = .off
+        exampleCheckBox.state = .off
+        exampleChineseCheckBox.state = .off
+        levelCheckBox.state = .off
+        starCheckBox.state = .off
+        levelToMenu.item(at: 0)?.isEnabled = true
+        levelToMenu.item(at: 1)?.isEnabled = true
+        levelToMenu.item(at: 2)?.isEnabled = true
+        levelToMenu.item(at: 3)?.isEnabled = true
+        
+        displayChecked = false
+        
+        displayPageCheckBox.state = .on
+        displayJapaneseCheckBox.state = .on
+        displayKanaCheckBox.state = .on
+        displayJapaneseDefinitionCheckBox.state = .on
+        displayChineseDefinitionCheckBox.state = .on
+        displayTypeCheckBox.state = .on
+        displayExampleCheckBox.state = .on
+        displayChineseExampleCheckBox.state = .on
+        displayLevelCheckBox.state = .on
+        displayStarCheckBox.state = .on
     }
     
     // MARK: 範圍頁面
     @IBAction func levelFromMenuClicked(_ sender: Any) {
         // 自動調整可選擇的等級
         var levelFrom = -1
-        switch levelFromMenu.indexOfSelectedItem {
+        switch levelFromMenu.indexOfSelectedItem // 從...
+        {
         case 0:
             levelFrom = 5
         case 1:
@@ -121,7 +200,14 @@ class learnViewController: NSViewController {
             print("error")
         }
         
-        switch levelFrom{
+        switch levelFrom // 到...
+        {
+        case 5:
+            levelToMenu.item(at: 0)?.isEnabled = true
+            levelToMenu.item(at: 1)?.isEnabled = true
+            levelToMenu.item(at: 2)?.isEnabled = true
+            levelToMenu.item(at: 3)?.isEnabled = true
+            levelToMenu.selectItem(at: 0)
         case 4:
             levelToMenu.item(at: 0)?.isEnabled = false
             levelToMenu.item(at: 1)?.isEnabled = true
@@ -472,44 +558,13 @@ class learnViewController: NSViewController {
             learnView.isHidden = true
             displayItemView.isHidden = false
             volcabularyDisplayView.isHidden = true
-            checked = false
+            learnCompleteView.isHidden = true
             search()
             print("searchResult is")
             for word in searchResults
             {
                 print(word.volcabulary)
             }
-            
-            // 初始化數值
-            japaneseTextField.stringValue = ""
-            exampleTextField.stringValue = ""
-            typeTextField.stringValue = ""
-            japaneseDescriptionTextField.stringValue = ""
-            chineseDescriptionTextField.stringValue = ""
-            kanaTextField.stringValue = ""
-            exampleChineseTextField.stringValue = ""
-            pageFromTextField.stringValue = "1"
-            pageToTextField.stringValue = "1"
-            levelToMenu.selectItem(at: 0)
-            levelFromMenu.selectItem(at: 0)
-            starMenu.selectItem(at: 0)
-            japaneseSearchMethod.selectItem(at: 0)
-            kanaSearchMethod.selectItem(at: 0)
-            japaneseDescriptionSearchMethod.selectItem(at: 0)
-            chineseDescriptionSearchMethod.selectItem(at: 0)
-            typeSearchMethod.selectItem(at: 0)
-            exampleSearchMethod.selectItem(at: 0)
-            exampleChineseSearchMethod.selectItem(at: 0)
-            pageCheckBox.state = .off
-            japaneseCheckBox.state = .off
-            kanaCheckBox.state = .off
-            japaneseDefinitionCheckBox.state = .off
-            chineseDefinitionCheckBox.state = .off
-            typeCheckBox.state = .off
-            exampleCheckBox.state = .off
-            exampleChineseCheckBox.state = .off
-            levelCheckBox.state = .off
-            starCheckBox.state = .off
         }
     }
     
@@ -525,60 +580,99 @@ class learnViewController: NSViewController {
     @IBOutlet weak var displayChineseExampleCheckBox: NSButton!
     @IBOutlet weak var displayLevelCheckBox: NSButton!
     @IBOutlet weak var displayStarCheckBox: NSButton!
+
+    @IBOutlet weak var chineseDefinitionLabel: NSTextField!
+    @IBOutlet weak var chineseExampleLabel: NSTextField!
+    @IBOutlet weak var typeLabel: NSTextField!
+    @IBOutlet weak var japaneseDefinitionLabel: NSTextField!
+    @IBOutlet weak var exampleLabel: NSTextField!
+    @IBOutlet weak var levelLabel: NSTextField!
     
     var displayChecked = false
     
     @IBAction func displayNextButton(_ sender: Any) {
         // 下一步按鍵
+        japaneseDefinitionDisplay.backgroundColor = NSColor.clear
+        chineseDefinitionDisplay.backgroundColor = NSColor.clear
+        typeDisplay.backgroundColor = NSColor.clear
+        japaneseExampleDisplay.backgroundColor = NSColor.clear
+        chineseExampleDisplay.backgroundColor = NSColor.clear
+        levelDisplay.backgroundColor = NSColor.clear
+        
         if displayPageCheckBox.state == .on // 頁面
         {
             displayChecked = true
-            displayItem.append(true)
+            pageDisplay.isHidden = false
+            pageDisplay.stringValue = "P" + String(searchResults[0].page)
         }
         if displayJapaneseCheckBox.state == .on // 日文
         {
             displayChecked = true
-            displayItem.append(true)
+            volcabularyDisplay.isHidden = false
+            volcabularyDisplay.stringValue = searchResults[0].volcabulary
         }
         if displayKanaCheckBox.state == .on // 假名
         {
             displayChecked = true
-            displayItem.append(true)
+            kanaDisplay.isHidden = false
+            kanaDisplay.stringValue = searchResults[0].kana
         }
         if displayJapaneseDefinitionCheckBox.state == .on // 日文解釋
         {
             displayChecked = true
-            displayItem.append(true)
+            japaneseDefinitionDisplay.isHidden = false
+            japaneseDefinitionLabel.isHidden = false
+            japaneseDefinitionDisplay.string = searchResults[0].japaneseDefinition
         }
         if displayChineseDefinitionCheckBox.state == .on // 中文解釋
         {
             displayChecked = true
-            displayItem.append(true)
+            chineseDefinitionDisplay.isHidden = false
+            chineseDefinitionLabel.isHidden = false
+            chineseDefinitionDisplay.string = searchResults[0].chineseDefinition
         }
         if displayTypeCheckBox.state == .on // 類型
         {
             displayChecked = true
-            displayItem.append(true)
+            typeDisplay.isHidden = false
+            typeLabel.isHidden = false
+            typeDisplay.string = searchResults[0].type
         }
         if displayExampleCheckBox.state == .on // 日文例句
         {
             displayChecked = true
-            displayItem.append(true)
+            japaneseExampleDisplay.isHidden = false
+            exampleLabel.isHidden = false
+            japaneseExampleDisplay.string = searchResults[0].sentence
         }
         if displayChineseExampleCheckBox.state == .on // 中文例句
         {
             displayChecked = true
-            displayItem.append(true)
+            chineseExampleDisplay.isHidden = false
+            chineseExampleLabel.isHidden = false
+            chineseExampleDisplay.string = searchResults[0].sentence_chinese
         }
         if displayLevelCheckBox.state == .on // 等級
         {
             displayChecked = true
-            displayItem.append(true)
+            levelDisplay.isHidden = false
+            levelLabel.isHidden = false
+            levelDisplay.string = searchResults[0].level
         }
         if displayStarCheckBox.state == .on // 標記
         {
             displayChecked = true
-            displayItem.append(true)
+            starButtonDisplay.isHidden = false
+            let starImageFilled = #imageLiteral(resourceName: "starFill")
+            let starImageEmpty = #imageLiteral(resourceName: "starEmpty")
+            if searchResults[0].star
+            {
+                starButtonDisplay.image = starImageFilled
+            }
+            else
+            {
+                starButtonDisplay.image = starImageEmpty
+            }
         }
         
         if !displayChecked // 沒有選擇任何一個選項
@@ -587,76 +681,123 @@ class learnViewController: NSViewController {
             learnError.errorDescriptionText = "noSelection"
             performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
         }
-        else // 有選擇至少一個
+        else // 有選擇至少一個，往下一個頁面前進
         {
-            displayChecked = false
             learnView.isHidden = true
             displayItemView.isHidden = true
             volcabularyDisplayView.isHidden = false
-            
-            displayPageCheckBox.state = .off
-            displayJapaneseCheckBox.state = .on
-            displayKanaCheckBox.state = .on
-            displayJapaneseDefinitionCheckBox.state = .on
-            displayChineseDefinitionCheckBox.state = .on
-            displayTypeCheckBox.state = .on
-            displayExampleCheckBox.state = .on
-            displayChineseExampleCheckBox.state = .on
-            displayLevelCheckBox.state = .on
-            displayStarCheckBox.state = .off
+            learnCompleteView.isHidden = true
+            if searchResults.count == 1
+            {
+                nextVocabularyButton.title = "完成"
+            }
         }
     }
     
     
     @IBAction func displayCancelButton(_ sender: Any) {
         // 取消按鍵
-        learnView.isHidden = false
-        displayItemView.isHidden = true
-        volcabularyDisplayView.isHidden = true
-        displayChecked = false
-        displayItem.removeAll()
-        searchResults.removeAll()
-        searchMethod.removeAll()
-        searchSelected.removeAll()
-        pageRange.removeAll()
-        level.removeAll()
-        japanese = ""
-        kana = ""
-        japaneseDescription = ""
-        chineseDescription = ""
-        type = ""
-        example = ""
-        exampleChinese = ""
-        star = false
-        checked = false
-        
-        levelToMenu.item(at: 0)?.isEnabled = true
-        levelToMenu.item(at: 1)?.isEnabled = true
-        levelToMenu.item(at: 2)?.isEnabled = true
-        levelToMenu.item(at: 3)?.isEnabled = true
-        
-        displayPageCheckBox.state = .off
-        displayJapaneseCheckBox.state = .on
-        displayKanaCheckBox.state = .on
-        displayJapaneseDefinitionCheckBox.state = .on
-        displayChineseDefinitionCheckBox.state = .on
-        displayTypeCheckBox.state = .on
-        displayExampleCheckBox.state = .on
-        displayChineseExampleCheckBox.state = .on
-        displayLevelCheckBox.state = .on
-        displayStarCheckBox.state = .off
+        resetAllData()
     }
     
     // MARK: 單字顯示
     @IBOutlet weak var pageDisplay: NSTextField!
-    @IBOutlet weak var volcabularyDisplay: NSTextFieldCell!
+    @IBOutlet weak var volcabularyDisplay: NSTextField!
     @IBOutlet weak var kanaDisplay: NSTextField!
-    @IBOutlet weak var japaneseDefinition: NSTextField!
-    @IBOutlet weak var chineseDefinition: NSTextField!
-    @IBOutlet weak var typeDisplay: NSTextFieldCell!
-    @IBOutlet weak var japaneseExample: NSTextField!
-    @IBOutlet weak var chineseExample: NSTextField!
-    @IBOutlet weak var levelDisplay: NSTextField!
+    @IBOutlet var japaneseDefinitionDisplay: NSTextView!
+    @IBOutlet var japaneseExampleDisplay: NSTextView!
+    @IBOutlet var levelDisplay: NSTextView!
+    @IBOutlet var chineseDefinitionDisplay: NSTextView!
+    @IBOutlet var chineseExampleDisplay: NSTextView!
+    @IBOutlet var typeDisplay: NSTextView!
+    @IBOutlet weak var starButtonDisplay: NSButton!
+    @IBOutlet weak var nextVocabularyButton: NSButton!
+    @IBOutlet weak var previousVocabularyButton: NSButton!
     
     
+    @IBOutlet var test: NSTextView!
+    @IBOutlet weak var testscroll: NSScrollView!
+    
+    
+    var starImageName = "filled" // 現在標記星星的狀態
+    var currentVolcabularyIndex = 0 // 現在顯示的單字索引
+    let starImageFilled = #imageLiteral(resourceName: "starFill")
+    let starImageEmpty = #imageLiteral(resourceName: "starEmpty")
+    
+    @IBAction func nextVocabularyButtonClicked(_ sender: Any) // 下一個單字按鈕
+    {
+        if nextVocabularyButton.title == "完成"
+        {
+            learnView.isHidden = true
+            displayItemView.isHidden = true
+            volcabularyDisplayView.isHidden = true
+            learnCompleteView.isHidden = false
+        }
+        else // 顯示下一個
+        {
+            currentVolcabularyIndex += 1
+            previousVocabularyButton.isEnabled = true
+            pageDisplay.stringValue = "P" + String(searchResults[currentVolcabularyIndex].page)
+            volcabularyDisplay.stringValue = searchResults[currentVolcabularyIndex].volcabulary
+            kanaDisplay.stringValue = searchResults[currentVolcabularyIndex].kana
+            japaneseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].japaneseDefinition
+            chineseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].chineseDefinition
+            typeDisplay.string = searchResults[currentVolcabularyIndex].type
+            japaneseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence
+            chineseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence_chinese
+            levelDisplay.string = searchResults[currentVolcabularyIndex].level
+            
+            if searchResults[currentVolcabularyIndex].star
+            {
+                starButtonDisplay.image = starImageFilled
+                starImageName = "filled"
+            }
+            else
+            {
+                starButtonDisplay.image = starImageEmpty
+                starImageName = "empty"
+            }
+            
+            if currentVolcabularyIndex+1 > searchResults.count-1 // 最後一個單字
+            {
+                nextVocabularyButton.title = "完成"
+            }
+        }
+    }
+    
+    @IBAction func previousVocabularyButtonClicked(_ sender: Any) // 上一個單字按鈕
+    {
+        currentVolcabularyIndex -= 1
+        nextVocabularyButton.title = "下一個"
+        pageDisplay.stringValue = "P" + String(searchResults[currentVolcabularyIndex].page)
+        volcabularyDisplay.stringValue = searchResults[currentVolcabularyIndex].volcabulary
+        kanaDisplay.stringValue = searchResults[currentVolcabularyIndex].kana
+        japaneseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].japaneseDefinition
+        chineseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].chineseDefinition
+        typeDisplay.string = searchResults[currentVolcabularyIndex].type
+        japaneseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence
+        chineseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence_chinese
+        levelDisplay.string = searchResults[currentVolcabularyIndex].level
+        
+        if searchResults[currentVolcabularyIndex].star
+        {
+            starButtonDisplay.image = starImageFilled
+            starImageName = "filled"
+        }
+        else
+        {
+            starButtonDisplay.image = starImageEmpty
+            starImageName = "empty"
+        }
+        
+        if currentVolcabularyIndex == 0 // 第一個單字
+        {
+            previousVocabularyButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func cancelVocabularyButtonClicked(_ sender: Any) // 取消按鈕
+    {
+        resetAllData()
+    }
 }
