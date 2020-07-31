@@ -81,7 +81,6 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             {
                 StarCheckBox.state = .off
             }
-            MenuAddVolcabularyViewController.selectedIndex = -1
             button.title = "修改"
         }
         else // 新增中
@@ -183,6 +182,7 @@ class MenuAddVolcabularyViewController: NSViewController, NSTextFieldDelegate {
             if MenuAddVolcabularyViewController.selectedIndex != -1  // 有選擇欄位，修改中
             {
                 MenuAddVolcabularyViewController.editing = true
+                self.dismiss(MenuAddVolcabularyViewController.self)
             }
             else // 新增中
             {

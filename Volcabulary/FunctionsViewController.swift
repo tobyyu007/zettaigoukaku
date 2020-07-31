@@ -22,6 +22,74 @@ import WebKit
 import SwiftyJSON
 import NMSSH
 
+class VocabularyInstance
+{
+    var star: Bool
+    var page: Int
+    var volcabulary: String
+    var kana: String
+    var japaneseDefinition: String
+    var chineseDefinition: String
+    var type: String
+    var sentence: String
+    var sentence_chinese: String
+    var level: String
+    
+    init(star: Bool, page: Int, volcabulary: String, kana: String, japaneseDefinition: String, chineseDefinition: String, type: String, sentence: String, sentence_chinese: String, level: String)
+    {
+        self.star = star
+        self.page = page
+        self.volcabulary = volcabulary
+        self.kana = kana
+        self.japaneseDefinition = japaneseDefinition
+        self.chineseDefinition = chineseDefinition
+        self.type = type
+        self.sentence = sentence
+        self.sentence_chinese = sentence_chinese
+        self.level = level
+    }
+    init?(json: JSON)
+    {
+        guard let star = json["star"].bool,
+            let page = json["page"].int,
+            let volcabulary = json["volcabulary"].string,
+            let kana = json["kana"].string,
+            let japaneseDefinition = json["japaneseDefinition"].string,
+            let chineseDefinition = json["chineseDefinition"].string,
+            let type = json["type"].string,
+            let sentence = json["sentence"].string,
+            let sentence_chinese = json["sentence_chinese"].string,
+            let level = json["level"].string
+        else{return nil}
+        
+        self.star = star
+        self.page = page
+        self.volcabulary = volcabulary
+        self.kana = kana
+        self.japaneseDefinition = japaneseDefinition
+        self.chineseDefinition = chineseDefinition
+        self.type = type
+        self.sentence = sentence
+        self.sentence_chinese = sentence_chinese
+        self.level = level
+    }
+    
+    var asJSON: JSON {
+        var json: JSON = [:]
+        json["star"].bool = star
+        json["page"].int = page
+        json["volcabulary"].string = volcabulary
+        json["kana"].string = kana
+        json["japaneseDefinition"].string = japaneseDefinition
+        json["chineseDefinition"].string = chineseDefinition
+        json["type"].string = type
+        json["sentence"].string = sentence
+        json["sentence_chinese"].string = sentence_chinese
+        json["level"].string = level
+        return json
+    }
+}
+
 class Volcabulary: NSObject
 {
     @objc dynamic var star: Bool
@@ -111,6 +179,7 @@ class FunctionsViewController: NSViewController{
     static var saveEnded = false // 表示是否儲存完成，是否可以離開儲存成功頁面
     
     @objc dynamic var Volcabularies = [Volcabulary]()
+    static var VocabulariesInstance = [VocabularyInstance]()
     
     // MARK: 初始化
     override func viewDidLoad() {
@@ -148,6 +217,8 @@ class FunctionsViewController: NSViewController{
                         let dataJSON = try JSON(data: data)
                         let newVolcabulary = Volcabulary(json: dataJSON)! as Volcabulary
                         Volcabularies.append(newVolcabulary)
+                        let newVolcabulary2 = VocabularyInstance(json: dataJSON)! as VocabularyInstance
+                        FunctionsViewController.VocabulariesInstance.append(newVolcabulary2)
                     }
                     catch let error as NSError
                     {
@@ -169,6 +240,17 @@ class FunctionsViewController: NSViewController{
                                                         sentence: "ああ、そうですが",
                                                         sentence_chinese: "阿！是嗎！",
                                                         level: "N5")])
+            
+            FunctionsViewController.VocabulariesInstance.append(contentsOf: [VocabularyInstance(star: true,
+                                                                                        page: 1,
+                                                                                        volcabulary: "ああ",
+                                                                                        kana: "ああ",
+                                                                                        japaneseDefinition: "肯定",
+                                                                                        chineseDefinition: "啊、哎呀",
+                                                                                        type: "他五",
+                                                                                        sentence: "ああ、そうですが",
+                                                                                        sentence_chinese: "阿！是嗎！",
+                                                                                        level: "N5")])
 
             saveFile(volcabulary: Volcabularies[0], name: Volcabularies[0].volcabulary)
         }
@@ -234,8 +316,9 @@ class FunctionsViewController: NSViewController{
         {
             // 先刪除檔案
             deleteFile(name: Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary)
+            deleteFile(name: FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].volcabulary)
             
-            // 再新增檔案
+            // 再修改檔案
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary = MenuAddVolcabularyViewController.volcabulary
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].kana = MenuAddVolcabularyViewController.kana
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].japaneseDefinition = MenuAddVolcabularyViewController.japaneseDescription
@@ -246,6 +329,17 @@ class FunctionsViewController: NSViewController{
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].star = MenuAddVolcabularyViewController.star
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].page = MenuAddVolcabularyViewController.page
             Volcabularies[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
+            
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].volcabulary = MenuAddVolcabularyViewController.volcabulary
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].kana = MenuAddVolcabularyViewController.kana
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].japaneseDefinition = MenuAddVolcabularyViewController.japaneseDescription
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].chineseDefinition = MenuAddVolcabularyViewController.chineseDescription
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].type = MenuAddVolcabularyViewController.type
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].sentence = MenuAddVolcabularyViewController.sentence
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].sentence_chinese = MenuAddVolcabularyViewController.sentence_chinese
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].star = MenuAddVolcabularyViewController.star
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].page = MenuAddVolcabularyViewController.page
+            FunctionsViewController.VocabulariesInstance[MenuAddVolcabularyViewController.selectedIndex].level = MenuAddVolcabularyViewController.level
             
             // 存檔
             saveFile(volcabulary: Volcabularies[MenuAddVolcabularyViewController.selectedIndex], name: Volcabularies[MenuAddVolcabularyViewController.selectedIndex].volcabulary)
@@ -268,6 +362,17 @@ class FunctionsViewController: NSViewController{
                                                           sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
                                                           level: MenuAddVolcabularyViewController.level)] as [Volcabulary])
             
+            FunctionsViewController.VocabulariesInstance.append(contentsOf: [VocabularyInstance(star: MenuAddVolcabularyViewController.star,
+                                                            page: MenuAddVolcabularyViewController.page,
+                                                            volcabulary: MenuAddVolcabularyViewController.volcabulary,
+                                                            kana: MenuAddVolcabularyViewController.kana,
+                                                            japaneseDefinition: MenuAddVolcabularyViewController.japaneseDescription,
+                                                            chineseDefinition: MenuAddVolcabularyViewController.chineseDescription,
+                                                            type: MenuAddVolcabularyViewController.type,
+                                                            sentence: MenuAddVolcabularyViewController.sentence,
+                                                            sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
+                                                            level: MenuAddVolcabularyViewController.level)] as [VocabularyInstance])
+            
             // 存檔
             saveFile(volcabulary: Volcabularies[Volcabularies.count-1], name: Volcabularies[Volcabularies.count-1].volcabulary)
             
@@ -287,6 +392,17 @@ class FunctionsViewController: NSViewController{
                                                             sentence: addVolcabularyViewController.sentence,
                                                             sentence_chinese: addVolcabularyViewController.sentenceChinese,
                                                             level: addVolcabularyViewController.level)] as [Volcabulary])
+            
+            FunctionsViewController.VocabulariesInstance.append(contentsOf: [VocabularyInstance(star: MenuAddVolcabularyViewController.star,
+                                                                                                page: MenuAddVolcabularyViewController.page,
+                                                                                                volcabulary: MenuAddVolcabularyViewController.volcabulary,
+                                                                                                kana: MenuAddVolcabularyViewController.kana,
+                                                                                                japaneseDefinition: MenuAddVolcabularyViewController.japaneseDescription,
+                                                                                                chineseDefinition: MenuAddVolcabularyViewController.chineseDescription,
+                                                                                                type: MenuAddVolcabularyViewController.type,
+                                                                                                sentence: MenuAddVolcabularyViewController.sentence,
+                                                                                                sentence_chinese: MenuAddVolcabularyViewController.sentence_chinese,
+                                                                                                level: MenuAddVolcabularyViewController.level)] as [VocabularyInstance])
             
             // 存檔
             saveFile(volcabulary: Volcabularies[Volcabularies.count-1], name: Volcabularies[Volcabularies.count-1].volcabulary)
@@ -406,10 +522,12 @@ class FunctionsViewController: NSViewController{
         if sender.state == .on
         {
             Volcabularies[index].star = true
+            FunctionsViewController.VocabulariesInstance[index].star = true
         }
         else if sender.state == .off
         {
             Volcabularies[index].star = false
+            FunctionsViewController.VocabulariesInstance[index].star = false
         }
     }
     
@@ -447,6 +565,7 @@ class FunctionsViewController: NSViewController{
         if index != -1  // 有選擇項目
         {
             Volcabularies.remove(at: index) // 移除 functionList 項目
+            FunctionsViewController.VocabulariesInstance.remove(at: index)
         }
     }
 }

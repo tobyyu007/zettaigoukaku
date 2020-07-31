@@ -942,7 +942,7 @@ DQ
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
                                                             <textFieldCell key="dataCell" controlSize="mini" lineBreakMode="truncatingTail" selectable="YES" editable="YES" enabled="NO" title="Text Cell" id="KVA-Nn-WdR">
-                                                                <font key="font" metaFont="menu" size="9"/>
+                                                                <font key="font" metaFont="label" size="9"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -1031,7 +1031,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="JgV-Gs-saN" viewBased="YES" id="6nT-Rh-Hk2">
-                                            <rect key="frame" x="0.0" y="0.0" width="1048" height="609"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1047" height="609"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1082,11 +1082,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vae-x0-QQP">
-                                                            <rect key="frame" x="42" y="1" width="16" height="17"/>
+                                                            <rect key="frame" x="42" y="1" width="34" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-6X-hr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="RWV-ai-ok9">
                                                                         <font key="font" metaFont="system"/>
@@ -1222,11 +1222,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="kBS-gs-6GF">
-                                                            <rect key="frame" x="482" y="1" width="134" height="17"/>
+                                                            <rect key="frame" x="482" y="1" width="152" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4r-Vb-EJ5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="134" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="152" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="bEo-jK-h66">
                                                                         <font key="font" metaFont="system"/>
@@ -1327,11 +1327,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yey-TN-wh7">
-                                                            <rect key="frame" x="840" y="1" width="121" height="17"/>
+                                                            <rect key="frame" x="840" y="1" width="139" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-ZL-yrd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="139" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="yie-2u-6dS">
                                                                         <font key="font" metaFont="system"/>
@@ -1400,25 +1400,25 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="JgV-Gs-saN">
-                                    <rect key="frame" x="0.0" y="0.0" width="1048" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1047" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fds-9i-Vyf" userLabel="新增單字">
+                            <containerView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fds-9i-Vyf" userLabel="新增單字">
                                 <rect key="frame" x="20" y="21" width="1040" height="635"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
                                     <segue destination="mBq-Uz-0Eh" kind="embed" id="axi-M7-3oU"/>
                                 </connections>
                             </containerView>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Iw-gu-1JK" userLabel="學習">
+                            <containerView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Iw-gu-1JK" userLabel="學習">
                                 <rect key="frame" x="20" y="20" width="1040" height="635"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
                                     <segue destination="KkB-GG-d4m" kind="embed" id="lwf-aS-Ynt"/>
                                 </connections>
                             </containerView>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-ah-PVB" userLabel="練習">
+                            <containerView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-ah-PVB" userLabel="練習">
                                 <rect key="frame" x="20" y="20" width="1040" height="635"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
@@ -2371,7 +2371,7 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="676"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmO-Dp-2Zr">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmO-Dp-2Zr" userLabel="範圍">
                                 <rect key="frame" x="20" y="20" width="1040" height="636"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -2486,10 +2486,10 @@ DQ
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v7H-Dy-hNc" userLabel="級別 Menu">
                                         <rect key="frame" x="193" y="191" width="89" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="push" title="N5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cAc-0V-Yhs" id="eVd-Ya-VQl" userLabel="level">
+                                        <popUpButtonCell key="cell" type="push" title="N5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="cAc-0V-Yhs" id="eVd-Ya-VQl" userLabel="level">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
-                                            <menu key="menu" id="Yy3-xF-PhD">
+                                            <menu key="menu" autoenablesItems="NO" id="Yy3-xF-PhD">
                                                 <items>
                                                     <menuItem title="N5" state="on" id="cAc-0V-Yhs"/>
                                                     <menuItem title="N4" id="53x-7u-w1s"/>
@@ -2502,10 +2502,10 @@ DQ
                                                     </menuItem>
                                                 </items>
                                             </menu>
-                                            <connections>
-                                                <action selector="levelChange:" target="uYW-ag-VWt" id="k0l-Y6-3Iq"/>
-                                            </connections>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <action selector="levelFromMenuClicked:" target="KkB-GG-d4m" id="NOa-tA-r1l"/>
+                                        </connections>
                                     </popUpButton>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1U-Jl-zXe" userLabel="例句 Text Field">
                                         <rect key="frame" x="195" y="257" width="198" height="21"/>
@@ -2652,10 +2652,10 @@ DQ
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1k-8L-2w4" userLabel="級別 Menu">
                                         <rect key="frame" x="308" y="191" width="89" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="push" title="N5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cvA-oZ-gFA" id="aWC-Sh-CaL" userLabel="level">
+                                        <popUpButtonCell key="cell" type="push" title="N5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="cvA-oZ-gFA" id="aWC-Sh-CaL" userLabel="level">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
-                                            <menu key="menu" id="JKQ-s3-TZ7">
+                                            <menu key="menu" autoenablesItems="NO" id="JKQ-s3-TZ7">
                                                 <items>
                                                     <menuItem title="N5" state="on" id="cvA-oZ-gFA"/>
                                                     <menuItem title="N4" id="OOR-rM-VWs"/>
@@ -2668,10 +2668,10 @@ DQ
                                                     </menuItem>
                                                 </items>
                                             </menu>
-                                            <connections>
-                                                <action selector="levelChange:" target="uYW-ag-VWt" id="KnL-gz-qaJ"/>
-                                            </connections>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <action selector="levelToMenuClicked:" target="KkB-GG-d4m" id="bF0-ZN-uNg"/>
+                                        </connections>
                                     </popUpButton>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cO8-78-aH0">
                                         <rect key="frame" x="136" y="442" width="53" height="18"/>
@@ -2689,10 +2689,10 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6Y-31-AUV">
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6Y-31-AUV" userLabel="Kana Check Box">
                                         <rect key="frame" x="136" y="382" width="53" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="中文:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6Ie-C4-izh">
+                                        <buttonCell key="cell" type="check" title="假名:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6Ie-C4-izh">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -2769,16 +2769,285 @@ DQ
                                     </button>
                                 </subviews>
                             </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAM-zK-z5y" userLabel="顯示項目">
+                                <rect key="frame" x="20" y="20" width="1040" height="636"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcr-WN-q6V">
+                                        <rect key="frame" x="425" y="520" width="190" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="請選擇要顯示在學習頁面的項目" id="Ks1-ZP-E57">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bv9-6r-Fht">
+                                        <rect key="frame" x="457" y="555" width="126" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="顯示項目" id="xPS-go-u6Z">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUW-6C-06I">
+                                        <rect key="frame" x="396" y="445" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="頁數" bezelStyle="regularSquare" imagePosition="left" alignment="center" inset="2" id="7UU-kK-eJ0">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-kE-1kn">
+                                        <rect key="frame" x="569" y="445" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="日文" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dcT-dU-JM6">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDg-Z6-HGG">
+                                        <rect key="frame" x="396" y="384" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="假名" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EMs-na-u2k">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zep-x8-Wn9">
+                                        <rect key="frame" x="569" y="384" width="76" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="日文解釋" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cLR-x8-SSc">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hyu-1f-Agy">
+                                        <rect key="frame" x="396" y="320" width="76" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="中文解釋" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dK1-sr-35Q">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijH-7s-vub" userLabel="Display Type Check Box">
+                                        <rect key="frame" x="569" y="320" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="類型" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qAl-mQ-PZk">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T53-DB-9PB">
+                                        <rect key="frame" x="396" y="261" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="例句" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="c6v-mh-K12">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nvo-4X-C01">
+                                        <rect key="frame" x="569" y="261" width="76" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="中文例句" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="N7d-tj-U4e">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-Ri-TNQ">
+                                        <rect key="frame" x="396" y="197" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="級別" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9WM-5S-OWj">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="displayLevelCheckBox:" target="KkB-GG-d4m" id="LHk-bv-zqf"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iCw-G9-BYb">
+                                        <rect key="frame" x="569" y="197" width="49" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="標記" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IgQ-rz-xlW">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="115-QB-S5E">
+                                        <rect key="frame" x="425" y="102" width="80" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="下一步" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uEI-1v-EPY">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="displayNextButton:" target="KkB-GG-d4m" id="0Vv-Zy-fxY"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="94F-9t-9d9">
+                                        <rect key="frame" x="535" y="102" width="80" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tk5-3M-G5q">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="displayCancelButton:" target="KkB-GG-d4m" id="VAQ-tT-oRn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIV-fW-cEl" userLabel="單字顯示">
+                                <rect key="frame" x="20" y="20" width="1040" height="636"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ss3-pw-6Kn">
+                                        <rect key="frame" x="261" y="517" width="517" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="單字" id="WNG-Dm-mHQ">
+                                            <font key="font" metaFont="systemBold" size="50"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4t-wJ-m7A">
+                                        <rect key="frame" x="396" y="125" width="85" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="下一個" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dHv-Ox-JhF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTe-yd-kiM">
+                                        <rect key="frame" x="483" y="49" width="85" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ngs-UI-j95">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xeo-GO-bWk">
+                                        <rect key="frame" x="560" y="125" width="85" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="上一個" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lPr-GZ-utZ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oon-hb-pXf">
+                                        <rect key="frame" x="311" y="474" width="417" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="/カナ" id="bmK-rD-sMF">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACb-yn-rRK">
+                                        <rect key="frame" x="7" y="215" width="479" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="類型" id="Z36-lM-hGd">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <action selector="typeDisplay:" target="KkB-GG-d4m" id="2Ut-CM-HRe"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70I-2Z-yCh">
+                                        <rect key="frame" x="561" y="215" width="470" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="級別" id="jhB-3o-gzg">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9x-oI-XZw">
+                                        <rect key="frame" x="7" y="395" width="479" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="中文解釋" id="YD2-Re-d2n">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLA-Ih-b8Z">
+                                        <rect key="frame" x="561" y="395" width="470" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="日文解釋" id="ezu-L9-k8a">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <action selector="japaneseDefinition:" target="KkB-GG-d4m" id="4B8-bi-ESo"/>
+                                        </connections>
+                                    </textField>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-Ie-FQH">
+                                        <rect key="frame" x="972" y="568" width="48" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="starFill" imagePosition="overlaps" alignment="right" imageScaling="proportionallyUpOrDown" inset="2" id="E89-Nu-vO4">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="starImage:" target="KkB-GG-d4m" id="soV-18-sXd"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Df-RN-fwC">
+                                        <rect key="frame" x="19" y="581" width="181" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="P1" id="KUd-Vl-qsT">
+                                            <font key="font" metaFont="systemLight" size="30"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <action selector="pageDisplay:" target="KkB-GG-d4m" id="FJI-uS-cqk"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS1-Yf-3Qk">
+                                        <rect key="frame" x="11" y="308" width="479" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="中文例句" id="lo2-Ot-iwN">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oug-Bp-jdf">
+                                        <rect key="frame" x="559" y="308" width="470" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="日文例句" id="olv-bD-XPe">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </customView>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="chineseCheckBox" destination="X6Y-31-AUV" id="mf0-ib-ZgT"/>
-                        <outlet property="chineseDefinition" destination="ftT-XF-Pw5" id="ui7-CQ-PvR"/>
+                        <outlet property="chineseDefinition" destination="g9x-oI-XZw" id="yVz-OX-RIQ"/>
                         <outlet property="chineseDefinitionCheckBox" destination="ftT-XF-Pw5" id="L2V-xz-etz"/>
                         <outlet property="chineseDescriptionSearchMethod" destination="VBa-vy-JAG" id="MJh-cq-y0r"/>
                         <outlet property="chineseDescriptionTextField" destination="SSG-TP-v7x" id="H9e-wh-waU"/>
-                        <outlet property="chineseSearchMethod" destination="WrX-LM-X68" id="CgC-EC-qtW"/>
-                        <outlet property="chineseTextField" destination="4Fb-JG-rF2" id="lU5-j3-8Wy"/>
+                        <outlet property="chineseExample" destination="TS1-Yf-3Qk" id="WYu-Ma-8nF"/>
+                        <outlet property="displayChineseDefinitionCheckBox" destination="Hyu-1f-Agy" id="76Y-fr-AIC"/>
+                        <outlet property="displayChineseExampleCheckBox" destination="nvo-4X-C01" id="ptH-ws-YNd"/>
+                        <outlet property="displayExampleCheckBox" destination="T53-DB-9PB" id="8EJ-Eb-d3f"/>
+                        <outlet property="displayItemView" destination="ZAM-zK-z5y" id="lfe-e3-RGA"/>
+                        <outlet property="displayJapaneseCheckBox" destination="9w7-kE-1kn" id="jqt-6L-uIf"/>
+                        <outlet property="displayJapaneseDefinitionCheckBox" destination="Zep-x8-Wn9" id="1qJ-7e-yPT"/>
+                        <outlet property="displayKanaCheckBox" destination="JDg-Z6-HGG" id="Hrf-cW-vk5"/>
+                        <outlet property="displayLevelCheckBox" destination="zKZ-Ri-TNQ" id="dfQ-hd-pRN"/>
+                        <outlet property="displayPageCheckBox" destination="cUW-6C-06I" id="IEE-dZ-3Cw"/>
+                        <outlet property="displayStarCheckBox" destination="iCw-G9-BYb" id="Pk6-0j-q3E"/>
+                        <outlet property="displayTypeCheckBox" destination="zKZ-Ri-TNQ" id="lcE-3X-6Vp"/>
                         <outlet property="exampleCheckBox" destination="Rqv-sZ-J6f" id="AiP-fG-63v"/>
                         <outlet property="exampleChineseCheckBox" destination="NP6-Yd-6aa" id="x02-4J-hvp"/>
                         <outlet property="exampleChineseSearchMethod" destination="8xx-nw-WzS" id="Aqr-Hn-xUM"/>
@@ -2786,23 +3055,34 @@ DQ
                         <outlet property="exampleSearchMethod" destination="Qf6-bl-4zW" id="Z74-kJ-W8m"/>
                         <outlet property="exampleTextField" destination="E1U-Jl-zXe" id="B5K-sp-YUp"/>
                         <outlet property="japaneseCheckBox" destination="TgQ-EM-jIx" id="JAF-5m-Xqg"/>
-                        <outlet property="japaneseDefinition" destination="IVr-bV-Vm0" id="Xwp-Fi-Dlj"/>
+                        <outlet property="japaneseDefinition" destination="PLA-Ih-b8Z" id="jDE-5l-5bE"/>
                         <outlet property="japaneseDefinitionCheckBox" destination="IVr-bV-Vm0" id="Omh-pe-5tH"/>
                         <outlet property="japaneseDescriptionSearchMethod" destination="CMN-O4-rW7" id="geL-qW-0Zi"/>
                         <outlet property="japaneseDescriptionTextField" destination="RPy-Jt-7nF" id="NjL-cY-XJn"/>
+                        <outlet property="japaneseExample" destination="oug-Bp-jdf" id="Bth-xu-xkJ"/>
                         <outlet property="japaneseSearchMethod" destination="GZx-H0-zkc" id="I7F-Y8-mEF"/>
                         <outlet property="japaneseTextField" destination="3a9-gm-gxv" id="Zt1-ez-EVq"/>
+                        <outlet property="kanaCheckBox" destination="X6Y-31-AUV" id="mf0-ib-ZgT"/>
+                        <outlet property="kanaDisplay" destination="oon-hb-pXf" id="hSM-fS-Yoy"/>
+                        <outlet property="kanaSearchMethod" destination="WrX-LM-X68" id="CgC-EC-qtW"/>
+                        <outlet property="kanaTextField" destination="4Fb-JG-rF2" id="lU5-j3-8Wy"/>
+                        <outlet property="learnView" destination="hmO-Dp-2Zr" id="Sdx-tc-hd5"/>
                         <outlet property="levelCheckBox" destination="3Gb-lB-ALO" id="pke-mT-b3n"/>
+                        <outlet property="levelDisplay" destination="70I-2Z-yCh" id="2J0-is-UmC"/>
                         <outlet property="levelFromMenu" destination="v7H-Dy-hNc" id="g7a-Dt-wbq"/>
                         <outlet property="levelToMenu" destination="O1k-8L-2w4" id="f87-in-heq"/>
                         <outlet property="pageCheckBox" destination="cO8-78-aH0" id="ZQ4-ld-mZw"/>
+                        <outlet property="pageDisplay" destination="1Df-RN-fwC" id="V7k-4z-5iv"/>
                         <outlet property="pageFromTextField" destination="uD2-dz-YTR" id="60Z-NX-VUs"/>
                         <outlet property="pageToTextField" destination="gIn-DZ-yQM" id="C2n-oK-bun"/>
                         <outlet property="starCheckBox" destination="h56-7K-XZl" id="ZRx-SQ-lkU"/>
                         <outlet property="starMenu" destination="IEw-zO-Jba" id="Zc1-Le-CyB"/>
                         <outlet property="typeCheckBox" destination="wOr-yf-2TR" id="IxF-NC-PYm"/>
+                        <outlet property="typeDisplay" destination="Z36-lM-hGd" id="fwu-5D-bOM"/>
                         <outlet property="typeSearchMethod" destination="9Hz-pB-agz" id="m56-dz-kVV"/>
                         <outlet property="typeTextField" destination="3hv-Ge-tTP" id="qa4-QQ-guW"/>
+                        <outlet property="volcabularyDisplay" destination="WNG-Dm-mHQ" id="7KL-Ct-pnT"/>
+                        <outlet property="volcabularyDisplayView" destination="uIV-fW-cEl" id="qUT-iQ-Xu1"/>
                         <segue destination="OH9-i7-zhS" kind="sheet" identifier="learnError" id="qLa-Rb-R6a"/>
                     </connections>
                 </viewController>
@@ -2881,12 +3161,13 @@ DQ
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mgf-o0-Ngv"/>
+        <segue reference="8Or-r0-D3Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NSCaution" width="32" height="32"/>
         <image name="NSEveryone" width="32" height="32"/>
         <image name="NSTouchBarComposeTemplate" width="21" height="30"/>
         <image name="NSUser" width="32" height="32"/>
+        <image name="starFill" width="120" height="120"/>
     </resources>
 </document>
