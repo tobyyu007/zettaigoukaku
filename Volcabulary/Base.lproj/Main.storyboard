@@ -942,7 +942,7 @@ DQ
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
                                                             <textFieldCell key="dataCell" controlSize="mini" lineBreakMode="truncatingTail" selectable="YES" editable="YES" enabled="NO" title="Text Cell" id="KVA-Nn-WdR">
-                                                                <font key="font" metaFont="menu" size="9"/>
+                                                                <font key="font" metaFont="label" size="9"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -1082,11 +1082,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vae-x0-QQP">
-                                                            <rect key="frame" x="42" y="1" width="26" height="17"/>
+                                                            <rect key="frame" x="42" y="1" width="31" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-6X-hr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="29" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="34" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="RWV-ai-ok9">
                                                                         <font key="font" metaFont="system"/>
@@ -1222,11 +1222,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="kBS-gs-6GF">
-                                                            <rect key="frame" x="482" y="1" width="144" height="17"/>
+                                                            <rect key="frame" x="482" y="1" width="149" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4r-Vb-EJ5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="bEo-jK-h66">
                                                                         <font key="font" metaFont="system"/>
@@ -1327,11 +1327,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yey-TN-wh7">
-                                                            <rect key="frame" x="840" y="1" width="131" height="17"/>
+                                                            <rect key="frame" x="840" y="1" width="136" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-ZL-yrd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="131" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="136" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="yie-2u-6dS">
                                                                         <font key="font" metaFont="system"/>
@@ -1391,7 +1391,7 @@ DQ
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="YES" id="GCW-G0-Rg0">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GCW-G0-Rg0">
                                     <rect key="frame" x="1" y="618" width="1038" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2937,7 +2937,7 @@ DQ
                                         </buttonCell>
                                     </button>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R22-8q-BVc">
-                                        <rect key="frame" x="417" y="426" width="65" height="16"/>
+                                        <rect key="frame" x="417" y="434" width="65" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="/ 中文解釋" id="bmk-8c-YLK">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -2946,7 +2946,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-sa-87M">
-                                        <rect key="frame" x="417" y="334" width="65" height="16"/>
+                                        <rect key="frame" x="417" y="336" width="65" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="/ 中文例句" id="O5n-4y-KAW">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -2955,7 +2955,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-5M-gXr">
-                                        <rect key="frame" x="441" y="242" width="39" height="16"/>
+                                        <rect key="frame" x="441" y="239" width="39" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="/ 類型" id="WWd-lV-9QF">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -2964,7 +2964,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NeR-kj-CM9">
-                                        <rect key="frame" x="558" y="426" width="65" height="16"/>
+                                        <rect key="frame" x="558" y="434" width="65" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="/ 日文解釋" id="Pvz-1J-fJ4">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -2973,7 +2973,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iH5-cn-0uJ">
-                                        <rect key="frame" x="558" y="334" width="65" height="16"/>
+                                        <rect key="frame" x="558" y="336" width="65" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="/ 日文例句" id="2fa-tS-kr3">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -2982,7 +2982,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BD8-MJ-6tc">
-                                        <rect key="frame" x="558" y="242" width="39" height="16"/>
+                                        <rect key="frame" x="558" y="239" width="39" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="/ 級別" id="iy6-3K-Rf0">
                                             <font key="font" metaFont="systemLight" size="13"/>
@@ -3032,233 +3032,71 @@ DQ
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-xi-cwQ">
-                                        <rect key="frame" x="551" y="353" width="460" height="68"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="fVd-7V-1bE">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="68"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="SvR-Nx-VbI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="68"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="68"/>
-                                                    <size key="maxSize" width="460" height="1000"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="日文解釋">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ThG-YQ-S4q">
-                                            <rect key="frame" x="0.0" y="49" width="460" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Vri-2z-A6Z">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="65"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="DGn-FT-Lup">
-                                        <rect key="frame" x="551" y="259" width="460" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="7ag-Bp-sf6">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" spellingCorrection="YES" smartInsertDelete="YES" id="LW3-oT-Hmj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="70"/>
-                                                    <size key="maxSize" width="460" height="70"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="日文例句">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="upH-qo-Bbl">
-                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="RA1-kJ-6mw">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="nsx-RI-nl0">
-                                        <rect key="frame" x="551" y="167" width="460" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mRJ-7Q-4p3">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" spellingCorrection="YES" smartInsertDelete="YES" id="S8Y-8n-SE4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="70"/>
-                                                    <size key="maxSize" width="460" height="70"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="級別">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="i38-zE-Q80">
-                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Cql-T9-Sjk">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="IR0-mM-7Yc">
-                                        <rect key="frame" x="30" y="351" width="460" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="zIW-4u-Nqe">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" spellingCorrection="YES" smartInsertDelete="YES" id="7fK-iR-N0p">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="70"/>
-                                                    <size key="maxSize" width="460" height="70"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="中文解釋">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="0mR-pK-Z80">
-                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="i4C-Of-Ihz">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="rse-ua-Ihw">
-                                        <rect key="frame" x="30" y="259" width="460" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ldf-nD-Obs">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" spellingCorrection="YES" smartInsertDelete="YES" id="4xz-Em-o6f">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="70"/>
-                                                    <size key="maxSize" width="460" height="70"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="中文例句">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="eZP-Uo-lak">
-                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Kcg-c3-H8e">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="1q5-9u-aSg">
-                                        <rect key="frame" x="30" y="167" width="460" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="NeM-dv-6h1">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textView hidden="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="NO" spellingCorrection="YES" smartInsertDelete="YES" id="b89-in-sZ8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="460" height="70"/>
-                                                    <size key="maxSize" width="460" height="70"/>
-                                                    <attributedString key="textStorage">
-                                                        <fragment content="類型">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="30" name="PingFangTC-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                </textView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="CW7-Xy-btL">
-                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="mQK-PA-G1Y">
-                                            <rect key="frame" x="444" y="0.0" width="16" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdI-4K-2RE">
+                                        <rect key="frame" x="553" y="353" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="日文解釋" id="AIW-xd-HVo">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6h-KJ-Bcc">
+                                        <rect key="frame" x="558" y="255" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="日文例句" id="TVP-Nh-cCV">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEf-jw-SpL">
+                                        <rect key="frame" x="558" y="158" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="級別" id="6lh-gS-RQb">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUa-c3-dLu">
+                                        <rect key="frame" x="20" y="353" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="中文解釋" id="VjZ-h3-b1N">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4b-YW-MCv">
+                                        <rect key="frame" x="20" y="255" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="中文例句" id="knY-Id-hVa">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLE-Fx-7kP">
+                                        <rect key="frame" x="20" y="158" width="462" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="類型" id="b0G-bA-cXv">
+                                            <font key="font" metaFont="system" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                             </customView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="chineseDefinitionCheckBox" destination="ftT-XF-Pw5" id="L2V-xz-etz"/>
-                        <outlet property="chineseDefinitionDisplay" destination="7fK-iR-N0p" id="G5M-Ib-Gki"/>
+                        <outlet property="chineseDefinitionDisplay" destination="dUa-c3-dLu" id="1Ow-0x-fKr"/>
                         <outlet property="chineseDefinitionLabel" destination="R22-8q-BVc" id="hcx-id-PBy"/>
                         <outlet property="chineseDescriptionSearchMethod" destination="VBa-vy-JAG" id="MJh-cq-y0r"/>
                         <outlet property="chineseDescriptionTextField" destination="SSG-TP-v7x" id="H9e-wh-waU"/>
-                        <outlet property="chineseExampleDisplay" destination="4xz-Em-o6f" id="tzn-dY-Trk"/>
+                        <outlet property="chineseExampleDisplay" destination="s4b-YW-MCv" id="x30-eH-LwX"/>
                         <outlet property="chineseExampleLabel" destination="4iL-sa-87M" id="0SK-Qp-1G9"/>
                         <outlet property="displayChineseDefinitionCheckBox" destination="Hyu-1f-Agy" id="76Y-fr-AIC"/>
                         <outlet property="displayChineseExampleCheckBox" destination="nvo-4X-C01" id="ptH-ws-YNd"/>
@@ -3280,11 +3118,11 @@ DQ
                         <outlet property="exampleTextField" destination="E1U-Jl-zXe" id="B5K-sp-YUp"/>
                         <outlet property="japaneseCheckBox" destination="TgQ-EM-jIx" id="JAF-5m-Xqg"/>
                         <outlet property="japaneseDefinitionCheckBox" destination="IVr-bV-Vm0" id="Omh-pe-5tH"/>
-                        <outlet property="japaneseDefinitionDisplay" destination="SvR-Nx-VbI" id="wfu-tQ-24b"/>
+                        <outlet property="japaneseDefinitionDisplay" destination="WdI-4K-2RE" id="TJb-jC-vI1"/>
                         <outlet property="japaneseDefinitionLabel" destination="NeR-kj-CM9" id="iMe-xn-rs6"/>
                         <outlet property="japaneseDescriptionSearchMethod" destination="CMN-O4-rW7" id="geL-qW-0Zi"/>
                         <outlet property="japaneseDescriptionTextField" destination="RPy-Jt-7nF" id="NjL-cY-XJn"/>
-                        <outlet property="japaneseExampleDisplay" destination="LW3-oT-Hmj" id="S8M-dJ-6V2"/>
+                        <outlet property="japaneseExampleDisplay" destination="C6h-KJ-Bcc" id="C2E-AP-sBt"/>
                         <outlet property="japaneseSearchMethod" destination="GZx-H0-zkc" id="I7F-Y8-mEF"/>
                         <outlet property="japaneseTextField" destination="3a9-gm-gxv" id="Zt1-ez-EVq"/>
                         <outlet property="kanaCheckBox" destination="X6Y-31-AUV" id="mf0-ib-ZgT"/>
@@ -3294,7 +3132,7 @@ DQ
                         <outlet property="learnCompleteView" destination="k63-A7-eea" id="AGe-QI-ePe"/>
                         <outlet property="learnView" destination="hmO-Dp-2Zr" id="Sdx-tc-hd5"/>
                         <outlet property="levelCheckBox" destination="3Gb-lB-ALO" id="pke-mT-b3n"/>
-                        <outlet property="levelDisplay" destination="S8Y-8n-SE4" id="dEk-QO-WHL"/>
+                        <outlet property="levelDisplay" destination="pEf-jw-SpL" id="1Dh-H5-Eut"/>
                         <outlet property="levelFromMenu" destination="v7H-Dy-hNc" id="g7a-Dt-wbq"/>
                         <outlet property="levelLabel" destination="BD8-MJ-6tc" id="8Un-t8-1ks"/>
                         <outlet property="levelToMenu" destination="O1k-8L-2w4" id="f87-in-heq"/>
@@ -3307,9 +3145,8 @@ DQ
                         <outlet property="starButtonDisplay" destination="hs5-Ie-FQH" id="5kB-YI-I4k"/>
                         <outlet property="starCheckBox" destination="h56-7K-XZl" id="ZRx-SQ-lkU"/>
                         <outlet property="starMenu" destination="IEw-zO-Jba" id="Zc1-Le-CyB"/>
-                        <outlet property="test" destination="SvR-Nx-VbI" id="Rml-rv-s4U"/>
                         <outlet property="typeCheckBox" destination="wOr-yf-2TR" id="IxF-NC-PYm"/>
-                        <outlet property="typeDisplay" destination="b89-in-sZ8" id="ucs-iH-4JT"/>
+                        <outlet property="typeDisplay" destination="wLE-Fx-7kP" id="F4L-Op-5Zj"/>
                         <outlet property="typeLabel" destination="KFu-5M-gXr" id="9Sy-x0-s8B"/>
                         <outlet property="typeSearchMethod" destination="9Hz-pB-agz" id="m56-dz-kVV"/>
                         <outlet property="typeTextField" destination="3hv-Ge-tTP" id="qa4-QQ-guW"/>

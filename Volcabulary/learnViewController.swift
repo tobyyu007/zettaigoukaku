@@ -592,13 +592,6 @@ class learnViewController: NSViewController {
     
     @IBAction func displayNextButton(_ sender: Any) {
         // 下一步按鍵
-        japaneseDefinitionDisplay.backgroundColor = NSColor.clear
-        chineseDefinitionDisplay.backgroundColor = NSColor.clear
-        typeDisplay.backgroundColor = NSColor.clear
-        japaneseExampleDisplay.backgroundColor = NSColor.clear
-        chineseExampleDisplay.backgroundColor = NSColor.clear
-        levelDisplay.backgroundColor = NSColor.clear
-        
         if displayPageCheckBox.state == .on // 頁面
         {
             displayChecked = true
@@ -620,44 +613,44 @@ class learnViewController: NSViewController {
         if displayJapaneseDefinitionCheckBox.state == .on // 日文解釋
         {
             displayChecked = true
-            japaneseDefinitionDisplay.isHidden = false
             japaneseDefinitionLabel.isHidden = false
-            japaneseDefinitionDisplay.string = searchResults[0].japaneseDefinition
+            japaneseDefinitionDisplay.isHidden = false
+            japaneseDefinitionDisplay.stringValue = searchResults[0].japaneseDefinition
         }
         if displayChineseDefinitionCheckBox.state == .on // 中文解釋
         {
             displayChecked = true
             chineseDefinitionDisplay.isHidden = false
             chineseDefinitionLabel.isHidden = false
-            chineseDefinitionDisplay.string = searchResults[0].chineseDefinition
+            chineseDefinitionDisplay.stringValue = searchResults[0].chineseDefinition
         }
         if displayTypeCheckBox.state == .on // 類型
         {
             displayChecked = true
             typeDisplay.isHidden = false
             typeLabel.isHidden = false
-            typeDisplay.string = searchResults[0].type
+            typeDisplay.stringValue = searchResults[0].type
         }
         if displayExampleCheckBox.state == .on // 日文例句
         {
             displayChecked = true
             japaneseExampleDisplay.isHidden = false
             exampleLabel.isHidden = false
-            japaneseExampleDisplay.string = searchResults[0].sentence
+            japaneseExampleDisplay.stringValue = searchResults[0].sentence
         }
         if displayChineseExampleCheckBox.state == .on // 中文例句
         {
             displayChecked = true
             chineseExampleDisplay.isHidden = false
             chineseExampleLabel.isHidden = false
-            chineseExampleDisplay.string = searchResults[0].sentence_chinese
+            chineseExampleDisplay.stringValue = searchResults[0].sentence_chinese
         }
         if displayLevelCheckBox.state == .on // 等級
         {
             displayChecked = true
             levelDisplay.isHidden = false
             levelLabel.isHidden = false
-            levelDisplay.string = searchResults[0].level
+            levelDisplay.stringValue = searchResults[0].level
         }
         if displayStarCheckBox.state == .on // 標記
         {
@@ -704,19 +697,15 @@ class learnViewController: NSViewController {
     @IBOutlet weak var pageDisplay: NSTextField!
     @IBOutlet weak var volcabularyDisplay: NSTextField!
     @IBOutlet weak var kanaDisplay: NSTextField!
-    @IBOutlet var japaneseDefinitionDisplay: NSTextView!
-    @IBOutlet var japaneseExampleDisplay: NSTextView!
-    @IBOutlet var levelDisplay: NSTextView!
-    @IBOutlet var chineseDefinitionDisplay: NSTextView!
-    @IBOutlet var chineseExampleDisplay: NSTextView!
-    @IBOutlet var typeDisplay: NSTextView!
+    @IBOutlet weak var japaneseDefinitionDisplay: NSTextField!
+    @IBOutlet weak var japaneseExampleDisplay: NSTextField!
+    @IBOutlet weak var levelDisplay: NSTextField!
+    @IBOutlet weak var chineseDefinitionDisplay: NSTextField!
+    @IBOutlet weak var chineseExampleDisplay: NSTextField!
+    @IBOutlet weak var typeDisplay: NSTextField!
     @IBOutlet weak var starButtonDisplay: NSButton!
     @IBOutlet weak var nextVocabularyButton: NSButton!
     @IBOutlet weak var previousVocabularyButton: NSButton!
-    
-    
-    @IBOutlet var test: NSTextView!
-    @IBOutlet weak var testscroll: NSScrollView!
     
     
     var starImageName = "filled" // 現在標記星星的狀態
@@ -740,12 +729,12 @@ class learnViewController: NSViewController {
             pageDisplay.stringValue = "P" + String(searchResults[currentVolcabularyIndex].page)
             volcabularyDisplay.stringValue = searchResults[currentVolcabularyIndex].volcabulary
             kanaDisplay.stringValue = searchResults[currentVolcabularyIndex].kana
-            japaneseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].japaneseDefinition
-            chineseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].chineseDefinition
-            typeDisplay.string = searchResults[currentVolcabularyIndex].type
-            japaneseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence
-            chineseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence_chinese
-            levelDisplay.string = searchResults[currentVolcabularyIndex].level
+            japaneseDefinitionDisplay.stringValue = searchResults[currentVolcabularyIndex].japaneseDefinition
+            chineseDefinitionDisplay.stringValue = searchResults[currentVolcabularyIndex].chineseDefinition
+            typeDisplay.stringValue = searchResults[currentVolcabularyIndex].type
+            japaneseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence
+            chineseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence_chinese
+            levelDisplay.stringValue = searchResults[currentVolcabularyIndex].level
             
             if searchResults[currentVolcabularyIndex].star
             {
@@ -772,12 +761,12 @@ class learnViewController: NSViewController {
         pageDisplay.stringValue = "P" + String(searchResults[currentVolcabularyIndex].page)
         volcabularyDisplay.stringValue = searchResults[currentVolcabularyIndex].volcabulary
         kanaDisplay.stringValue = searchResults[currentVolcabularyIndex].kana
-        japaneseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].japaneseDefinition
-        chineseDefinitionDisplay.string = searchResults[currentVolcabularyIndex].chineseDefinition
-        typeDisplay.string = searchResults[currentVolcabularyIndex].type
-        japaneseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence
-        chineseExampleDisplay.string = searchResults[currentVolcabularyIndex].sentence_chinese
-        levelDisplay.string = searchResults[currentVolcabularyIndex].level
+        japaneseDefinitionDisplay.stringValue = searchResults[currentVolcabularyIndex].japaneseDefinition
+        chineseDefinitionDisplay.stringValue = searchResults[currentVolcabularyIndex].chineseDefinition
+        typeDisplay.stringValue = searchResults[currentVolcabularyIndex].type
+        japaneseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence
+        chineseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence_chinese
+        levelDisplay.stringValue = searchResults[currentVolcabularyIndex].level
         
         if searchResults[currentVolcabularyIndex].star
         {
