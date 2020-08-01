@@ -11,6 +11,9 @@ import Cocoa
 class quizViewController: NSViewController, NSTextFieldDelegate {
 
     @IBOutlet var quizView: NSView!
+    @IBOutlet weak var displayAndQuizItemView: NSView!
+    @IBOutlet weak var quizDisplayView: NSView!
+    @IBOutlet weak var quizCompleteView: NSView!
     
     var checked = false // 是否有選擇任何一個欄位
     var inputdataError = false // 是否有欄位輸入錯誤
@@ -38,10 +41,25 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         quizView.isHidden = false
+        displayAndQuizItemView.isHidden = true
+        quizDisplayView.isHidden = true
+        quizCompleteView.isHidden = true
         pageFromTextField.delegate = self
         pageToTextField.delegate = self
         pageFromStepper.integerValue = 1
         pageToStepper.integerValue = 1
+        
+        // 顯示項目和測驗項目邊框設定
+        displayItemView.wantsLayer = true
+        displayItemView.layer?.masksToBounds = true
+        displayItemView.layer?.borderWidth = 0.5
+        displayItemView.layer?.cornerRadius = 10
+        displayItemView.layer?.borderColor = NSColor.gray.cgColor
+        quizItemView.wantsLayer = true
+        quizItemView.layer?.masksToBounds = true
+        quizItemView.layer?.borderWidth = 0.5
+        quizItemView.layer?.cornerRadius = 10
+        quizItemView.layer?.borderColor = NSColor.gray.cgColor
     }
     
     // MARK: 範圍頁面
@@ -498,6 +516,9 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         else if !inputdataError// 有選擇欄位，並且沒有欄位輸入問題，往下一個頁面前進
         {
             quizView.isHidden = true
+            displayAndQuizItemView.isHidden = false
+            quizDisplayView.isHidden = true
+            quizCompleteView.isHidden = true
             search() // quizSearch.swift
             print("搜尋結果是：")
             for word in searchResults
@@ -505,6 +526,18 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
                 print(word.volcabulary)
             }
         }
+        else if inputdataError // 有欄位沒有輸入，重設搜尋資料
+        {
+            searchMethod.removeAll()
+            searchSelected.removeAll()
+            checked = false
+            inputdataError = false
+        }
         inputdataError = false
     }
+    
+    // MARK: 範圍頁面
+    @IBOutlet weak var displayItemView: NSView!
+    @IBOutlet weak var quizItemView: NSView!
+    
 }

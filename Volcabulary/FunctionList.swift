@@ -22,10 +22,10 @@ class FunctionList: NSViewController{
     // 讀取圖片
     var folderImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIcon)))
     var itemImage = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericDocumentIcon)))
-    var vocabularyImage = #imageLiteral(resourceName: "單字")
-    var addvocabularyImage = #imageLiteral(resourceName: "新增單字")
-    var testImage = #imageLiteral(resourceName: "測驗")
-    var learnImage = #imageLiteral(resourceName: "學習")
+    let vocabularyImage = #imageLiteral(resourceName: "單字")
+    let addvocabularyImage = #imageLiteral(resourceName: "新增單字")
+    let testImage = #imageLiteral(resourceName: "測驗")
+    let learnImage = #imageLiteral(resourceName: "學習")
     
     var testData = TestData()
     

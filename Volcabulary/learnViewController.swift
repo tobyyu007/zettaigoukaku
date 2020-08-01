@@ -78,7 +78,7 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
         pageToTextField.delegate = self
         pageFromStepper.integerValue = 1
         pageToStepper.integerValue = 1
-        
+
         if userDefault.value(forKey: "date") as? Date != nil && userDefault.value(forKey: "todayLearnedVolcabularyCount") as? Int != nil
         {
             // 從 userDefault 讀出今天學習的單字數量
@@ -650,6 +650,13 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
             {
                 print(word.volcabulary)
             }
+        }
+        else if inputdataError // 有欄位沒有輸入，重設搜尋資料
+        {
+            searchMethod.removeAll()
+            searchSelected.removeAll()
+            checked = false
+            inputdataError = false
         }
         inputdataError = false
     }
