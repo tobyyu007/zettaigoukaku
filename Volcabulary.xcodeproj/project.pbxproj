@@ -24,6 +24,9 @@
 		DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802B924AE4A46001D7B44 /* TestData.swift */; };
 		DA7802CC24AF691E001D7B44 /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */; };
 		DA7C4D0C24CECA7700D773A3 /* learnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C4D0A24CECA7700D773A3 /* learnError.swift */; };
+		DA86912E24D54BF3006FF594 /* quizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86912C24D54BF2006FF594 /* quizViewController.swift */; };
+		DA86913224D56191006FF594 /* quizSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86913124D56191006FF594 /* quizSearch.swift */; };
+		DA86913524D56410006FF594 /* quizError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86913324D56410006FF594 /* quizError.swift */; };
 		DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */; };
 		DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */; };
 		DABB146F24BC207C00FFCB38 /* addVolcabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */; };
@@ -57,6 +60,9 @@
 		DA7802B924AE4A46001D7B44 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		DA7802CB24AF691E001D7B44 /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		DA7C4D0A24CECA7700D773A3 /* learnError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnError.swift; sourceTree = "<group>"; };
+		DA86912C24D54BF2006FF594 /* quizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quizViewController.swift; sourceTree = "<group>"; };
+		DA86913124D56191006FF594 /* quizSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quizSearch.swift; sourceTree = "<group>"; };
+		DA86913324D56410006FF594 /* quizError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quizError.swift; sourceTree = "<group>"; };
 		DAA20E9724B078060007885F /* AddVolcabularyErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVolcabularyErrorViewController.swift; sourceTree = "<group>"; };
 		DAA20E9924B094810007885F /* MenuAddVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddVolcabularyViewController.swift; sourceTree = "<group>"; };
 		DABB146E24BC207C00FFCB38 /* addVolcabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVolcabularyViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 				DAA20E9424AF9F1A0007885F /* 單字 */,
 				DAC1C28724C727F10035A3F8 /* 新增單字 */,
 				DABE851224C9C18E0091D865 /* 學習 */,
+				DA86913024D54C00006FF594 /* 測驗 */,
 				DA18799524ACBEB70020E8A6 /* Info.plist */,
 				DA18799624ACBEB70020E8A6 /* zettaigoukaku.entitlements */,
 				DA7802BB24AF193D001D7B44 /* WindowsController */,
@@ -137,6 +144,16 @@
 				DA7802B924AE4A46001D7B44 /* TestData.swift */,
 			);
 			name = FunctionListOutlineView;
+			sourceTree = "<group>";
+		};
+		DA86913024D54C00006FF594 /* 測驗 */ = {
+			isa = PBXGroup;
+			children = (
+				DA86912C24D54BF2006FF594 /* quizViewController.swift */,
+				DA86913124D56191006FF594 /* quizSearch.swift */,
+				DA86913324D56410006FF594 /* quizError.swift */,
+			);
+			name = "測驗";
 			sourceTree = "<group>";
 		};
 		DAA20E9424AF9F1A0007885F /* 單字 */ = {
@@ -304,6 +321,7 @@
 				DA187A0C24AD12F10020E8A6 /* LoginWindowController.swift in Sources */,
 				DA1879A124ACCB1C0020E8A6 /* LoginViewController.swift in Sources */,
 				DA7802BA24AE4A46001D7B44 /* TestData.swift in Sources */,
+				DA86913224D56191006FF594 /* quizSearch.swift in Sources */,
 				DA7802B424AE4A09001D7B44 /* OutlineDelegate.swift in Sources */,
 				DA7802B824AE4A38001D7B44 /* TextFieldDelegate.swift in Sources */,
 				DAA20E9824B078060007885F /* AddVolcabularyErrorViewController.swift in Sources */,
@@ -317,6 +335,8 @@
 				DABE851124C9C1810091D865 /* learnViewController.swift in Sources */,
 				DA7802B624AE4A20001D7B44 /* OutlineItemView.swift in Sources */,
 				DA7802B224AE49E6001D7B44 /* OutlineDataSource.swift in Sources */,
+				DA86913524D56410006FF594 /* quizError.swift in Sources */,
+				DA86912E24D54BF3006FF594 /* quizViewController.swift in Sources */,
 				DA187A1024AD1A510020E8A6 /* MainWindowController.swift in Sources */,
 				DAA20E9B24B094810007885F /* MenuAddVolcabularyViewController.swift in Sources */,
 				DABE851A24CD4D790091D865 /* LoginErrorViewController.swift in Sources */,

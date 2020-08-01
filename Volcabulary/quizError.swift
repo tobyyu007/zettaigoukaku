@@ -1,14 +1,14 @@
 //
-//  learnError.swift
+//  quizError.swift
 //  Volcabulary
 //
-//  Created by Toby on 2020/7/27.
+//  Created by Toby on 2020/8/1.
 //  Copyright © 2020 Toby. All rights reserved.
 //
 
 import Cocoa
 
-class learnError: NSViewController {
+class quizError: NSViewController {
 
     @IBOutlet weak var errorTitle: NSTextField!
     @IBOutlet weak var errorDescription: NSTextField!
@@ -19,14 +19,14 @@ class learnError: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        switch learnError.errorTitleText{
+        switch quizError.errorTitleText{
         case "error":
             errorTitle.stringValue = "錯誤"
         default:
             errorTitle.stringValue = "錯誤"
         }
         
-        switch learnError.errorDescriptionText {
+        switch quizError.errorDescriptionText {
         case "noData":
             errorDescription.stringValue = "請在有選擇的欄位中輸入資料"
         case "pageError":
@@ -42,6 +42,6 @@ class learnError: NSViewController {
     
     @IBAction func okButton(_ sender: Any) {
         // 關閉警告視窗
-        self.dismiss(learnError.self)
+        self.dismiss(quizError.self)
     }
 }

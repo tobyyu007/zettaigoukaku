@@ -37,46 +37,15 @@ class searchResult
     }
 }
 
-class learnViewController: NSViewController {
+class learnViewController: NSViewController, NSTextFieldDelegate {
     
     @IBOutlet weak var learnView: NSView!
     @IBOutlet weak var displayItemView: NSView!
     @IBOutlet weak var volcabularyDisplayView: NSView!
     @IBOutlet weak var learnCompleteView: NSView!
     
-    @IBOutlet weak var pageCheckBox: NSButton!
-    @IBOutlet weak var japaneseCheckBox: NSButton!
-    @IBOutlet weak var kanaCheckBox: NSButton!
-    @IBOutlet weak var japaneseDefinitionCheckBox: NSButton!
-    @IBOutlet weak var chineseDefinitionCheckBox: NSButton!
-    @IBOutlet weak var typeCheckBox: NSButton!
-    @IBOutlet weak var exampleCheckBox: NSButton!
-    @IBOutlet weak var exampleChineseCheckBox: NSButton!
-    @IBOutlet weak var levelCheckBox: NSButton!
-    @IBOutlet weak var starCheckBox: NSButton!
-    
-    @IBOutlet weak var pageFromTextField: NSTextField!
-    @IBOutlet weak var pageToTextField: NSTextField!
-    @IBOutlet weak var japaneseTextField: NSTextField!
-    @IBOutlet weak var kanaTextField: NSTextField!
-    @IBOutlet weak var japaneseDescriptionTextField: NSTextField!
-    @IBOutlet weak var chineseDescriptionTextField: NSTextField!
-    @IBOutlet weak var typeTextField: NSTextField!
-    @IBOutlet weak var exampleTextField: NSTextField!
-    @IBOutlet weak var exampleChineseTextField: NSTextField!
-    @IBOutlet weak var levelFromMenu: NSPopUpButton!
-    @IBOutlet weak var levelToMenu: NSPopUpButton!
-    @IBOutlet weak var starMenu: NSPopUpButton!
-    
-    @IBOutlet weak var japaneseSearchMethod: NSPopUpButton!
-    @IBOutlet weak var kanaSearchMethod: NSPopUpButton!
-    @IBOutlet weak var japaneseDescriptionSearchMethod: NSPopUpButton!
-    @IBOutlet weak var chineseDescriptionSearchMethod: NSPopUpButton!
-    @IBOutlet weak var typeSearchMethod: NSPopUpButton!
-    @IBOutlet weak var exampleSearchMethod: NSPopUpButton!
-    @IBOutlet weak var exampleChineseSearchMethod: NSPopUpButton!
-    
-    var checked = false
+    var checked = false // 是否有選擇任何一個欄位
+    var inputdataError = false // 是否有欄位輸入錯誤
     
     var pageRange = [Int]()
     var japanese = ""
@@ -105,6 +74,10 @@ class learnViewController: NSViewController {
         displayItemView.isHidden = true
         volcabularyDisplayView.isHidden = true
         learnCompleteView.isHidden = true
+        pageFromTextField.delegate = self
+        pageToTextField.delegate = self
+        pageFromStepper.integerValue = 1
+        pageToStepper.integerValue = 1
         
         if userDefault.value(forKey: "date") as? Date != nil && userDefault.value(forKey: "todayLearnedVolcabularyCount") as? Int != nil
         {
@@ -162,6 +135,7 @@ class learnViewController: NSViewController {
         exampleChinese = ""
         star = false
         checked = false
+        inputdataError = false
         
         japaneseTextField.stringValue = ""
         exampleTextField.stringValue = ""
@@ -172,6 +146,8 @@ class learnViewController: NSViewController {
         exampleChineseTextField.stringValue = ""
         pageFromTextField.stringValue = "1"
         pageToTextField.stringValue = "1"
+        pageFromStepper.integerValue = 1
+        pageToStepper.integerValue = 1
         levelToMenu.selectItem(at: 0)
         levelFromMenu.selectItem(at: 0)
         starMenu.selectItem(at: 0)
@@ -212,6 +188,72 @@ class learnViewController: NSViewController {
     }
     
     // MARK: 範圍頁面
+    @IBOutlet weak var pageCheckBox: NSButton!
+    @IBOutlet weak var japaneseCheckBox: NSButton!
+    @IBOutlet weak var kanaCheckBox: NSButton!
+    @IBOutlet weak var japaneseDefinitionCheckBox: NSButton!
+    @IBOutlet weak var chineseDefinitionCheckBox: NSButton!
+    @IBOutlet weak var typeCheckBox: NSButton!
+    @IBOutlet weak var exampleCheckBox: NSButton!
+    @IBOutlet weak var exampleChineseCheckBox: NSButton!
+    @IBOutlet weak var levelCheckBox: NSButton!
+    @IBOutlet weak var starCheckBox: NSButton!
+    
+    @IBOutlet weak var pageFromTextField: NSTextField!
+    @IBOutlet weak var pageFromStepper: NSStepper!
+    @IBOutlet weak var pageToTextField: NSTextField!
+    @IBOutlet weak var pageToStepper: NSStepper!
+    @IBOutlet weak var japaneseTextField: NSTextField!
+    @IBOutlet weak var kanaTextField: NSTextField!
+    @IBOutlet weak var japaneseDescriptionTextField: NSTextField!
+    @IBOutlet weak var chineseDescriptionTextField: NSTextField!
+    @IBOutlet weak var typeTextField: NSTextField!
+    @IBOutlet weak var exampleTextField: NSTextField!
+    @IBOutlet weak var exampleChineseTextField: NSTextField!
+    @IBOutlet weak var levelFromMenu: NSPopUpButton!
+    @IBOutlet weak var levelToMenu: NSPopUpButton!
+    @IBOutlet weak var starMenu: NSPopUpButton!
+    
+    @IBOutlet weak var japaneseSearchMethod: NSPopUpButton!
+    @IBOutlet weak var kanaSearchMethod: NSPopUpButton!
+    @IBOutlet weak var japaneseDescriptionSearchMethod: NSPopUpButton!
+    @IBOutlet weak var chineseDescriptionSearchMethod: NSPopUpButton!
+    @IBOutlet weak var typeSearchMethod: NSPopUpButton!
+    @IBOutlet weak var exampleSearchMethod: NSPopUpButton!
+    @IBOutlet weak var exampleChineseSearchMethod: NSPopUpButton!
+    
+    func controlTextDidChange(_ obj: Notification) {
+        // 監測 pageToTextField 和 pageFromTextField 更動是否超過範圍
+        let textField = obj.object as! NSTextField
+        let pageValue = Int(textField.stringValue) ?? 0
+        if pageValue == 0  || pageValue > 1000 // 不是 輸入數值 或 超過範圍 (1~1000)，改動回原本的數字
+        {
+            learnError.errorTitleText = "error"
+            learnError.errorDescriptionText = "pageError"
+            performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
+        }
+    }
+    
+    @IBAction func pageFromTextFieldChange(_ sender: Any) {
+        // pageFromeTextField 完成數值輸入，更新 stepper 數值
+        pageFromStepper.integerValue = Int(pageFromTextField.stringValue)!
+    }
+    
+    @IBAction func pageToTextFieldChanged(_ sender: Any) {
+        // pageToTextField 完成數值輸入，更新 stepper 數值
+        pageToTextField.integerValue = Int(pageToTextField.stringValue)!
+    }
+    
+    @IBAction func pageFromStepperClicked(_ sender: NSStepper) {
+        // pageFromStepper 更動
+        pageFromTextField.stringValue = String(sender.integerValue)
+    }
+    
+    @IBAction func pageToStepperClicked(_ sender: NSStepper) {
+        // pageToStepper 更動
+        pageToTextField.stringValue = String(sender.integerValue)
+    }
+    
     @IBAction func levelFromMenuClicked(_ sender: Any) {
         // 自動調整 menu 可選擇的級別
         var levelFrom = -1
@@ -268,7 +310,7 @@ class learnViewController: NSViewController {
         }
     }
     
-    @IBAction func rangeVIewNextButton(_ sender: Any) {
+    @IBAction func learnViewNextButton(_ sender: Any) {
         // 下一步按鍵
         if pageCheckBox.state == .on // 頁數
         {
@@ -284,6 +326,7 @@ class learnViewController: NSViewController {
                 }
                 else // 範圍錯誤
                 {
+                    inputdataError = true // 欄位數值有問題
                     learnError.errorTitleText = "error"
                     learnError.errorDescriptionText = "rangeError"
                     performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -291,6 +334,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -320,6 +364,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -349,6 +394,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -378,6 +424,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -407,6 +454,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -436,6 +484,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -465,6 +514,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -494,6 +544,7 @@ class learnViewController: NSViewController {
             }
             else // 沒有輸入值
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "noData"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -524,6 +575,7 @@ class learnViewController: NSViewController {
                 case 4:
                     level.append(1)
                 default:
+                    inputdataError = true // 欄位數值有問題
                     learnError.errorTitleText = "error"
                     learnError.errorDescriptionText = "noData"
                     performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -540,6 +592,7 @@ class learnViewController: NSViewController {
                 case 4:
                     level.append(1)
                 default:
+                    inputdataError = true // 欄位數值有問題
                     learnError.errorTitleText = "error"
                     learnError.errorDescriptionText = "noData"
                     performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -547,6 +600,7 @@ class learnViewController: NSViewController {
             }
             else // 範圍錯誤
             {
+                inputdataError = true // 欄位數值有問題
                 learnError.errorTitleText = "error"
                 learnError.errorDescriptionText = "rangeError"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
@@ -584,7 +638,7 @@ class learnViewController: NSViewController {
             learnError.errorDescriptionText = "noSelection"
             performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
         }
-        else // 有選擇欄位，往下一個頁面前進
+        else if !inputdataError// 有選擇欄位，並且沒有欄位輸入問題，往下一個頁面前進
         {
             learnView.isHidden = true
             displayItemView.isHidden = false
@@ -597,6 +651,7 @@ class learnViewController: NSViewController {
                 print(word.volcabulary)
             }
         }
+        inputdataError = false
     }
     
     

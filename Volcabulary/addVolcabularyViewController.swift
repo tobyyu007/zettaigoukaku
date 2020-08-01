@@ -73,13 +73,14 @@ class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         let mojiImage = #imageLiteral(resourceName: "MOJi")
         mojiImage.size = NSSize(width: 150, height: 150)
         mojiImageView.image = mojiImage
-        let inputImage = #imageLiteral(resourceName: "ManuallyAddVolcabulary") // Icon collection website: https://iconmonstr.com
+        let inputImage = #imageLiteral(resourceName: "ManuallyAddVolcabulary")
         inputImage.size = NSSize(width: 150, height: 150)
         manuallyInputImageView.image = inputImage
         let addSuccessfulImage = #imageLiteral(resourceName: "CheckMark")
         addSuccessfulImage.size = NSSize(width: 150, height: 150)
         addSuccessfulImageView.image = addSuccessfulImage
         
+        stepper.integerValue = 1
         addVolcabularyInfo.isHidden = true
         progressView.isHidden = true
         crawResultView.isHidden = true
@@ -89,6 +90,7 @@ class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
         scheduledTimerWithTimeInterval()
         pageTextField.delegate = self // 連動 controlTextDidChange Function
+        stepper.integerValue = 1
     }
     
     func scheduledTimerWithTimeInterval(){
@@ -224,6 +226,7 @@ class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         addSuccessfulView.isHidden = true
         addVolcabularyViewController.webViewEnd = false
         addVolcabularyViewController.progress = 0
+        stepper.integerValue = 1
     }
     
     @IBAction func linkWithJapaneseSentence(_ sender: NSButton) {
@@ -286,6 +289,12 @@ class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
+    @IBAction func stepperChanger(_ sender: NSStepper) {
+        // Stepper 改動
+        pageTextField.stringValue = String(sender.integerValue)
+    }
+    
+    
     @IBAction func volcabularyInfoCancelButton(_ sender: Any) {
         // "單字資訊" 頁面 “取消" 按鍵
         progressBarLabel.stringValue = "從 moji 辭書網頁顯示中"
@@ -295,6 +304,7 @@ class addVolcabularyViewController: NSViewController, NSTextFieldDelegate {
         addSuccessfulView.isHidden = true
         addVolcabularyViewController.webViewEnd = false
         addVolcabularyViewController.progress = 0
+        stepper.integerValue = 1
     }
     
     @IBAction func addButton(_ sender: Any) {
