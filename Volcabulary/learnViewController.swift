@@ -95,6 +95,9 @@ class learnViewController: NSViewController {
     var searchMethod = [Bool]() // 順序跟上面 SearchMethod 一樣，false: 包含, true: 完全相同
     var displayItem = [Bool]() // 順序跟上面 TextField 一樣，false: 不顯示, true: 顯示
     
+    let userDefault = UserDefaults()
+    var todayLearnedVolcabularyCount = 0 // 今天學習的單字數量
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -102,6 +105,34 @@ class learnViewController: NSViewController {
         displayItemView.isHidden = true
         volcabularyDisplayView.isHidden = true
         learnCompleteView.isHidden = true
+        
+        if userDefault.value(forKey: "date") as? Date != nil && userDefault.value(forKey: "todayLearnedVolcabularyCount") as? Int != nil
+        {
+            // 從 userDefault 讀出今天學習的單字數量
+            let calendar = Calendar.current
+            
+            let pastDate = userDefault.value(forKey: "date") as! Date
+            let currentDate = Date()
+            
+            let date1 = calendar.startOfDay(for: pastDate)
+            let date2 = calendar.startOfDay(for: currentDate)
+            let components = calendar.dateComponents([.day], from: date1, to: date2).day
+            if components! > 1 // 今天以前的學習數量
+            {
+                todayLearnedVolcabularyCount = 0
+            }
+            else // 今天學習的數量
+            {
+                let pastCount = userDefault.value(forKey: "todayLearnedVolcabularyCount") as! Int
+                todayLearnedVolcabularyCount += pastCount
+            }
+        }
+        else
+        {
+            let currentDate = Date()
+            self.userDefault.setValue(currentDate, forKey: "date")
+            self.userDefault.setValue(todayLearnedVolcabularyCount, forKey: "todayLearnedVolcabularyCount")
+        }
     }
     
     func resetAllData() // 重設所有設定
@@ -182,25 +213,25 @@ class learnViewController: NSViewController {
     
     // MARK: 範圍頁面
     @IBAction func levelFromMenuClicked(_ sender: Any) {
-        // 自動調整可選擇的等級
+        // 自動調整 menu 可選擇的級別
         var levelFrom = -1
-        switch levelFromMenu.indexOfSelectedItem // 從...
+        switch levelFromMenu.indexOfSelectedItem // 級別從...
         {
         case 0:
-            levelFrom = 5
+            levelFrom = 5 // N5
         case 1:
-            levelFrom = 4
+            levelFrom = 4 // N4
         case 2:
-            levelFrom = 3
+            levelFrom = 3 // N3
         case 3:
-            levelFrom = 2
+            levelFrom = 2 // N2
         case 4:
-            levelFrom = 1
+            levelFrom = 1 // N1
         default:
             print("error")
         }
         
-        switch levelFrom // 到...
+        switch levelFrom // 到...級別
         {
         case 5:
             levelToMenu.item(at: 0)?.isEnabled = true
@@ -265,7 +296,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -294,7 +325,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -323,7 +354,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -352,7 +383,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -381,7 +412,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -410,7 +441,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -439,7 +470,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -468,7 +499,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -521,7 +552,7 @@ class learnViewController: NSViewController {
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -541,7 +572,7 @@ class learnViewController: NSViewController {
                 star = false
             }
         }
-        else
+        else // 沒有選擇該項目
         {
             searchSelected.append(false)
             searchMethod.append(false)
@@ -559,8 +590,8 @@ class learnViewController: NSViewController {
             displayItemView.isHidden = false
             volcabularyDisplayView.isHidden = true
             learnCompleteView.isHidden = true
-            search()
-            print("searchResult is")
+            search() // learnSearch.swift
+            print("搜尋結果是：")
             for word in searchResults
             {
                 print(word.volcabulary)
@@ -588,10 +619,12 @@ class learnViewController: NSViewController {
     @IBOutlet weak var exampleLabel: NSTextField!
     @IBOutlet weak var levelLabel: NSTextField!
     
-    var displayChecked = false
+    var displayChecked = false // 是否有選擇任何一個顯示項目
     
     @IBAction func displayNextButton(_ sender: Any) {
         // 下一步按鍵
+        todayLearnedVolcabularyCount += searchResults.count
+        learnedVocabularyCountText.stringValue = String(todayLearnedVolcabularyCount) + " 個"
         if displayPageCheckBox.state == .on // 頁面
         {
             displayChecked = true
@@ -680,7 +713,7 @@ class learnViewController: NSViewController {
             displayItemView.isHidden = true
             volcabularyDisplayView.isHidden = false
             learnCompleteView.isHidden = true
-            if searchResults.count == 1
+            if searchResults.count == 1 // 顯示最後一個單字時
             {
                 nextVocabularyButton.title = "完成"
             }
@@ -736,12 +769,12 @@ class learnViewController: NSViewController {
             chineseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence_chinese
             levelDisplay.stringValue = searchResults[currentVolcabularyIndex].level
             
-            if searchResults[currentVolcabularyIndex].star
+            if searchResults[currentVolcabularyIndex].star // 有標記
             {
                 starButtonDisplay.image = starImageFilled
                 starImageName = "filled"
             }
-            else
+            else // 沒有標記
             {
                 starButtonDisplay.image = starImageEmpty
                 starImageName = "empty"
@@ -768,12 +801,12 @@ class learnViewController: NSViewController {
         chineseExampleDisplay.stringValue = searchResults[currentVolcabularyIndex].sentence_chinese
         levelDisplay.stringValue = searchResults[currentVolcabularyIndex].level
         
-        if searchResults[currentVolcabularyIndex].star
+        if searchResults[currentVolcabularyIndex].star // 有標記
         {
             starButtonDisplay.image = starImageFilled
             starImageName = "filled"
         }
-        else
+        else // 沒有標記
         {
             starButtonDisplay.image = starImageEmpty
             starImageName = "empty"
@@ -787,6 +820,19 @@ class learnViewController: NSViewController {
     
     @IBAction func cancelVocabularyButtonClicked(_ sender: Any) // 取消按鈕
     {
+        resetAllData()
+    }
+    
+    // MARK: 學習完成
+    @IBOutlet weak var learnedVocabularyCountText: NSTextField!
+    
+    @IBAction func TaibanglebaButtonClicked(_ sender: Any) // "太棒了吧!"按鈕
+    {
+        // 儲存該次的單字學習數量到 userDefault
+        let currentDate = Date()
+        self.userDefault.setValue(currentDate, forKey: "date")
+        self.userDefault.setValue(todayLearnedVolcabularyCount, forKey: "todayLearnedVolcabularyCount")
+        
         resetAllData()
     }
 }
