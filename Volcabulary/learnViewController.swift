@@ -673,13 +673,6 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var displayChineseExampleCheckBox: NSButton!
     @IBOutlet weak var displayLevelCheckBox: NSButton!
     @IBOutlet weak var displayStarCheckBox: NSButton!
-
-    @IBOutlet weak var chineseDefinitionLabel: NSTextField!
-    @IBOutlet weak var chineseExampleLabel: NSTextField!
-    @IBOutlet weak var typeLabel: NSTextField!
-    @IBOutlet weak var japaneseDefinitionLabel: NSTextField!
-    @IBOutlet weak var exampleLabel: NSTextField!
-    @IBOutlet weak var levelLabel: NSTextField!
     
     var displayChecked = false // 是否有選擇任何一個顯示項目
     
@@ -801,7 +794,13 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var starButtonDisplay: NSButton!
     @IBOutlet weak var nextVocabularyButton: NSButton!
     @IBOutlet weak var previousVocabularyButton: NSButton!
-    
+
+    @IBOutlet weak var chineseDefinitionLabel: NSTextField!
+    @IBOutlet weak var chineseExampleLabel: NSTextField!
+    @IBOutlet weak var typeLabel: NSTextField!
+    @IBOutlet weak var japaneseDefinitionLabel: NSTextField!
+    @IBOutlet weak var exampleLabel: NSTextField!
+    @IBOutlet weak var levelLabel: NSTextField!
     
     var starImageName = "filled" // 現在標記星星的狀態
     var currentVolcabularyIndex = 0 // 現在顯示的單字索引

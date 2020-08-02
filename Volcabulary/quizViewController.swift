@@ -4,6 +4,8 @@
 //
 //  Created by Toby on 2020/8/1.
 //  Copyright © 2020 Toby. All rights reserved.
+//  Reference of setting text vertical center in NSTextField: https://stackoverflow.com/a/45995951
+//  Reference of underlined border in NSTextField: https://stackoverflow.com/questions/54591013/custom-border-on-nstextfield
 //
 
 import Cocoa
@@ -33,10 +35,9 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     
     var searchSelected = [Bool]() // 該搜尋方式有被選擇
     var searchMethod = [Bool]() // 順序跟上面 SearchMethod 一樣，false: 包含, true: 完全相同
-    var displayItem = [Bool]() // 順序跟上面 TextField 一樣，false: 不顯示, true: 顯示
     
     let userDefault = UserDefaults()
-    var todayLearnedVolcabularyCount = 0 // 今天學習的單字數量
+    var todayQuizzedVolcabularyCount = 0 // 今天學習的單字數量
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         displayAndQuizItemView.isHidden = true
         quizDisplayView.isHidden = true
         quizCompleteView.isHidden = true
+        
         pageFromTextField.delegate = self
         pageToTextField.delegate = self
         pageFromStepper.integerValue = 1
@@ -60,6 +62,114 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         quizItemView.layer?.borderWidth = 0.5
         quizItemView.layer?.cornerRadius = 10
         quizItemView.layer?.borderColor = NSColor.gray.cgColor
+        
+        if userDefault.value(forKey: "date") as? Date != nil && userDefault.value(forKey: "todayQuizzedVolcabularyCount") as? Int != nil
+        {
+            // 從 userDefault 讀出今天學習的單字數量
+            let calendar = Calendar.current
+            
+            let pastDate = userDefault.value(forKey: "date") as! Date
+            let currentDate = Date()
+            
+            let date1 = calendar.startOfDay(for: pastDate)
+            let date2 = calendar.startOfDay(for: currentDate)
+            let components = calendar.dateComponents([.day], from: date1, to: date2).day
+            if components! > 1 // 今天以前的學習數量
+            {
+                todayQuizzedVolcabularyCount = 0
+            }
+            else // 今天學習的數量
+            {
+                let pastCount = userDefault.value(forKey: "todayQuizzedVolcabularyCount") as! Int
+                todayQuizzedVolcabularyCount += pastCount
+            }
+        }
+        else
+        {
+            let currentDate = Date()
+            self.userDefault.setValue(currentDate, forKey: "date")
+            self.userDefault.setValue(todayQuizzedVolcabularyCount, forKey: "todayQuizzedVolcabularyCount")
+        }
+    }
+    
+    func resetAllData() // 重設所有設定
+    {
+        starImageName = "filled"
+        currentVolcabularyIndex = 0 // 現在測驗的單字索引
+        nextVocabularyButton.title = "下一個"
+        previousVocabularyButton.isEnabled = false
+        
+        quizView.isHidden = false
+        displayAndQuizItemView.isHidden = true
+        quizDisplayView.isHidden = true
+        quizCompleteView.isHidden = true
+        
+        searchResults.removeAll()
+        searchMethod.removeAll()
+        searchSelected.removeAll()
+        pageRange.removeAll()
+        level.removeAll()
+        japanese = ""
+        kana = ""
+        japaneseDescription = ""
+        chineseDescription = ""
+        type = ""
+        example = ""
+        exampleChinese = ""
+        star = false
+        checked = false
+        inputdataError = false
+        
+        japaneseTextField.stringValue = ""
+        exampleTextField.stringValue = ""
+        typeTextField.stringValue = ""
+        japaneseDescriptionTextField.stringValue = ""
+        chineseDescriptionTextField.stringValue = ""
+        kanaTextField.stringValue = ""
+        exampleChineseTextField.stringValue = ""
+        pageFromTextField.stringValue = "1"
+        pageToTextField.stringValue = "1"
+        pageFromStepper.integerValue = 1
+        pageToStepper.integerValue = 1
+        levelToMenu.selectItem(at: 0)
+        levelFromMenu.selectItem(at: 0)
+        starMenu.selectItem(at: 0)
+        japaneseSearchMethod.selectItem(at: 0)
+        kanaSearchMethod.selectItem(at: 0)
+        japaneseDescriptionSearchMethod.selectItem(at: 0)
+        chineseDescriptionSearchMethod.selectItem(at: 0)
+        typeSearchMethod.selectItem(at: 0)
+        exampleSearchMethod.selectItem(at: 0)
+        exampleChineseSearchMethod.selectItem(at: 0)
+        pageCheckBox.state = .off
+        japaneseCheckBox.state = .off
+        kanaCheckBox.state = .off
+        japaneseDefinitionCheckBox.state = .off
+        chineseDefinitionCheckBox.state = .off
+        typeCheckBox.state = .off
+        exampleCheckBox.state = .off
+        exampleChineseCheckBox.state = .off
+        levelCheckBox.state = .off
+        starCheckBox.state = .off
+        levelToMenu.item(at: 0)?.isEnabled = true
+        levelToMenu.item(at: 1)?.isEnabled = true
+        levelToMenu.item(at: 2)?.isEnabled = true
+        levelToMenu.item(at: 3)?.isEnabled = true
+        
+        displayItemCount = 0
+        quizItemCount = 0
+        correctItem = 0
+        
+        displayJapaneseCheckBox.state = .off
+        displayKanaCheckBox.state = .off
+        displayJapaneseDefinitionCheckBox.state = .on
+        displayTypeCheckBox.state = .on
+        displayLevelCheckBox.state = .off
+        quizJapaneseCheckBox.state = .on
+        quizKanaCheckBox.state = .on
+        quizJapaneseDefinitionCheckBox.state = .off
+        quizChineseDefinitionCheckBox.state = .off
+        answer.removeAll()
     }
     
     // MARK: 範圍頁面
@@ -536,8 +646,354 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         inputdataError = false
     }
     
-    // MARK: 範圍頁面
+    // MARK: 顯示和測驗頁面
     @IBOutlet weak var displayItemView: NSView!
     @IBOutlet weak var quizItemView: NSView!
     
+    @IBOutlet weak var displayJapaneseCheckBox: NSButton!
+    @IBOutlet weak var displayKanaCheckBox: NSButton!
+    @IBOutlet weak var displayJapaneseDefinitionCheckBox: NSButton!
+    @IBOutlet weak var displayTypeCheckBox: NSButton!
+    @IBOutlet weak var displayLevelCheckBox: NSButton!
+    
+    @IBOutlet weak var quizJapaneseCheckBox: NSButton!
+    @IBOutlet weak var quizKanaCheckBox: NSButton!
+    @IBOutlet weak var quizJapaneseDefinitionCheckBox: NSButton!
+    @IBOutlet weak var quizChineseDefinitionCheckBox: NSButton!
+    
+    var displayItemCount = 0 // 有勾選的顯示項目
+    var quizItemCount = 0 // 有勾選的測驗項目
+    
+    @IBAction func displayNextButton(_ sender: Any) {
+        // 下一步按鍵
+        todayQuizzedVolcabularyCount += searchResults.count
+        // 顯示項目
+        displayChineseDefinition.stringValue = searchResults[0].chineseDefinition
+        if displayJapaneseCheckBox.state == .on // 日文
+        {
+            displayItemCount += 1
+            displayVocabulary.isHidden = false
+            displayVocabulary.stringValue = searchResults[0].volcabulary
+        }
+        if displayKanaCheckBox.state == .on // 假名
+        {
+            displayItemCount += 1
+            displayKana.isHidden = false
+            displayKana.stringValue = searchResults[0].kana
+        }
+        if displayJapaneseDefinitionCheckBox.state == .on // 日文解釋
+        {
+            displayItemCount += 1
+            displayJapaneseDescription.isHidden = false
+            displayJapaneseDescription.stringValue = searchResults[0].japaneseDefinition
+        }
+        if displayTypeCheckBox.state == .on // 類型
+        {
+            displayItemCount += 1
+            displayType.isHidden = false
+            displayType.stringValue = searchResults[0].type
+        }
+        if displayLevelCheckBox.state == .on // 等級
+        {
+            displayItemCount += 1
+            displayLevel.isHidden = false
+            displayLevel.stringValue = searchResults[0].level
+        }
+        
+        // 測驗項目
+        if quizJapaneseCheckBox.state == .on // 日文
+        {
+            quizVocabularyTextField.isEnabled = true
+            quizItemCount += 1
+        }
+        if quizKanaCheckBox.state == .on // 假名
+        {
+            quizKanaTextField.isEnabled = true
+            quizItemCount += 1
+        }
+        if quizJapaneseDefinitionCheckBox.state == .on // 日文解釋
+        {
+            quizJapaneseDefinitionTextField.isEnabled = true
+            quizItemCount += 1
+        }
+        if quizChineseDefinitionCheckBox.state == .on // 中文解釋
+        {
+            quizChineseDefinitionTextField.isEnabled = true
+            quizItemCount += 1
+        }
+        
+        // 跳轉判斷
+        if displayItemCount == 0 // 顯示沒有選擇任何一個選項
+        {
+            quizError.errorTitleText = "error"
+            quizError.errorDescriptionText = "noSelection"
+            performSegue(withIdentifier: "quizError", sender: self) // 跳轉到錯誤訊息
+        }
+        else if quizItemCount == 0 // 測驗沒有選擇任何一個選項
+        {
+            quizError.errorTitleText = "error"
+            quizError.errorDescriptionText = "noSelection"
+            performSegue(withIdentifier: "quizError", sender: self) // 跳轉到錯誤訊息
+        }
+        else if displayItemCount > 5 // 顯示只有設計顯示五個
+        {
+            quizError.errorTitleText = "error"
+            quizError.errorDescriptionText = "selectionExceed"
+            performSegue(withIdentifier: "quizError", sender: self) // 跳轉到錯誤訊息
+            displayItemCount = 0
+        }
+        else if quizItemCount > 4 // 顯示只有設計顯示四個
+        {
+            quizError.errorTitleText = "error"
+            quizError.errorDescriptionText = "selectionExceed"
+            performSegue(withIdentifier: "quizError", sender: self) // 跳轉到錯誤訊息
+            quizItemCount = 0
+        }
+        else // 有選擇至少一個，往下一個頁面前進
+        {
+            quizView.isHidden = true
+            displayAndQuizItemView.isHidden = true
+            quizDisplayView.isHidden = false
+            quizCompleteView.isHidden = true
+            if searchResults.count == 1 // 顯示最後一個單字時
+            {
+                nextVocabularyButton.title = "完成"
+            }
+        }
+        
+    }
+    
+    
+    @IBAction func displayCancelButton(_ sender: Any) {
+        // 取消按鍵
+        resetAllData()
+    }
+    
+    // MARK: 測驗頁面
+    @IBOutlet weak var displayChineseDefinition: NSTextField!
+    @IBOutlet weak var displayType: NSTextField!
+    @IBOutlet weak var displayLevel: NSTextField!
+    @IBOutlet weak var displayVocabulary: NSTextField!
+    @IBOutlet weak var displayKana: NSTextField!
+    @IBOutlet weak var displayJapaneseDescription: NSTextField!
+    
+    @IBOutlet weak var quizVocabularyLabel: NSTextField!
+    @IBOutlet weak var quizVocabularyTextField: NSTextField!
+    @IBOutlet weak var quizKanaLabel: NSTextField!
+    @IBOutlet weak var quizKanaTextField: NSTextFieldCell!
+    @IBOutlet weak var quizJapaneseDefinitionLabel: NSTextField!
+    @IBOutlet weak var quizJapaneseDefinitionTextField: NSTextField!
+    @IBOutlet weak var quizChineseDefinitionLabel: NSTextField!
+    @IBOutlet weak var quizChineseDefinitionTextField: NSTextFieldCell!
+    
+    @IBOutlet weak var previousVocabularyButton: NSButton!
+    @IBOutlet weak var nextVocabularyButton: NSButton!
+    
+    var starImageName = "filled"
+    var currentVolcabularyIndex = 0 // 現在測驗的單字索引
+    let starImageFilled = #imageLiteral(resourceName: "starFill")
+    let starImageEmpty = #imageLiteral(resourceName: "starEmpty")
+    var correctItem = 0 // 測驗正確的數目
+    var answer = Array(repeating: Array(repeating: "", count: 4), count: 1000) // 回答的內容
+
+    @IBAction func nextVocabularyButtonClicked(_ sender: Any) // 下一個單字按鈕
+    {
+        if nextVocabularyButton.title == "完成"
+        {
+            // 記錄回答內容
+            if quizJapaneseCheckBox.state == .on // 日文
+            {
+                answer[currentVolcabularyIndex][0] = quizVocabularyTextField.stringValue
+            }
+            if quizKanaCheckBox.state == .on // 假名
+            {
+                answer[currentVolcabularyIndex][1] = quizKanaTextField.stringValue
+            }
+            if quizJapaneseDefinitionCheckBox.state == .on // 日文解釋
+            {
+                answer[currentVolcabularyIndex][2] = quizJapaneseDefinitionTextField.stringValue
+            }
+            if quizChineseDefinitionCheckBox.state == .on // 中文解釋
+            {
+                answer[currentVolcabularyIndex][3] = quizChineseDefinitionTextField.stringValue
+            }
+            
+            var checkIndex = 0
+            for ans in answer
+            {
+                if ans[0] != "" && ans[0] == searchResults[checkIndex].volcabulary // 日文
+                {
+                    correctItem += 1
+                }
+                if ans[1] != "" && ans[1] == searchResults[checkIndex].kana // 假名
+                {
+                    correctItem += 1
+                }
+                if ans[2] != "" && ans[2] == searchResults[checkIndex].japaneseDefinition // 日文解釋
+                {
+                    correctItem += 1
+                }
+                if ans[3] != "" && ans[3] == searchResults[checkIndex].chineseDefinition // 中文解釋
+                {
+                    correctItem += 1
+                }
+                checkIndex += 1
+            }
+            
+            allQuizzedVocabularyCount.stringValue = "在測驗的" + String(searchResults.count) + " 個單字中"
+            correctVocabularyCountText.stringValue = String(correctItem) + " 個單字"
+            
+            quizView.isHidden = true
+            displayAndQuizItemView.isHidden = true
+            quizDisplayView.isHidden = true
+            quizCompleteView.isHidden = false
+        }
+        else // 顯示下一個
+        {
+            // 記錄回答內容
+            if quizJapaneseCheckBox.state == .on // 日文
+            {
+                answer[currentVolcabularyIndex][0] = quizVocabularyTextField.stringValue
+            }
+            if quizKanaCheckBox.state == .on // 假名
+            {
+                answer[currentVolcabularyIndex][1] = quizKanaTextField.stringValue
+            }
+            if quizJapaneseDefinitionCheckBox.state == .on // 日文解釋
+            {
+                answer[currentVolcabularyIndex][2] = quizJapaneseDefinitionTextField.stringValue
+            }
+            if quizChineseDefinitionCheckBox.state == .on // 中文解釋
+            {
+                answer[currentVolcabularyIndex][3] = quizChineseDefinitionTextField.stringValue
+            }
+            
+            currentVolcabularyIndex += 1
+            previousVocabularyButton.isEnabled = true
+            displayVocabulary.stringValue = searchResults[currentVolcabularyIndex].volcabulary
+            displayKana.stringValue = searchResults[currentVolcabularyIndex].kana
+            displayJapaneseDescription.stringValue = searchResults[currentVolcabularyIndex].japaneseDefinition
+            displayType.stringValue = searchResults[currentVolcabularyIndex].type
+            displayLevel.stringValue = searchResults[currentVolcabularyIndex].level
+            displayChineseDefinition.stringValue = searchResults[currentVolcabularyIndex].chineseDefinition
+            
+            if currentVolcabularyIndex+1 > searchResults.count-1 // 最後一個單字
+            {
+                nextVocabularyButton.title = "完成"
+            }
+            
+            quizVocabularyTextField.stringValue = ""
+            quizKanaTextField.stringValue = ""
+            quizJapaneseDefinitionTextField.stringValue = ""
+            quizChineseDefinitionTextField.stringValue = ""
+        }
+    }
+    
+    @IBAction func previousVocabularyButtonClicked(_ sender: Any) // 上一個單字按鈕
+    {
+        currentVolcabularyIndex -= 1
+        nextVocabularyButton.title = "下一個"
+        displayVocabulary.stringValue = searchResults[currentVolcabularyIndex].volcabulary
+        displayKana.stringValue = searchResults[currentVolcabularyIndex].kana
+        displayJapaneseDescription.stringValue = searchResults[currentVolcabularyIndex].japaneseDefinition
+        displayType.stringValue = searchResults[currentVolcabularyIndex].type
+        displayLevel.stringValue = searchResults[currentVolcabularyIndex].level
+        displayChineseDefinition.stringValue = searchResults[currentVolcabularyIndex].chineseDefinition
+
+        if currentVolcabularyIndex == 0 // 第一個單字
+        {
+            previousVocabularyButton.isEnabled = false
+        }
+        
+        quizVocabularyTextField.stringValue = ""
+        quizKanaTextField.stringValue = ""
+        quizJapaneseDefinitionTextField.stringValue = ""
+        quizChineseDefinitionTextField.stringValue = ""
+    }
+    
+    @IBAction func cancelVocabularyButtonClicked(_ sender: Any) // 取消按鈕
+    {
+        resetAllData()
+    }
+    
+    // MARK: 學習完成
+    @IBOutlet weak var allQuizzedVocabularyCount: NSTextField!
+    @IBOutlet weak var correctVocabularyCountText: NSTextField!
+    
+    @IBAction func TaibanglebaButtonClicked(_ sender: Any) // "太棒了吧!"按鈕
+    {
+        resetAllData()
+    }
+}
+
+class displayChineseDefinitionDisplaySetting : NSTextFieldCell {
+    // 中文解釋顯示設定，置中和底線
+    override func titleRect(forBounds rect: NSRect) -> NSRect {
+        var titleRect = super.titleRect(forBounds: rect)
+
+        let minimumHeight = self.cellSize(forBounds: rect).height
+        titleRect.origin.y += (titleRect.height - minimumHeight) - 15
+        titleRect.size.height = minimumHeight
+
+        return titleRect
+    }
+
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        super.drawInterior(withFrame: titleRect(forBounds: cellFrame), in: controlView)
+    }
+    
+    let borderThickness: CGFloat = 1
+
+    // Add extra height, to accomodate the underlined border, as the minimum required size for the NSTextField
+    override var cellSize: NSSize {
+        let originalSize = super.cellSize
+        return NSSize(width: originalSize.width, height: originalSize.height + borderThickness)
+    }
+
+    // Render the custom border for the NSTextField
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        // Area that covers the NSTextField itself. That is the total height minus our custom border size.
+        let interiorFrame = NSRect(x: 0, y: 0, width: cellFrame.width, height: cellFrame.height - borderThickness)
+
+        let path = NSBezierPath()
+        path.lineWidth = borderThickness
+        // Line width is at the center of the line.
+        path.move(to: NSPoint(x: 0, y: cellFrame.height - (borderThickness / 2)))
+        path.line(to: NSPoint(x: cellFrame.width, y: cellFrame.height - (borderThickness / 2)))
+        NSColor.white.setStroke()
+        path.stroke()
+
+        // Pass in area minus the border thickness in the height
+        drawInterior(withFrame: interiorFrame, in: controlView)
+    }
+}
+
+class verticalCenterTextFieldCell: NSTextFieldCell {
+    // textField 置中顯示設定，編輯時也可以用
+    func adjustedFrame(toVerticallyCenterText rect: NSRect) -> NSRect {
+        // super would normally draw text at the top of the cell
+        var titleRect = super.titleRect(forBounds: rect)
+
+        let minimumHeight = self.cellSize(forBounds: rect).height
+        titleRect.origin.y += (titleRect.height - minimumHeight) / 2
+        titleRect.size.height = minimumHeight
+
+        return titleRect
+    }
+
+    override func edit(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, event: NSEvent?) {
+        super.edit(withFrame: adjustedFrame(toVerticallyCenterText: rect), in: controlView, editor: textObj, delegate: delegate, event: event)
+    }
+
+    override func select(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, start selStart: Int, length selLength: Int) {
+        super.select(withFrame: adjustedFrame(toVerticallyCenterText: rect), in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
+    }
+
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        super.drawInterior(withFrame: adjustedFrame(toVerticallyCenterText: cellFrame), in: controlView)
+    }
+
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        super.draw(withFrame: cellFrame, in: controlView)
+    }
 }
