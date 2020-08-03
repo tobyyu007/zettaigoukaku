@@ -16,6 +16,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var displayAndQuizItemView: NSView!
     @IBOutlet weak var quizDisplayView: NSView!
     @IBOutlet weak var quizCompleteView: NSView!
+    @IBOutlet weak var wrongVocabularyView: NSView!
     
     var checked = false // 是否有選擇任何一個欄位
     var inputdataError = false // 是否有欄位輸入錯誤
@@ -45,6 +46,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         displayAndQuizItemView.isHidden = true
         quizDisplayView.isHidden = true
         quizCompleteView.isHidden = true
+        wrongVocabularyView.isHidden = true
         
         pageFromTextField.delegate = self
         pageToTextField.delegate = self
@@ -103,6 +105,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         displayAndQuizItemView.isHidden = true
         quizDisplayView.isHidden = true
         quizCompleteView.isHidden = true
+        wrongVocabularyView.isHidden = true
         
         searchResults.removeAll()
         searchMethod.removeAll()
@@ -170,6 +173,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         quizJapaneseDefinitionCheckBox.state = .off
         quizChineseDefinitionCheckBox.state = .off
         answer.removeAll()
+        quizViewController.wrongAnswer.removeAll()
     }
     
     // MARK: 範圍頁面
@@ -629,6 +633,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
             displayAndQuizItemView.isHidden = false
             quizDisplayView.isHidden = true
             quizCompleteView.isHidden = true
+            wrongVocabularyView.isHidden = true
             search() // quizSearch.swift
             print("搜尋結果是：")
             for word in searchResults
@@ -755,6 +760,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
             displayAndQuizItemView.isHidden = true
             quizDisplayView.isHidden = false
             quizCompleteView.isHidden = true
+            wrongVocabularyView.isHidden = true
             if searchResults.count == 1 // 顯示最後一個單字時
             {
                 nextVocabularyButton.title = "完成"
@@ -795,6 +801,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     let starImageEmpty = #imageLiteral(resourceName: "starEmpty")
     var correctItem = 0 // 測驗正確的數目
     var answer = Array(repeating: Array(repeating: "", count: 4), count: 1000) // 回答的內容
+    static var wrongAnswer = Array(repeating: Array(repeating: false, count: 4), count: 1000) // 錯誤的單字
 
     @IBAction func nextVocabularyButtonClicked(_ sender: Any) // 下一個單字按鈕
     {
@@ -825,18 +832,38 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
                 {
                     correctItem += 1
                 }
+                else // 答案錯誤
+                {
+                    quizViewController.wrongAnswer[checkIndex][0] = true
+                }
+                
                 if ans[1] != "" && ans[1] == searchResults[checkIndex].kana // 假名
                 {
                     correctItem += 1
                 }
+                else // 答案錯誤
+                {
+                    quizViewController.wrongAnswer[checkIndex][1] = true
+                }
+                
                 if ans[2] != "" && ans[2] == searchResults[checkIndex].japaneseDefinition // 日文解釋
                 {
                     correctItem += 1
                 }
+                else // 答案錯誤
+                {
+                    quizViewController.wrongAnswer[checkIndex][2] = true
+                }
+                
                 if ans[3] != "" && ans[3] == searchResults[checkIndex].chineseDefinition // 中文解釋
                 {
                     correctItem += 1
                 }
+                else // 答案錯誤
+                {
+                    quizViewController.wrongAnswer[checkIndex][3] = true
+                }
+                
                 checkIndex += 1
             }
             
@@ -847,6 +874,7 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
             displayAndQuizItemView.isHidden = true
             quizDisplayView.isHidden = true
             quizCompleteView.isHidden = false
+            wrongVocabularyView.isHidden = true
         }
         else // 顯示下一個
         {
@@ -920,14 +948,75 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var allQuizzedVocabularyCount: NSTextField!
     @IBOutlet weak var correctVocabularyCountText: NSTextField!
     
-    @IBAction func TaibanglebaButtonClicked(_ sender: Any) // "太棒了吧!"按鈕
+    @IBAction func TaiyouxiulebaButtonClicked(_ sender: Any) // "太優秀了吧!"按鈕
     {
         resetAllData()
     }
+    
+    @IBAction func WocuoleshenmeButtonClicked(_ sender: Any) // "我錯了什麼?" 按鈕
+    {
+        quizView.isHidden = true
+        displayAndQuizItemView.isHidden = true
+        quizDisplayView.isHidden = true
+        quizCompleteView.isHidden = true
+        wrongVocabularyView.isHidden = false
+        
+        if quizViewController.wrongAnswer[0][0] // 日文錯誤
+        {
+            wrongVocabulary.attributedStringValue = searchResults[0].volcabulary.strikeThroughCenter()
+        }
+        else // 沒有錯誤
+        {
+            wrongVocabulary.stringValue = searchResults[0].volcabulary
+        }
+        
+        if quizViewController.wrongAnswer[0][1] // 假名錯誤
+        {
+            wrongKana.attributedStringValue = searchResults[0].kana.strikeThroughCenter()
+        }
+        else
+        {
+            wrongKana.stringValue = searchResults[0].kana
+        }
+        
+        if quizViewController.wrongAnswer[0][2] // 日文解釋錯誤
+        {
+            wrongJapaneseDefinition.attributedStringValue = searchResults[0].japaneseDefinition.strikeThroughLeft()
+        }
+        else
+        {
+            wrongJapaneseDefinition.stringValue = searchResults[0].japaneseDefinition
+        }
+        
+        if quizViewController.wrongAnswer[0][3] // 中文解釋錯誤
+        {
+            wrongChineseDefinition.attributedStringValue = searchResults[0].japaneseDefinition.strikeThroughRight()
+        }
+        else
+        {
+            wrongChineseDefinition.stringValue = searchResults[0].chineseDefinition
+        }
+        
+        wrongChineseExample.stringValue = searchResults[0].sentence_chinese
+        wrongJapaneseExample.stringValue = searchResults[0].sentence
+        wrongType.stringValue = searchResults[0].type
+        wrongLevel.stringValue = searchResults[0].level
+    }
+    
+    // MARK: 錯誤單字
+    @IBOutlet weak var wrongVocabulary: NSTextField!
+    @IBOutlet weak var wrongChineseDefinition: NSTextField!
+    @IBOutlet weak var wrongKana: NSTextField!
+    @IBOutlet weak var wrongJapaneseDefinition: NSTextField!
+    @IBOutlet weak var wrongChineseExample: NSTextField!
+    @IBOutlet weak var wrongJapaneseExample: NSTextField!
+    @IBOutlet weak var wrongType: NSTextField!
+    @IBOutlet weak var wrongLevel: NSTextField!
+    
 }
 
 class displayChineseDefinitionDisplaySetting : NSTextFieldCell {
-    // 中文解釋顯示設定，置中和底線
+    // 中文解釋顯示設定，置中跟底線
     override func titleRect(forBounds rect: NSRect) -> NSRect {
         var titleRect = super.titleRect(forBounds: rect)
 
@@ -995,5 +1084,86 @@ class verticalCenterTextFieldCell: NSTextFieldCell {
 
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         super.draw(withFrame: cellFrame, in: controlView)
+    }
+}
+
+class TextFieldChange: NSTextField {
+
+    override func updateTrackingAreas() {
+        for area in self.trackingAreas {
+            self.removeTrackingArea(area)
+        }
+        self.addTrackingRect(self.bounds, owner: self, userData: nil, assumeInside: false)
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        var strikeThroughed = false // 該 label 是否是劃掉的
+        let attributes = self.attributedStringValue.attributes(at: 0, effectiveRange: nil)
+        for attr in attributes // 檢查該 string 所有 attributes
+        {
+            if attr.key.rawValue == "NSStrikethrough"
+            {
+                strikeThroughed = true
+            }
+        }
+        
+        if strikeThroughed // 該 label 是劃掉的
+        {
+            for answers in quizViewController.wrongAnswer
+            {
+                print(answers)
+            }
+        }
+        else // 一般數值
+        {
+            
+        }
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        super.mouseExited(with: event)
+        //print("printExited")
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
+        //print("mouseEntered")
+    }
+
+}
+
+extension String {
+    func strikeThroughCenter() -> NSAttributedString // string 劃掉加上置中
+    {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor( red: CGFloat(203/255.0), green: CGFloat(27/255.0), blue: CGFloat(69/255.0), alpha: CGFloat(1.0) ) , range: NSMakeRange(0, attributeString.length))
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        attributeString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, attributeString.length))
+        return attributeString
+    }
+    
+    func strikeThroughRight() -> NSAttributedString // string 劃掉加上置右
+    {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor( red: CGFloat(203/255.0), green: CGFloat(27/255.0), blue: CGFloat(69/255.0), alpha: CGFloat(1.0) ) , range: NSMakeRange(0, attributeString.length))
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.right
+        attributeString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, attributeString.length))
+        return attributeString
+    }
+    
+    func strikeThroughLeft() -> NSAttributedString // string 劃掉加上置左
+    {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor( red: CGFloat(203/255.0), green: CGFloat(27/255.0), blue: CGFloat(69/255.0), alpha: CGFloat(1.0) ) , range: NSMakeRange(0, attributeString.length))
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.left
+        attributeString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, attributeString.length))
+        return attributeString
     }
 }

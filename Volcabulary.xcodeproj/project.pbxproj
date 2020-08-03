@@ -488,7 +488,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "0.5-alpha";
+				MARKETING_VERSION = "0.6-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -516,7 +516,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "0.5-alpha";
+				MARKETING_VERSION = "0.6-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = Toby.zettaigoukaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
