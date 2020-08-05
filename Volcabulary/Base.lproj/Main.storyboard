@@ -1039,7 +1039,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="37.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="7jo-d0-aEd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="標記">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1072,7 +1072,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="36.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="2du-mw-Yyd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="頁數">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1084,11 +1084,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vae-x0-QQP">
-                                                            <rect key="frame" x="42" y="1" width="35" height="17"/>
+                                                            <rect key="frame" x="42" y="1" width="32" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-6X-hr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="39" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="RWV-ai-ok9">
                                                                         <font key="font" metaFont="system"/>
@@ -1108,7 +1108,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="119" minWidth="40" maxWidth="1000" id="FsH-J7-Dl0">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="日文">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1144,7 +1144,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="130" minWidth="40" maxWidth="1000" id="QUu-lF-DMF">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="假名">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1180,7 +1180,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="142.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="I89-MT-XBE">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="日文解釋">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1216,7 +1216,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="154.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="2wU-tW-bS1">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="中文解釋">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1228,11 +1228,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="kBS-gs-6GF">
-                                                            <rect key="frame" x="482" y="1" width="153" height="17"/>
+                                                            <rect key="frame" x="482" y="1" width="150" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4r-Vb-EJ5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="153" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="bEo-jK-h66">
                                                                         <font key="font" metaFont="system"/>
@@ -1252,7 +1252,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="57" minWidth="10" maxWidth="3.4028234663852886e+38" id="aPa-VL-uMo">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="類型">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1288,7 +1288,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="137.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="rD1-Q4-fmp">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="例句">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1324,7 +1324,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="141.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="mJO-Z4-T2u">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="例句中文">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1336,11 +1336,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="yey-TN-wh7">
-                                                            <rect key="frame" x="840" y="1" width="140" height="17"/>
+                                                            <rect key="frame" x="840" y="1" width="137" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-ZL-yrd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="137" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="yie-2u-6dS">
                                                                         <font key="font" metaFont="system"/>
@@ -1360,7 +1360,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="61.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="PPC-zV-cbp" userLabel="級數">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="級數">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -4059,10 +4059,10 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="previousVocabularyButtonClicked:" target="KkB-GG-d4m" id="CH3-dG-mAE"/>
+                                            <action selector="wrongVocabularyPreviousButtonClicked:" target="JEW-QV-f5H" id="apo-XH-IGe"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfr-xF-skr" customClass="TextFieldChange" customModule="Volcabulary" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfr-xF-skr">
                                         <rect key="frame" x="20" y="234" width="462" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="中文例句" id="J3T-hQ-fZo">
@@ -4079,7 +4079,7 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="nextVocabularyButtonClicked:" target="KkB-GG-d4m" id="lC4-at-413"/>
+                                            <action selector="wrongVocabularyNextButtonClicked:" target="JEW-QV-f5H" id="pCK-YQ-OqJ"/>
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7K-JL-bJM">
@@ -4209,7 +4209,7 @@ DQ
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaU-m8-Rdb" customClass="TextFieldChange" customModule="Volcabulary" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaU-m8-Rdb">
                                         <rect key="frame" x="558" y="234" width="462" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="charWrapping" truncatesLastVisibleLine="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="日文例句" id="wWW-6x-jMO">
@@ -4298,6 +4298,8 @@ DQ
                         <outlet property="wrongLevel" destination="ZCH-ji-Xfg" id="Qtb-oE-j6A"/>
                         <outlet property="wrongType" destination="Fum-gG-5zk" id="jJ5-4k-cO4"/>
                         <outlet property="wrongVocabulary" destination="Utz-tK-bi0" id="fnP-XM-RRS"/>
+                        <outlet property="wrongVocabularyNextButton" destination="qwD-Xb-b4n" id="f1a-cD-NiH"/>
+                        <outlet property="wrongVocabularyPreviousButton" destination="fdD-my-IqD" id="lka-tE-Vei"/>
                         <outlet property="wrongVocabularyView" destination="9tM-Ei-mgm" id="M11-1a-xCP"/>
                         <segue destination="C1G-xd-OLa" kind="sheet" identifier="quizError" id="Yi9-Cz-oc9"/>
                     </connections>

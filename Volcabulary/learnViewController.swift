@@ -647,6 +647,11 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
                 learnError.errorDescriptionText = "noResult"
                 performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
                 searchResults.removeAll()
+                level.removeAll()
+                searchMethod.removeAll()
+                searchSelected.removeAll()
+                checked = false
+                inputdataError = false
             }
             else
             {

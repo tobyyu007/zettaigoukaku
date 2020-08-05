@@ -33,6 +33,8 @@ class learnError: NSViewController {
             errorDescription.stringValue = "頁數請輸入 1~1000 頁"
         case "noSelection":
             errorDescription.stringValue = "請至少選擇一個欄位"
+        case "noResult":
+            errorDescription.stringValue = "搜尋不到符合的項目"
         case "rangeError":
             errorDescription.stringValue = "頁數範圍錯誤，結束比開始小"
         default:
