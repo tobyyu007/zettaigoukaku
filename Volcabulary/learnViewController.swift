@@ -640,15 +640,25 @@ class learnViewController: NSViewController, NSTextFieldDelegate {
         }
         else if !inputdataError// 有選擇欄位，並且沒有欄位輸入問題，往下一個頁面前進
         {
-            learnView.isHidden = true
-            displayItemView.isHidden = false
-            volcabularyDisplayView.isHidden = true
-            learnCompleteView.isHidden = true
             search() // learnSearch.swift
-            print("搜尋結果是：")
-            for word in searchResults
+            if searchResults.count == 0 // 搜尋沒有結果
             {
-                print(word.volcabulary)
+                learnError.errorTitleText = "error"
+                learnError.errorDescriptionText = "noResult"
+                performSegue(withIdentifier: "learnError", sender: self) // 跳轉到錯誤訊息
+                searchResults.removeAll()
+            }
+            else
+            {
+                learnView.isHidden = true
+                displayItemView.isHidden = false
+                volcabularyDisplayView.isHidden = true
+                learnCompleteView.isHidden = true
+                print("搜尋結果是：")
+                for word in searchResults
+                {
+                    print(word.volcabulary)
+                }
             }
         }
         else if inputdataError // 有欄位沒有輸入，重設搜尋資料

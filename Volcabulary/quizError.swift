@@ -35,6 +35,8 @@ class quizError: NSViewController {
             errorDescription.stringValue = "請至少選擇一個欄位"
         case "rangeError":
             errorDescription.stringValue = "頁數範圍錯誤，結束比開始小"
+        case "noResult":
+            errorDescription.stringValue = "搜尋不到符合的項目"
         case "selectionExceed":
             errorDescription.stringValue = "選擇超過規定的項目(顯示5個，測驗4個)"
         default:

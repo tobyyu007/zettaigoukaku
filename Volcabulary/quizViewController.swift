@@ -173,7 +173,8 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         quizJapaneseDefinitionCheckBox.state = .off
         quizChineseDefinitionCheckBox.state = .off
         answer.removeAll()
-        quizViewController.wrongAnswer.removeAll()
+        
+        quizViewController.correctAnswer.removeAll()
     }
     
     // MARK: 範圍頁面
@@ -629,16 +630,27 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         }
         else if !inputdataError// 有選擇欄位，並且沒有欄位輸入問題，往下一個頁面前進
         {
-            quizView.isHidden = true
-            displayAndQuizItemView.isHidden = false
-            quizDisplayView.isHidden = true
-            quizCompleteView.isHidden = true
-            wrongVocabularyView.isHidden = true
             search() // quizSearch.swift
-            print("搜尋結果是：")
-            for word in searchResults
+            if searchResults.count == 0 // 搜尋沒有結果
             {
-                print(word.volcabulary)
+                quizError.errorTitleText = "error"
+                quizError.errorDescriptionText = "noResult"
+                performSegue(withIdentifier: "quizError", sender: self) // 跳轉到錯誤訊息
+                searchResults.removeAll()
+            }
+            else // 有搜尋結果，跳轉頁面
+            {
+                quizView.isHidden = true
+                displayAndQuizItemView.isHidden = false
+                quizDisplayView.isHidden = true
+                quizCompleteView.isHidden = true
+                wrongVocabularyView.isHidden = true
+                
+                print("搜尋結果是：")
+                for word in searchResults
+                {
+                    print(word.volcabulary)
+                }
             }
         }
         else if inputdataError // 有欄位沒有輸入，重設搜尋資料
@@ -801,7 +813,8 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
     let starImageEmpty = #imageLiteral(resourceName: "starEmpty")
     var correctItem = 0 // 測驗正確的數目
     var answer = Array(repeating: Array(repeating: "", count: 4), count: 1000) // 回答的內容
-    static var wrongAnswer = Array(repeating: Array(repeating: false, count: 4), count: 1000) // 錯誤的單字
+    static var wrongAnswer = Array(repeating: Array(repeating: "", count: 4), count: 1000) // 錯誤的答案
+    static var correctAnswer = Array(repeating: Array(repeating: "", count: 4), count: 1000) // 正確的答案
 
     @IBAction func nextVocabularyButtonClicked(_ sender: Any) // 下一個單字按鈕
     {
@@ -826,42 +839,85 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
             }
             
             var checkIndex = 0
-            for ans in answer
+            
+            for i in 0...currentVolcabularyIndex
             {
-                if ans[0] != "" && ans[0] == searchResults[checkIndex].volcabulary // 日文
+                if answer[i][0] == searchResults[checkIndex].volcabulary // 日文答案正確
                 {
+                    quizViewController.wrongAnswer[checkIndex][0] = ""
                     correctItem += 1
+                }
+                else if quizJapaneseCheckBox.state == .off // 欄位沒有被選擇
+                {
+                    quizViewController.wrongAnswer[checkIndex][0] = ""
+                }
+                else if answer[i][0] == "" // 未輸入答案
+                {
+                    quizViewController.wrongAnswer[checkIndex][0] = "未輸入"
                 }
                 else // 答案錯誤
                 {
-                    quizViewController.wrongAnswer[checkIndex][0] = true
+                    quizViewController.wrongAnswer[checkIndex][0] = answer[i][0]
+                    quizViewController.correctAnswer[checkIndex][0] = searchResults[checkIndex].volcabulary
                 }
                 
-                if ans[1] != "" && ans[1] == searchResults[checkIndex].kana // 假名
+                if answer[i][1] == searchResults[checkIndex].kana && quizKanaCheckBox.state == .on // 假名
                 {
+                    quizViewController.wrongAnswer[checkIndex][1] = ""
+                    wrongVocabulary.stringValue = answer[i][1]
                     correctItem += 1
+                }
+                else if answer[i][1] == "" // 未輸入答案
+                {
+                    quizViewController.wrongAnswer[checkIndex][1] = "未輸入"
+                }
+                else if quizKanaCheckBox.state == .off // 欄位沒有被選擇
+                {
+                    quizViewController.wrongAnswer[checkIndex][1] = ""
                 }
                 else // 答案錯誤
                 {
-                    quizViewController.wrongAnswer[checkIndex][1] = true
+                    quizViewController.wrongAnswer[checkIndex][1] = answer[i][1]
+                    
+                    quizViewController.correctAnswer[checkIndex][1] = searchResults[checkIndex].volcabulary
                 }
                 
-                if ans[2] != "" && ans[2] == searchResults[checkIndex].japaneseDefinition // 日文解釋
+                if answer[i][2] == searchResults[checkIndex].japaneseDefinition // 日文解釋
                 {
+                    quizViewController.wrongAnswer[checkIndex][2] = ""
                     correctItem += 1
+                }
+                else if quizJapaneseDefinitionCheckBox.state == .off // 欄位沒有被選擇
+                {
+                    quizViewController.wrongAnswer[checkIndex][2] = ""
+                }
+                else if answer[i][2] == "" // 未輸入答案
+                {
+                    quizViewController.wrongAnswer[checkIndex][2] = "未輸入"
                 }
                 else // 答案錯誤
                 {
-                    quizViewController.wrongAnswer[checkIndex][2] = true
+                    quizViewController.wrongAnswer[checkIndex][2] = answer[i][2]
+                    quizViewController.correctAnswer[checkIndex][2] = searchResults[checkIndex].volcabulary
                 }
                 
-                if ans[3] != "" && ans[3] == searchResults[checkIndex].chineseDefinition // 中文解釋
+                if answer[i][3] == searchResults[checkIndex].chineseDefinition // 中文解釋
                 {
+                    quizViewController.wrongAnswer[checkIndex][3] = ""
                     correctItem += 1
+                }
+                else if quizChineseDefinitionCheckBox.state == .off // 欄位沒有被選擇
+                {
+                    quizViewController.wrongAnswer[checkIndex][3] = ""
+                }
+                else if answer[i][3] == "" // 未輸入答案
+                {
+                    quizViewController.wrongAnswer[checkIndex][3] = "未輸入"
                 }
                 else // 答案錯誤
                 {
-                    quizViewController.wrongAnswer[checkIndex][3] = true
+                    quizViewController.wrongAnswer[checkIndex][3] = answer[i][3]
+                    quizViewController.correctAnswer[checkIndex][3] = searchResults[checkIndex].volcabulary
                 }
                 
                 checkIndex += 1
@@ -961,38 +1017,38 @@ class quizViewController: NSViewController, NSTextFieldDelegate {
         quizCompleteView.isHidden = true
         wrongVocabularyView.isHidden = false
         
-        if quizViewController.wrongAnswer[0][0] // 日文錯誤
+        if quizViewController.wrongAnswer[0][0] != "" // 日文錯誤或沒有輸入答案
         {
-            wrongVocabulary.attributedStringValue = searchResults[0].volcabulary.strikeThroughCenter()
+            wrongVocabulary.attributedStringValue = quizViewController.wrongAnswer[0][0].strikeThroughCenter()
         }
-        else // 沒有錯誤
+        else // 沒有錯誤或未勾選該欄位
         {
             wrongVocabulary.stringValue = searchResults[0].volcabulary
         }
         
-        if quizViewController.wrongAnswer[0][1] // 假名錯誤
+        if quizViewController.wrongAnswer[0][1] != "" // 假名錯誤或沒有輸入答案
         {
-            wrongKana.attributedStringValue = searchResults[0].kana.strikeThroughCenter()
+            wrongKana.attributedStringValue = quizViewController.wrongAnswer[0][1].strikeThroughCenter()
         }
-        else
+        else // 沒有錯誤或未勾選該欄位
         {
             wrongKana.stringValue = searchResults[0].kana
         }
         
-        if quizViewController.wrongAnswer[0][2] // 日文解釋錯誤
+        if quizViewController.wrongAnswer[0][2] != "" // 日文解釋錯誤或沒有輸入答案
         {
-            wrongJapaneseDefinition.attributedStringValue = searchResults[0].japaneseDefinition.strikeThroughLeft()
+            wrongJapaneseDefinition.attributedStringValue = quizViewController.wrongAnswer[0][2].strikeThroughCenter()
         }
-        else
+        else // 沒有錯誤或未勾選該欄位
         {
             wrongJapaneseDefinition.stringValue = searchResults[0].japaneseDefinition
         }
         
-        if quizViewController.wrongAnswer[0][3] // 中文解釋錯誤
+        if quizViewController.wrongAnswer[0][3] != "" // 中文解釋錯誤或沒有輸入答案
         {
-            wrongChineseDefinition.attributedStringValue = searchResults[0].japaneseDefinition.strikeThroughRight()
+            wrongChineseDefinition.attributedStringValue = quizViewController.wrongAnswer[0][3].strikeThroughCenter()
         }
-        else
+        else // 沒有錯誤或未勾選該欄位
         {
             wrongChineseDefinition.stringValue = searchResults[0].chineseDefinition
         }
@@ -1110,10 +1166,7 @@ class TextFieldChange: NSTextField {
         
         if strikeThroughed // 該 label 是劃掉的
         {
-            for answers in quizViewController.wrongAnswer
-            {
-                print(answers)
-            }
+            
         }
         else // 一般數值
         {
