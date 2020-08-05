@@ -1,6 +1,0 @@
-framework module Pods_Volcabulary {
-  umbrella header "Pods-Volcabulary-umbrella.h"
-
-  export *
-  module * { export * }
-}
