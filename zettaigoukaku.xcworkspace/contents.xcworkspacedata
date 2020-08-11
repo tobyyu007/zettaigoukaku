@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../zettaigoukaku-iOS/zettaigoukaku-iOS.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:zettaigoukaku.xcodeproj">
    </FileRef>
    <FileRef
